@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2016-11-25 03:20:22
+<?php /* Smarty version Smarty-3.1.8, created on 2016-11-26 18:10:52
          compiled from "C:\xampp\htdocs\pananabe\views\layout\administrador\template.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:966858375a103a8507-31710133%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5ab2b7a83656ca414e4917301daaf4f1d43918b2' => 
     array (
       0 => 'C:\\xampp\\htdocs\\pananabe\\views\\layout\\administrador\\template.tpl',
-      1 => 1480040287,
+      1 => 1480040288,
       2 => 'file',
     ),
   ),

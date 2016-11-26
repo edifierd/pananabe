@@ -1,35 +1,33 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2016-11-26 18:10:29
-         compiled from "C:\xampp\htdocs\pananabe\views\prenda\index.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:187245812beb3f09dd4-96755932%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.8, created on 2016-11-26 21:54:46
+         compiled from "C:\xampp\htdocs\pananabe\views\prenda\ajax\listaPrendas.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:297765839f696a3c567-28532761%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '4332fdfa1f822b3e07790241cf3a839d4e272e17' => 
+    '2ef091077f330bcce457ee8aba0646364a16e5f1' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\pananabe\\views\\prenda\\index.tpl',
-      1 => 1477623626,
+      0 => 'C:\\xampp\\htdocs\\pananabe\\views\\prenda\\ajax\\listaPrendas.tpl',
+      1 => 1476477044,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '187245812beb3f09dd4-96755932',
+  'nocache_hash' => '297765839f696a3c567-28532761',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_5812beb4061188_65590706',
   'variables' => 
   array (
-    'tituloAuxiliar' => 0,
     'prendas' => 0,
     '_layoutParams' => 0,
     'datos' => 0,
     'paginacion' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_5839f696bba719_73024540',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5812beb4061188_65590706')) {function content_5812beb4061188_65590706($_smarty_tpl) {?>
-<h2>Todos nuestros trajes de baño  <?php echo $_smarty_tpl->tpl_vars['tituloAuxiliar']->value;?>
-</h2><br /><br />
+<?php if ($_valid && !is_callable('content_5839f696bba719_73024540')) {function content_5839f696bba719_73024540($_smarty_tpl) {?>
+
 
 <div id="lista_registros">
 <?php if (isset($_smarty_tpl->tpl_vars['prendas']->value)&&count($_smarty_tpl->tpl_vars['prendas']->value)){?>
@@ -43,27 +41,16 @@ $_smarty_tpl->tpl_vars['datos']->_loop = true;
         <div class="col-xs-12 col-sm-6 col-md-3" style=" padding:15px; ">
         	<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 prenda/show/<?php echo $_smarty_tpl->tpl_vars['datos']->value['id'];?>
-" 
-               onmouseover="transparenciaImagen(<?php echo $_smarty_tpl->tpl_vars['datos']->value['id'];?>
+" onmouseover="transparenciaImagen(<?php echo $_smarty_tpl->tpl_vars['datos']->value['id'];?>
 ,0.5)" onmouseout="transparenciaImagen(<?php echo $_smarty_tpl->tpl_vars['datos']->value['id'];?>
-,1)"
-               title="<?php echo $_smarty_tpl->tpl_vars['datos']->value['nombre'];?>
-"
-            >
-            <div class="row">
+,1)">
+        	<div class="row">
             	<div class="col-md-12">
                 	<img src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 public/img/prendas/<?php echo $_smarty_tpl->tpl_vars['datos']->value['foto_frente'];?>
 .jpg" class="img-responsive" id="<?php echo $_smarty_tpl->tpl_vars['datos']->value['id'];?>
 " 
-                    	 style="margin-right:auto; margin-left:auto; width:240px; height:320px;"
-                         title="<?php echo $_smarty_tpl->tpl_vars['datos']->value['nombre'];?>
- para <?php echo $_smarty_tpl->tpl_vars['datos']->value['genero'];?>
-"
-                         alt="<?php echo $_smarty_tpl->tpl_vars['datos']->value['nombre'];?>
- para <?php echo $_smarty_tpl->tpl_vars['datos']->value['genero'];?>
-"
-                     />
+                    	 style="margin-right:auto; margin-left:auto; width:240px; height:320px;"/>
                 </div>
                 <div class="col-md-12" style="text-align:center;">
                 	<b><?php echo $_smarty_tpl->tpl_vars['datos']->value['nombre'];?>

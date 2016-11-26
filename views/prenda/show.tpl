@@ -3,7 +3,7 @@
 	<div class="col-xs-12 col-sm-6 col-md-6" >
     	<div class="row">
         	<div class="col-md-12">
-            	<img src="{$_layoutParams.root}public/img/prendas/{$datos.foto_frente}.jpg" class="img-responsive fotoMax" id="5000"  style="max-height:500px;"
+            	<img src="{$_layoutParams.root}public/img/prendas/{$datos.foto_frente}.jpg" class="img-responsive fotoMax" id="5000"  style="max-height:500px; "
                 title="{$datos.nombre}"/>
             </div>
             <div class="col-md-12">

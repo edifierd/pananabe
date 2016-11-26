@@ -6,6 +6,8 @@
 </head>
 
 <body>
-	<img src="{$_layoutParams.root}public/img/prendas/{$imagen}" />
+	{for $var=1 to 3}
+		<img src="{$_layoutParams.root}public/img/prendas/{$imagen[$var]}" style="height:350px; width:auto; float: left;" />
+	{/for}
 </body>
 </html>

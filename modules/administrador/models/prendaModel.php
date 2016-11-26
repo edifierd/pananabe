@@ -64,6 +64,44 @@ class prendaModel extends Model
 		} 
 		return false;
     }
+	
+
+    public function insertarPrenda($nombre, $descripcion, $precio, $s, $m, $l, $xl, $foto_frente, $foto_atras, $foto_perfil)
+    {
+		$estado = false;
+        if ($this->_db->prepare("INSERT INTO prenda VALUES" . 
+		"(null, :nombre, :descripcion, 2016 , :precio, :S, :M, :L, :XL, 1 , :foto_frente, :foto_atras, :foto_perfil)"
+		)->execute(
+        	array(
+            	':nombre' => $nombre,
+            	':descripcion' => $descripcion,
+				':precio' => $precio,
+				':S' => $s,
+				':M' => $m,
+				':L' => $l,
+				':XL' => $xl,
+				':foto_frente' => $foto_frente,
+				':foto_atras' => $foto_atras,
+				':foto_perfil' => $foto_perfil
+			))){
+				$prenda = $this->last();
+				echo $prenda['id'];
+				if ( $this->_db->prepare("INSERT INTO prenda_a_categoria VALUES (null, :id_prenda, 1 )"
+				)->execute(
+                        array(
+                           ':id_prenda' => $prenda['id'],
+                        ))){$estado=true;}else{$estado=false;}
+		} else {
+			$estado=false;
+		}
+		return $estado;
+    }
+	
+	public function last(){
+		$venta = $this->_db->query("SELECT * FROM prenda ORDER BY prenda.id DESC LIMIT 1");	
+		
+		return $venta->fetch();
+	}
     
     public function eliminarPost($id)
     {

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2016-10-28 04:57:57
+<?php /* Smarty version Smarty-3.1.8, created on 2016-11-26 21:42:50
          compiled from "C:\xampp\htdocs\pananabe\views\prenda\show.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:195975812beb50f2345-07850793%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '97917f9a16cd2da09ec111233a2a12ae3a9f40ad' => 
     array (
       0 => 'C:\\xampp\\htdocs\\pananabe\\views\\prenda\\show.tpl',
-      1 => 1477622907,
+      1 => 1480180524,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_5812beb51efb63_47304750',
   'variables' => 
   array (
     '_layoutParams' => 0,
     'datos' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_5812beb51efb63_47304750',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5812beb51efb63_47304750')) {function content_5812beb51efb63_47304750($_smarty_tpl) {?>
 <div class="row">
@@ -31,7 +31,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         	<div class="col-md-12">
             	<img src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 public/img/prendas/<?php echo $_smarty_tpl->tpl_vars['datos']->value['foto_frente'];?>
-.jpg" class="img-responsive fotoMax" id="5000"  style="max-height:500px;"
+.jpg" class="img-responsive fotoMax" id="5000"  style="max-height:500px; "
                 title="<?php echo $_smarty_tpl->tpl_vars['datos']->value['nombre'];?>
 "/>
             </div>
