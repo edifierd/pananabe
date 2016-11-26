@@ -2035,7 +2035,7 @@ class upload {
      *    or   string $file Local filename
      * @param  string $lang Optional language code
      */
-    function upload($file, $lang = 'en_GB') {
+    function upload($file, $lang = 'es_ES') {
 
         $this->version            = '0.34dev';
 
@@ -2131,7 +2131,7 @@ class upload {
             if (is_array($translation)) {
                 $this->translation = array_merge($this->translation, $translation);
             } else {
-                $this->lang = 'en_GB';
+                $this->lang = 'es_ES';
             }
         }
 

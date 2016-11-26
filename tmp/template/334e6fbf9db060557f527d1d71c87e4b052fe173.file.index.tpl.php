@@ -1,4 +1,29 @@
-<script>
+<?php /* Smarty version Smarty-3.1.8, created on 2016-11-26 15:55:30
+         compiled from "C:\xampp\htdocs\pananabe\modules\administrador\views\index\index.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:3191758375a122a1ba0-35243951%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '334e6fbf9db060557f527d1d71c87e4b052fe173' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\pananabe\\modules\\administrador\\views\\index\\index.tpl',
+      1 => 1480172116,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '3191758375a122a1ba0-35243951',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_58375a122d82e0_31299155',
+  'variables' => 
+  array (
+    '_layoutParams' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_58375a122d82e0_31299155')) {function content_58375a122d82e0_31299155($_smarty_tpl) {?><script>
 var files = document.getElementById('fbBrowseBtn').files;
  
 function resizeAndUpload(file, callback, progress)
@@ -42,7 +67,8 @@ function resizeAndUpload(file, callback, progress)
 			fd.append("photo", file);
  
 			$.ajax({
-				url: "{$_layoutParams.root}administrador/index/cargarFoto",
+				url: "<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+administrador/index/cargarFoto",
 				type: "POST",
 				data: fd,
 				processData: false,
@@ -97,7 +123,8 @@ function progressBar(percent)
 
 
 Form demo:
-<form enctype="multipart/form-data" method="post" action="{$_layoutParams.root}administrador/index/cargarFoto">
+<form enctype="multipart/form-data" method="post" action="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+administrador/index/cargarFoto">
   Foto Frente:
   <input id="fbBrowseBtn" type="file" name="imagen0"  multiple>
   Foto Atras:
@@ -110,7 +137,8 @@ Form demo:
 <!--<input type="file" id="pic" name="pic" />
 <canvas id="preview"></canvas>
 <div id="actions">
-    <form action="{$_layoutParams.root}administrador/index/cargarFoto" method="post">
+    <form action="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+administrador/index/cargarFoto" method="post">
         <input type="text" id="imageName" name="imageName" />
         <input type="hidden" id="contentType" name="contentType" />
         <input type="hidden" id="imageData" name="imageData" />
@@ -118,4 +146,4 @@ Form demo:
     </form>
  
 </div>
-<div id="result"></div>-->
+<div id="result"></div>--><?php }} ?>
