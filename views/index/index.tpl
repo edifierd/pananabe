@@ -34,6 +34,7 @@
     <li data-target="#myCarousel" data-slide-to="1"></li>
     <li data-target="#myCarousel" data-slide-to="2"></li>
     <li data-target="#myCarousel" data-slide-to="3"></li>
+    <li data-target="#myCarousel" data-slide-to="4"></li>
   </ol>
 
   <!-- Wrapper for slides -->
@@ -41,32 +42,40 @@
     <div class="item active">
       <img src="{$_layoutParams.root}public/img/slider/foto1.jpg" alt="Chania" style="width:1920px; max-height:500px;" class="img-responsive">
       <div class="carousel-caption">
-        <h3>Este es un Titulo</h3>
-        <p>Aca se puede agregar un texto adicional</p>
+        <h3></h3>
+        <p></p>
       </div>
     </div>
 
     <div class="item">
       <img src="{$_layoutParams.root}public/img/slider/foto2.jpg" alt="Chania" style="width:1920px; max-height:500px;" class="img-responsive">
       <div class="carousel-caption">
-        <h3>Este es un Titulo</h3>
-        <p>Aca se puede agregar un texto adicional</p>
+        <h3></h3>
+        <p></p>
       </div>
     </div>
 
     <div class="item">
       <img src="{$_layoutParams.root}public/img/slider/foto3.jpg" alt="Flower" style="width:1920px; max-height:500px;" class="img-responsive">
       <div class="carousel-caption">
-        <h3>Este es un Titulo</h3>
-        <p>Aca se puede agregar un texto adicional</p>
+        <h3></h3>
+        <p></p>
       </div>
     </div>
     
     <div class="item">
       <img src="{$_layoutParams.root}public/img/slider/foto4.jpg" alt="Flower" style="width:1920px; max-height:500px;" class="img-responsive">
       <div class="carousel-caption">
-        <h3>Este es un Titulo</h3>
-        <p>Aca se puede agregar un texto adicional</p>
+        <h3></h3>
+        <p></p>
+      </div>
+    </div>
+    
+    <div class="item">
+      <img src="{$_layoutParams.root}public/img/slider/foto5.jpg" alt="Flower" style="width:1920px; max-height:500px;" class="img-responsive">
+      <div class="carousel-caption">
+        <h3></h3>
+        <p></p>
       </div>
     </div>
   </div>

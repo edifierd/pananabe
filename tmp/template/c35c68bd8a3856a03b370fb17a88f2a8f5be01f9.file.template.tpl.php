@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2016-11-26 18:09:57
+<?php /* Smarty version Smarty-3.1.8, created on 2016-11-28 17:00:37
          compiled from "C:\xampp\htdocs\pananabe\views\layout\pananabe\template.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:32545812beb26625f6-39864152%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c35c68bd8a3856a03b370fb17a88f2a8f5be01f9' => 
     array (
       0 => 'C:\\xampp\\htdocs\\pananabe\\views\\layout\\pananabe\\template.tpl',
-      1 => 1477623248,
+      1 => 1480348835,
       2 => 'file',
     ),
   ),
@@ -224,7 +224,7 @@ logoMin.png" class="img-responsive"
             </div>
             <div class="col-sm-4 col-md-4" style=" margin-top:10px; font-weight:bold;">
             	<p style="margin-right:auto; margin-left:auto;">
-            	Contacto al (221) 15 5698569 de 8:00 a 20:00 Hs <br>
+            	Contacto al (221) 15 5980127 de 8:00 a 20:00 Hs <br>
                 Brandsen, Buenos Aires, Argentina
                 </p>
             </div>

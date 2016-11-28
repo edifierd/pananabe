@@ -144,7 +144,7 @@
             </div>
             <div class="col-sm-4 col-md-4" style=" margin-top:10px; font-weight:bold;">
             	<p style="margin-right:auto; margin-left:auto;">
-            	Contacto al (221) 15 5698569 de 8:00 a 20:00 Hs <br>
+            	Contacto al (221) 15 5980127 de 8:00 a 20:00 Hs <br>
                 Brandsen, Buenos Aires, Argentina
                 </p>
             </div>

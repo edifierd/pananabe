@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2016-11-26 18:09:58
+<?php /* Smarty version Smarty-3.1.8, created on 2016-11-28 16:58:40
          compiled from "C:\xampp\htdocs\pananabe\views\index\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:35115812beb2d183e3-21388613%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b58910af6651305c117172985221b14db22a1cdc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\pananabe\\views\\index\\index.tpl',
-      1 => 1477622226,
+      1 => 1480348717,
       2 => 'file',
     ),
   ),
@@ -63,6 +63,7 @@ hombre.jpg" class="img-responsive img-circle" id="2"
     <li data-target="#myCarousel" data-slide-to="1"></li>
     <li data-target="#myCarousel" data-slide-to="2"></li>
     <li data-target="#myCarousel" data-slide-to="3"></li>
+    <li data-target="#myCarousel" data-slide-to="4"></li>
   </ol>
 
   <!-- Wrapper for slides -->
@@ -71,8 +72,8 @@ hombre.jpg" class="img-responsive img-circle" id="2"
       <img src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 public/img/slider/foto1.jpg" alt="Chania" style="width:1920px; max-height:500px;" class="img-responsive">
       <div class="carousel-caption">
-        <h3>Este es un Titulo</h3>
-        <p>Aca se puede agregar un texto adicional</p>
+        <h3></h3>
+        <p></p>
       </div>
     </div>
 
@@ -80,8 +81,8 @@ public/img/slider/foto1.jpg" alt="Chania" style="width:1920px; max-height:500px;
       <img src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 public/img/slider/foto2.jpg" alt="Chania" style="width:1920px; max-height:500px;" class="img-responsive">
       <div class="carousel-caption">
-        <h3>Este es un Titulo</h3>
-        <p>Aca se puede agregar un texto adicional</p>
+        <h3></h3>
+        <p></p>
       </div>
     </div>
 
@@ -89,8 +90,8 @@ public/img/slider/foto2.jpg" alt="Chania" style="width:1920px; max-height:500px;
       <img src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 public/img/slider/foto3.jpg" alt="Flower" style="width:1920px; max-height:500px;" class="img-responsive">
       <div class="carousel-caption">
-        <h3>Este es un Titulo</h3>
-        <p>Aca se puede agregar un texto adicional</p>
+        <h3></h3>
+        <p></p>
       </div>
     </div>
     
@@ -98,8 +99,17 @@ public/img/slider/foto3.jpg" alt="Flower" style="width:1920px; max-height:500px;
       <img src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 public/img/slider/foto4.jpg" alt="Flower" style="width:1920px; max-height:500px;" class="img-responsive">
       <div class="carousel-caption">
-        <h3>Este es un Titulo</h3>
-        <p>Aca se puede agregar un texto adicional</p>
+        <h3></h3>
+        <p></p>
+      </div>
+    </div>
+    
+    <div class="item">
+      <img src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+public/img/slider/foto5.jpg" alt="Flower" style="width:1920px; max-height:500px;" class="img-responsive">
+      <div class="carousel-caption">
+        <h3></h3>
+        <p></p>
       </div>
     </div>
   </div>
