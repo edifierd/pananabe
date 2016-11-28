@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2016-11-28 17:02:36
+<?php /* Smarty version Smarty-3.1.8, created on 2016-11-28 18:05:54
          compiled from "C:\xampp\htdocs\pananabe\modules\administrador\views\prenda\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:36085839d90d8fbfc8-14739571%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5acf8551c08459932d45d7fd5772deec54438bad' => 
     array (
       0 => 'C:\\xampp\\htdocs\\pananabe\\modules\\administrador\\views\\prenda\\index.tpl',
-      1 => 1480186708,
+      1 => 1480351767,
       2 => 'file',
     ),
   ),
@@ -24,10 +24,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5839d90d945e18_25935706')) {function content_5839d90d945e18_25935706($_smarty_tpl) {?><h2> Cargar Producto </h2>
+<?php if ($_valid && !is_callable('content_5839d90d945e18_25935706')) {function content_5839d90d945e18_25935706($_smarty_tpl) {?><h2> Cargar Producto - Paso 1 / 4 </h2>
 
 <form enctype="multipart/form-data" method="post" action="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-administrador/prenda/guardar">
+administrador/prenda/paso1">
 	Nombre:<br>
 	<input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese el titulo" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['campos']->value['apellido'])===null||$tmp==='' ? '' : $tmp);?>
 " style="border-radius: 0px;">
@@ -50,7 +50,7 @@ administrador/prenda/guardar">
     <input type="number" class="form-control" name="xl" id="xl" placeholder="Stock talle XL" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['campos']->value['apellido'])===null||$tmp==='' ? '' : $tmp);?>
 " style="border-radius: 0px;">
     
-    <button class="btn btn-primary" id="btnvalidar"><i class="icon-ok icon-white"></i>Guardar</button>
+    <button class="btn btn-primary" id="btnvalidar"><i class="icon-ok icon-white"></i>Siguiente</button>
 </form>
 
 <!--

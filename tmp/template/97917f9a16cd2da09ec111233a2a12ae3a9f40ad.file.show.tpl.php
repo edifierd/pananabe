@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2016-11-26 21:42:50
+<?php /* Smarty version Smarty-3.1.8, created on 2016-11-28 19:27:12
          compiled from "C:\xampp\htdocs\pananabe\views\prenda\show.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:195975812beb50f2345-07850793%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '97917f9a16cd2da09ec111233a2a12ae3a9f40ad' => 
     array (
       0 => 'C:\\xampp\\htdocs\\pananabe\\views\\prenda\\show.tpl',
-      1 => 1480180524,
+      1 => 1480357629,
       2 => 'file',
     ),
   ),
@@ -28,36 +28,36 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <div class="row">
 	<div class="col-xs-12 col-sm-6 col-md-6" >
     	<div class="row">
-        	<div class="col-md-12">
+        	<div class="col-md-12" style="height:500px;">
             	<img src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 public/img/prendas/<?php echo $_smarty_tpl->tpl_vars['datos']->value['foto_frente'];?>
-.jpg" class="img-responsive fotoMax" id="5000"  style="max-height:500px; "
+" class="img-responsive fotoMax" id="5000"  style="max-height:500px; "
                 title="<?php echo $_smarty_tpl->tpl_vars['datos']->value['nombre'];?>
 "/>
             </div>
             <div class="col-md-12">
             	<a onmouseover="cambiarImagen(5000,'<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 public/img/prendas/<?php echo $_smarty_tpl->tpl_vars['datos']->value['foto_frente'];?>
-.jpg')" href="javascript:void(0);">
+')" href="javascript:void(0);">
                 	<img src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 public/img/prendas/<?php echo $_smarty_tpl->tpl_vars['datos']->value['foto_frente'];?>
-.jpg" class="img-responsive fotoMin" alt="<?php echo $_smarty_tpl->tpl_vars['datos']->value['nombre'];?>
+" class="img-responsive fotoMin" alt="<?php echo $_smarty_tpl->tpl_vars['datos']->value['nombre'];?>
  foto frente"/>
                 </a>
                 <a onmouseover="cambiarImagen(5000,'<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 public/img/prendas/<?php echo $_smarty_tpl->tpl_vars['datos']->value['foto_perfil'];?>
-.jpg')" href="javascript:void(0);">
+')" href="javascript:void(0);">
                 	<img src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 public/img/prendas/<?php echo $_smarty_tpl->tpl_vars['datos']->value['foto_perfil'];?>
-.jpg" class="img-responsive fotoMin"  alt="<?php echo $_smarty_tpl->tpl_vars['datos']->value['nombre'];?>
+" class="img-responsive fotoMin"  alt="<?php echo $_smarty_tpl->tpl_vars['datos']->value['nombre'];?>
  foto perfil"/>
                 </a>
                 <a onmouseover="cambiarImagen(5000,'<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 public/img/prendas/<?php echo $_smarty_tpl->tpl_vars['datos']->value['foto_atras'];?>
-.jpg')" href="javascript:void(0);">
+')" href="javascript:void(0);">
                 	<img src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 public/img/prendas/<?php echo $_smarty_tpl->tpl_vars['datos']->value['foto_atras'];?>
-.jpg" class="img-responsive fotoMin"  alt="<?php echo $_smarty_tpl->tpl_vars['datos']->value['nombre'];?>
+" class="img-responsive fotoMin"  alt="<?php echo $_smarty_tpl->tpl_vars['datos']->value['nombre'];?>
  foto atras"/>
                 </a>
             </div>

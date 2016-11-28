@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2016-11-26 18:10:29
+<?php /* Smarty version Smarty-3.1.8, created on 2016-11-28 19:23:29
          compiled from "C:\xampp\htdocs\pananabe\views\prenda\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:187245812beb3f09dd4-96755932%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4332fdfa1f822b3e07790241cf3a839d4e272e17' => 
     array (
       0 => 'C:\\xampp\\htdocs\\pananabe\\views\\prenda\\index.tpl',
-      1 => 1477623626,
+      1 => 1480357141,
       2 => 'file',
     ),
   ),
@@ -54,9 +54,9 @@ prenda/show/<?php echo $_smarty_tpl->tpl_vars['datos']->value['id'];?>
             	<div class="col-md-12">
                 	<img src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 public/img/prendas/<?php echo $_smarty_tpl->tpl_vars['datos']->value['foto_frente'];?>
-.jpg" class="img-responsive" id="<?php echo $_smarty_tpl->tpl_vars['datos']->value['id'];?>
+" class="img-responsive" id="<?php echo $_smarty_tpl->tpl_vars['datos']->value['id'];?>
 " 
-                    	 style="margin-right:auto; margin-left:auto; width:240px; height:320px;"
+                    	 style="margin-right:auto; margin-left:auto; width:auto; height:320px;"
                          title="<?php echo $_smarty_tpl->tpl_vars['datos']->value['nombre'];?>
  para <?php echo $_smarty_tpl->tpl_vars['datos']->value['genero'];?>
 "

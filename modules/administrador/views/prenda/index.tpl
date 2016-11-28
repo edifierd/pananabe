@@ -1,6 +1,6 @@
-<h2> Cargar Producto </h2>
+<h2> Cargar Producto - Paso 1 / 4 </h2>
 
-<form enctype="multipart/form-data" method="post" action="{$_layoutParams.root}administrador/prenda/guardar">
+<form enctype="multipart/form-data" method="post" action="{$_layoutParams.root}administrador/prenda/paso1">
 	Nombre:<br>
 	<input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese el titulo" value="{$campos.apellido|default:""}" style="border-radius: 0px;">
     Descripcion:<br>
@@ -16,7 +16,7 @@
     XL:<br>
     <input type="number" class="form-control" name="xl" id="xl" placeholder="Stock talle XL" value="{$campos.apellido|default:""}" style="border-radius: 0px;">
     
-    <button class="btn btn-primary" id="btnvalidar"><i class="icon-ok icon-white"></i>Guardar</button>
+    <button class="btn btn-primary" id="btnvalidar"><i class="icon-ok icon-white"></i>Siguiente</button>
 </form>
 
 <!--
