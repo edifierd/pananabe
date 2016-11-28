@@ -3,9 +3,12 @@
 
 class contactoController extends Controller
 {    
+	private $_contacto;
+	
     public function __construct() 
     {
         parent::__construct();
+		$this->_contacto = $this->loadModel('contacto');
     }
     
     public function index($campos = ''){
@@ -69,7 +72,7 @@ class contactoController extends Controller
             exit;
         }
 		
-				$mail = new PHPMailer;
+				/*$mail = new PHPMailer;
 $mail->setFrom('fedetubaro@hotmail.com', 'Your Name');
 $mail->addAddress('fedproducciones@gmail.com', 'My Friend');
 $mail->Subject  = 'First PHPMailer Message';
@@ -79,10 +82,16 @@ if(!$mail->send()) {
   echo 'Mailer error: ' . $mail->ErrorInfo;
 } else {
   echo 'Message has been sent.';
-}
-		
-		/*$this->getLibrary('class.phpmailer');
-		
+}*/
+		$this->_contacto->insertarMensajeContacto(
+						$this->getPostParam('nombre'), 
+						$this->getPostParam('apellido'), 
+						$this->getPostParam('localidad'), 
+						$this->getPostParam('correo'),
+						$this->getPostParam('telefono'),
+						$this->getTexto('consulta')
+						);
+				
         $mail = new PHPMailer();
 		$mail->From = $this->getPostParam('correo');
         $mail->FromName = $this->getPostParam('apellido') . ' ' . $this->getPostParam('nombre');
@@ -105,7 +114,7 @@ if(!$mail->send()) {
 		if($mail->send()) {
 			$this->_view->assign('_mensaje', 'Su mensaje ha sido enviado correctamente. Pronto sera contactado. '. $mail->ErrorInfo);
 		} else {
-			$this->_view->assign('_error', 'Hubo un error al enviar el mensaje. Por favor intentelo nuevamente. <br><br>' . $mail->ErrorInfo );
+			$this->_view->assign('_error', 'Hubo un error al enviar el mensaje. Por favor intentelo nuevamente. <br><br>' . $mail->ErrorInfo .' <br> '.print_r(error_get_last()) );
 		}
 		
 		$mail->AddAddress("fedproducciones@gmail.com");
@@ -129,7 +138,7 @@ if(!$mail->send()) {
         $mail->AddAddress($this->getPostParam('correo'));
 		$mail->send();
 		
-		$this->redireccionarContacto();*/
+		$this->redireccionarContacto();
 	}
 	
 	private function redireccionarContacto($campos = ''){
