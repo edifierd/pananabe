@@ -9,6 +9,9 @@ class prendaController extends administradorController
         parent::__construct();
 		$this->_prenda = $this->loadModel('prenda');
 		ini_set('memory_limit', '500M');
+		ini_set('upload_max_filesize', '10M');
+		ini_set('post_max_size', '10M');
+		ini_set('max_execution_time', 300);
     }
     
     public function index()
