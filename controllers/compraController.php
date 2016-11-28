@@ -33,7 +33,7 @@ class compraController extends Controller
 			$fecha = date(DATE_ATOM);
 			
 			$mp = new MP ("6022230882957804","7LRdLDvcyApShD2yUHNnPeXCxcSssaiv");
-			$mp->sandbox_mode(TRUE);
+			$mp->sandbox_mode(FALSE);
 		
 		
 			$preference_data = array(

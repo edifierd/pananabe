@@ -17,7 +17,7 @@
 <h3>Tus datos han sido ingresados correctamente, haga click en finalizar para proceder con el pago.</h3>
 
 <p style=" text-align:center;">
-<a href="{$preference.response.sandbox_init_point}" target="_blank" name="MP-Checkout" class="btn btn-primary" style="color:#FFF; width:25%;" id="btnvalidar">
+<a href="{$preference.response.init_point}" target="_blank" name="MP-Checkout" class="btn btn-primary" style="color:#FFF; width:25%;" id="btnvalidar">
 	<b>Finalizar</b>
 </a>
 <!--<script type="text/javascript" src="//resources.mlstatic.com/mptools/render.js"></script>-->

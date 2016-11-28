@@ -68,7 +68,7 @@ class prendaController extends Controller
 		$this->_view->assign('description', 'Trajes de baño Panana Be.Vea mallas para Mujer todos los modelos disponibles en Bikinis. Contamos con todas las formas de pago. Tarjeta de credito. Todos los talles. ');
 		$this->_view->assign('keywords', 'panana, panana be, pananabe, panana be argentina, argentina, traje de baño panana be, traje de baño argentina, malla, traje, traje de baño, hombre, mujer, niño, niña, malla hombre, malla mujer, bikini, bikini mujer, entera, malla entera, malla entera mujer, formas de pago, talles, tarjeta, cuotas, modelo, modelos, short, short hombre, temporada, año');
         $this->_view->assign('titulo', 'Bikini Mujer trajes de baño - Panana Be Argentina');
-		$this->_view->assign('tituloAuxiliar','en bikini para Mujer');
+		$this->_view->assign('tituloAuxiliar',' bikinis para Mujer');
 		$this->_view->setJs(array('paginadorIndex'));
         $this->_view->renderizar('index', 'mujer');
     }
@@ -83,7 +83,7 @@ class prendaController extends Controller
 		$this->_view->assign('description', 'Trajes de baño Panana Be.Vea mallas para Mujer todos los modelos disponibles en Bikinis. Contamos con todas las formas de pago. Tarjeta de credito. Todos los talles.');
 		$this->_view->assign('keywords', 'panana, panana be, pananabe, panana be argentina, argentina, traje de baño panana be, traje de baño argentina, malla, traje, traje de baño, hombre, mujer, niño, niña, malla hombre, malla mujer, bikini, bikini mujer, entera, malla entera, malla entera mujer, formas de pago, talles, tarjeta, cuotas, modelo, modelos, short, short hombre, temporada, año');
         $this->_view->assign('titulo', 'entera Mujer trajes de baño - Panana Be Argentina');
-		$this->_view->assign('tituloAuxiliar','en Entera para Mujer');
+		$this->_view->assign('tituloAuxiliar',' enteras para Mujer');
 		$this->_view->setJs(array('paginadorIndex'));
         $this->_view->renderizar('index', 'mujer');
     }

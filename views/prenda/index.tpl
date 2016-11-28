@@ -1,5 +1,5 @@
 
-<h2>Todos nuestros trajes de baño  {$tituloAuxiliar}</h2><br /><br />
+<h2>Todos nuestros trajes de baño  {$tituloAuxiliar} </h2><br /><br />
 
 <div id="lista_registros">
 {if isset($prendas) && count($prendas)}

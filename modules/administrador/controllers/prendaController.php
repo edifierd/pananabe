@@ -75,21 +75,21 @@ class prendaController extends administradorController
 		if($img['imagen']['name']){
         	$ruta = ROOT . 'public' . DS . 'img' . DS . 'prendas' . DS;
             $upload = new upload($img['imagen']);
-            //$upload->image_resize = true;
-            //$upload->image_y = 700;
-            //$upload->image_x = 390;
+            $upload->image_resize = true;
+            $upload->image_y = $upload->image_src_y / 2;
+            $upload->image_x = $upload->image_src_x / 2;
             $upload->allowed = array('image/*');
             $upload->file_new_name_body = 'upl_' . uniqid();
             $upload->process($ruta);
                 
             if($upload->processed){
             	$imagen = $upload->file_dst_name;
-                //$thumb = new upload($upload->file_dst_pathname);
-                //$thumb->image_resize = true;
-                //$thumb->image_y = 350;
-                //$thumb->image_x = 195;
-               // $thumb->file_name_body_pre = 'thumb_';
-               // $thumb->process($ruta . 'thumb' . DS);
+                $thumb = new upload($upload->file_dst_pathname);
+                $thumb->image_resize = true;
+                $thumb->image_y = $upload->image_dst_y / 2;
+            	$thumb->image_x = $upload->image_dst_x / 2;
+                $thumb->file_name_body_pre = 'thumb_';
+                $thumb->process($ruta . 'thumb' . DS);
             }else{
                 $this->_view->assign('_error', $upload->error);
                 echo $upload->error;
