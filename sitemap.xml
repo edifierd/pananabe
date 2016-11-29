@@ -1,261 +1,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
    <url>
-      <loc>http://www.prored.com.ar/</loc>
-      <changefreq>never</changefreq>
+      <loc>http://www.pananabe.com.ar/</loc>
+      <changefreq>monthly</changefreq>
       <image:image>
          <image:loc>
-            http://www.prored.com.ar/views/layout/prored/img/logo.png
+            http://www.pananabe.com.ar/views/layout/pananabe/img/logo.png
          </image:loc>
       </image:image>
    </url>
    
    <url>
-      <loc>http://www.prored.com.ar/institucional/nosotros</loc>
-      <changefreq>never</changefreq>
+      <loc>http://www.pananabe.com.ar/prenda/hombre</loc>
+      <changefreq>monthly</changefreq>
       <image:image>
          <image:loc>
-            http://www.prored.com.ar/views/layout/prored/img/logo.png
+            http://www.pananabe.com.ar/views/index/img/hombre.jpg
          </image:loc>
       </image:image>
    </url>
    
    <url>
-      <loc>http://www.prored.com.ar/institucional/logo</loc>
-      <changefreq>never</changefreq>
-      <image:image>
-         <image:loc>
-            http://www.prored.com.ar/views/index/img/proredSignificado.png
-         </image:loc>
-      </image:image>
+      <loc>http://www.pananabe.com.ar/prenda/todo</loc>
+      <changefreq>monthly</changefreq>
    </url>
    
    <url>
-      <loc>http://www.prored.com.ar/institucional/fotos</loc>
-      <changefreq>yearly</changefreq>
-      <image:image>
-         <image:loc>
-            http://www.prored.com.ar/views/institucional/fotos/thumbnails/foto35.jpg
-         </image:loc>
-		 <image:loc>
-            http://www.prored.com.ar/views/institucional/fotos/thumbnails/foto14.jpg
-         </image:loc>
-		 <image:loc>
-            http://www.prored.com.ar/views/institucional/fotos/thumbnails/foto5.jpg
-         </image:loc>
-      </image:image>
-   </url>
-   
-   <url>
-      <loc>http://www.prored.com.ar/socios</loc>
-      <changefreq>yearly</changefreq>
-      <image:image>
-         <image:loc>
-            http://www.prored.com.ar/views/socios/img/homero.jpg
-         </image:loc>
-		 <image:loc>
-            http://www.prored.com.ar/views/socios/img/electrolum.jpg
-         </image:loc>
-		 <image:loc>
-            http://www.prored.com.ar/views/socios/img/horizonte.jpg
-         </image:loc>
-		 <image:loc>
-            http://www.prored.com.ar/views/socios/img/horizonte-a%C3%B1osluz.jpg
-         </image:loc>
-		 <image:loc>
-            http://www.prored.com.ar/views/socios/img/lograsso.jpg
-         </image:loc>
-		 <image:loc>
-            http://www.prored.com.ar/views/socios/img/zelectricidad.jpg
-         </image:loc>
-		 <image:loc>
-            http://www.prored.com.ar/views/socios/img/prored.jpg
-         </image:loc> 
-      </image:image>
-   </url>
-   
-   <url>
-      <loc>http://www.prored.com.ar/socios/socio/homero</loc>
-      <changefreq>never</changefreq>
-      <image:image>
-         <image:loc>
-            http://www.prored.com.ar/views/socios/fotos/homero/foto19.jpg
-         </image:loc>
-      </image:image>
-   </url>
-   
-   <url>
-      <loc>http://www.prored.com.ar/socios/socio/electrolum</loc>
-      <changefreq>never</changefreq>
-      <image:image>
-         <image:loc>
-            http://www.prored.com.ar/views/socios/fotos/electrolum/foto3.jpg
-         </image:loc>
-      </image:image>
-   </url>
-   
-   <url>
-      <loc>http://www.prored.com.ar/socios/socio/horizonte</loc>
-      <changefreq>never</changefreq>
-      <image:image>
-         <image:loc>
-            http://www.prored.com.ar/views/socios/fotos/horizonte/foto5.jpg
-         </image:loc>
-      </image:image>
-   </url>
-   
-   <url>
-      <loc>http://www.prored.com.ar/socios/socio/horizonte-luz</loc>
-      <changefreq>never</changefreq>
-      <image:image>
-         <image:loc>
-            http://www.prored.com.ar/views/socios/fotos/horizonte-luz/foto4.jpg
-         </image:loc>
-      </image:image>
-   </url>
-   
-   <url>
-      <loc>http://www.prored.com.ar/socios/socio/lograsso</loc>
-      <changefreq>never</changefreq>
-      <image:image>
-         <image:loc>
-            http://www.prored.com.ar/views/socios/fotos/lograsso/foto9.jpg
-         </image:loc>
-      </image:image>
-   </url>
-   
-   <url>
-      <loc>http://www.prored.com.ar/socios/socio/zelectricidad-santarosa</loc>
-      <changefreq>never</changefreq>
-      <image:image>
-         <image:loc>
-            http://www.prored.com.ar/views/socios/fotos/zelectricidad-santarosa/foto41.jpg
-         </image:loc>
-      </image:image>
-   </url>
-   
-   <url>
-      <loc>http://www.prored.com.ar/socios/socio/zelectricidad-toay</loc>
-      <changefreq>never</changefreq>
-      <image:image>
-         <image:loc>
-            http://www.prored.com.ar/views/socios/fotos/zelectricidad-toay/foto3.jpg
-         </image:loc>
-      </image:image>
-   </url>
-   
-   <url>
-      <loc>http://www.prored.com.ar/socios/socio/zelectricidad-generalpico</loc>
-      <changefreq>never</changefreq>
-      <image:image>
-         <image:loc>
-            http://www.prored.com.ar/views/socios/fotos/zelectricidad-generalpico/foto3.jpg
-         </image:loc>
-      </image:image>
-   </url>
-   
-   <url>
-      <loc>http://www.prored.com.ar/socios/socio/zelectricidad-trenquelauquen</loc>
-      <changefreq>never</changefreq>
-      <image:image>
-         <image:loc>
-            http://www.prored.com.ar/views/socios/fotos/zelectricidad-trenquelauquen/foto1.jpg
-         </image:loc>
-      </image:image>
-   </url>
-   
-   <url>
-      <loc>http://www.prored.com.ar/socios/socio/zelectricidad-pehuajo</loc>
-      <changefreq>never</changefreq>
-      <image:image>
-         <image:loc>
-           http://www.prored.com.ar/views/socios/fotos/zelectricidad-pehuajo/foto6.jpg
-         </image:loc>
-      </image:image>
-   </url>
-   
-   <url>
-      <loc>http://www.prored.com.ar/proveedores</loc>
-      <changefreq>never</changefreq>
-      <image:image>
-         <image:loc>
-           http://www.prored.com.ar/views/proveedores/img/abb.jpg
-         </image:loc>
-		 <image:loc>
-           http://www.prored.com.ar/views/proveedores/img/argenplas.jpg
-         </image:loc>
-		 <image:loc>
-           http://www.prored.com.ar/views/proveedores/img/artelum.jpg
-         </image:loc>
-		 <image:loc>
-           http://www.prored.com.ar/views/proveedores/img/baw.jpg
-         </image:loc>
-		 <image:loc>
-           http://www.prored.com.ar/views/proveedores/img/cambre.jpg
-         </image:loc><image:loc>
-           http://www.prored.com.ar/views/proveedores/img/cedam.jpg
-         </image:loc>
-		 <image:loc>
-           http://www.prored.com.ar/views/proveedores/img/exultt.jpg
-         </image:loc>
-		 <image:loc>
-           http://www.prored.com.ar/views/proveedores/img/facb.jpg
-         </image:loc>
-		 <image:loc>
-           http://www.prored.com.ar/views/proveedores/img/genrod.jpg
-         </image:loc>
-		 <image:loc>
-          http://www.prored.com.ar/views/proveedores/img/homeplast.jpg
-         </image:loc>
-		 <image:loc>
-           http://www.prored.com.ar/views/proveedores/img/imsa.jpg
-         </image:loc>
-		 <image:loc>
-           http://www.prored.com.ar/views/proveedores/img/lct.jpg
-         </image:loc>
-		 <image:loc>
-           http://www.prored.com.ar/views/proveedores/img/lucciola.jpg
-         </image:loc>
-		 <image:loc>
-           http://www.prored.com.ar/views/proveedores/img/lumenac.jpg
-         </image:loc>
-		 <image:loc>
-           http://www.prored.com.ar/views/proveedores/img/osram.jpg
-         </image:loc>
-		 <image:loc>
-         http://www.prored.com.ar/views/proveedores/img/panasonic.jpg
-         </image:loc>
-		 <image:loc>
-           http://www.prored.com.ar/views/proveedores/img/philips.jpg
-         </image:loc>
-		 <image:loc>
-           http://www.prored.com.ar/views/proveedores/img/siemens.jpg
-         </image:loc>
-		 <image:loc>
-           http://www.prored.com.ar/views/proveedores/img/tacsa.jpg
-         </image:loc>
-		 <image:loc>
-           http://www.prored.com.ar/views/proveedores/img/ticar.jpg
-         </image:loc>
-		 <image:loc>
-           http://www.prored.com.ar/views/proveedores/img/zoloda.jpg
-         </image:loc>
-		 <image:loc>
-           http://www.prored.com.ar/views/proveedores/img/schneider.jpg
-         </image:loc>
-      </image:image>
-   </url>
-   
-   
-   <url>
-      <loc>http://www.prored.com.ar/contacto/sumate</loc>
+      <loc>http://www.pananabe.com.ar/prenda/tabla_de_talles</loc>
       <changefreq>never</changefreq>
    </url>
    
    <url>
-      <loc>http://www.prored.com.ar/contacto</loc>
+      <loc>http://www.pananabe.com.ar/contacto</loc>
       <changefreq>never</changefreq>
    </url>
-   
-   
    
 </urlset>

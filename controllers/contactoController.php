@@ -109,7 +109,7 @@ if(!$mail->send()) {
 							 </ul>
 					   </p>' ;
         $mail->AltBody = 'Su servidor de correo no soporta html';
-        $mail->AddAddress("fedetubaro@hotmail.com");
+        $mail->AddAddress("fedproducciones@gmail.com");
         
 		if($mail->send()) {
 			$this->_view->assign('_mensaje', 'Su mensaje ha sido enviado correctamente. Pronto sera contactado. '. $mail->ErrorInfo);

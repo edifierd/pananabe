@@ -13,7 +13,7 @@
             >
             <div class="row">
             	<div class="col-md-12">
-                	<img src="{$_layoutParams.root}public/img/prendas/{$datos.foto_frente}" class="img-responsive" id="{$datos.id}" 
+                	<img src="{$_layoutParams.root}public/img/prendas/thumb/thumb_{$datos.foto_frente}" class="img-responsive" id="{$datos.id}" 
                     	 style="margin-right:auto; margin-left:auto; width:auto; height:320px;"
                          title="{$datos.nombre} para {$datos.genero}"
                          alt="{$datos.nombre} para {$datos.genero}"

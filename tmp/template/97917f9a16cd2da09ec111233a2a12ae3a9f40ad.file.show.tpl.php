@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2016-11-28 22:24:15
+<?php /* Smarty version Smarty-3.1.8, created on 2016-11-29 18:33:22
          compiled from "C:\xampp\htdocs\pananabe\views\prenda\show.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:11072583ca07f60d206-76227938%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '97917f9a16cd2da09ec111233a2a12ae3a9f40ad' => 
     array (
       0 => 'C:\\xampp\\htdocs\\pananabe\\views\\prenda\\show.tpl',
-      1 => 1480357630,
+      1 => 1480373681,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_583ca07f6d17e6_22061070',
   'variables' => 
   array (
     '_layoutParams' => 0,
     'datos' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_583ca07f6d17e6_22061070',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_583ca07f6d17e6_22061070')) {function content_583ca07f6d17e6_22061070($_smarty_tpl) {?>
 <div class="row">

@@ -10,14 +10,13 @@ class prendaModel extends Model
 	
 	
 	public function all($rubro=false){
-		
 		if(!$rubro){
 			//$prenda = $this->_db->query("SELECT * FROM prenda ORDER BY prenda.id DESC");	
 			$prenda = $this->_db->query("
 				SELECT p.id, p.nombre, p.descripcion,p.temporada, p.precio, p.S, p.M ,p. L ,p.XL, p.foto_frente, p.foto_atras, p.foto_perfil, c.nombre AS categoria, c.genero
 				FROM prenda p INNER JOIN prenda_a_categoria pc ON pc.id_prenda = p.id
 						      INNER JOIN categoria c ON pc.id_categoria = c.id
-				ORDER BY P.id DESC
+				ORDER BY p.id DESC
 		 	");
 		} else {
 			$rubro = (int) $rubro;

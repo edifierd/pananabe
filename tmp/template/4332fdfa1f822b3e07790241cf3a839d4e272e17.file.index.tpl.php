@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2016-11-28 22:22:46
+<?php /* Smarty version Smarty-3.1.8, created on 2016-11-29 20:32:37
          compiled from "C:\xampp\htdocs\pananabe\views\prenda\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:14188583ca026368ab1-11880334%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4332fdfa1f822b3e07790241cf3a839d4e272e17' => 
     array (
       0 => 'C:\\xampp\\htdocs\\pananabe\\views\\prenda\\index.tpl',
-      1 => 1480364584,
+      1 => 1480447943,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_583ca0263dcfb7_75526165',
   'variables' => 
   array (
     'tituloAuxiliar' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'paginacion' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_583ca0263dcfb7_75526165',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_583ca0263dcfb7_75526165')) {function content_583ca0263dcfb7_75526165($_smarty_tpl) {?>
 <h2>Todos nuestros trajes de baño  <?php echo $_smarty_tpl->tpl_vars['tituloAuxiliar']->value;?>
@@ -53,7 +53,7 @@ prenda/show/<?php echo $_smarty_tpl->tpl_vars['datos']->value['id'];?>
             <div class="row">
             	<div class="col-md-12">
                 	<img src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-public/img/prendas/<?php echo $_smarty_tpl->tpl_vars['datos']->value['foto_frente'];?>
+public/img/prendas/thumb/thumb_<?php echo $_smarty_tpl->tpl_vars['datos']->value['foto_frente'];?>
 " class="img-responsive" id="<?php echo $_smarty_tpl->tpl_vars['datos']->value['id'];?>
 " 
                     	 style="margin-right:auto; margin-left:auto; width:auto; height:320px;"

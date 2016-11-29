@@ -118,7 +118,24 @@ class prendaController extends Controller
 		
 		$prenda =  $this->_prenda->find($this->filtrarInt($id));
 		
-        $this->_view->assign('marcado', '');
+        $this->_view->assign('marcado', '
+		<script type="application/ld+json">
+			{
+  			"@context": "http://schema.org",
+  			"@type": "Product",
+  			"description": "'.$prenda['descripcion'].'",
+  			"name": "'.$prenda['nombre'].'",
+  			"image": "'.BASE_URL.'public/img/prendas/'.$prenda['foto_frente'].'",
+  			"offers": {
+    			"@type": "Offer",
+    			"availability": "'.BASE_URL.'prenda/show/'.$prenda['id'].'",
+    			"price": "'.$prenda['precio'].'",
+    			"priceCurrency": "Peso ARG"
+  			},
+  			"url": "'.BASE_URL.'prenda/show/'.$prenda['id'].'"
+			}
+		</script>
+		');
 		$this->_view->assign('description', 'Traje de baño modelo '.$prenda['nombre'].' Panana Be Argentina para '.$prenda['genero'].'. Temporada '.$prenda['temporada'].' '.$prenda['descripcion']);
 		$this->_view->assign('keywords', $prenda['nombre'].','.$prenda['nombre'].' Panana Be,'.$prenda['nombre'].' temporada '.$prenda['temporada'].', panana, panana be, pananabe, panana be argentina, argentina, traje de baño panana be, traje de baño argentina, malla, traje, traje de baño, hombre, mujer, niño, niña, malla hombre, malla mujer, bikini, bikini mujer, entera, malla entera, malla entera mujer, formas de pago, talles, tarjeta, cuotas, modelo, modelos, short, short hombre, temporada, año');
         $this->_view->assign('titulo', $prenda['nombre']."- Panana Be Argentina");
