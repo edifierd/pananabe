@@ -28,6 +28,7 @@ class uploadController extends administradorController
 		// Isolando apenas o tipo da imagem
 		// $tipo: image/png
 		list(, $tipo) = explode(':', $tipo);
+		
 
 		// Isolando apenas os dados da imagem
 		// $dados: AAAFBfj42Pj4
