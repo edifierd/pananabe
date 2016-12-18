@@ -20,17 +20,9 @@
         {$marcado}
         
         <style type="text/css">
-			.barra{
-				background-color: transparent;
-				border: none;
-				font-size: 17px;
-			}
-			.piePagina{
-				background-color: #DADADA;
-				border-top-color: #000;
-				border-top-width: 1px;
-				height: 60px;
-				color: #000;
+			html{
+  				position:relative; 
+  				min-height: 100%;
 			}
 			
 			body{
@@ -39,17 +31,41 @@
 				color: #000;
 				font-weight:bold;
 				font-family: Garamond;
+				margin: 0;
+				padding: 0;
+			}
+			
+			.barra{
+				background-color: transparent;
+				border: none;
+				font-size: 17px;
+			}
+			
+			.footer{
+				bottom: 0;
+				left: 0;
+				right: 0;
+				top: 0;
+				width: 100%;
+				position: absolute;
+				margin-top: auto;
+				background-color: #DADADA;
+				border-top-color: #000;
+				border-top-width: 1px;
+				height: 60px;
+				color: #000;
 			}
 			
         </style>
+        
 </head>
     
-<body>
+<body >
 	<!-- HEADER -->
 	<header>
 	<a href="{$_layoutParams.root}">
     	<img src="{$_layoutParams.ruta_img}logo.png" class=" img-responsive" 
-        	 style="margin-right:auto; margin-left:auto; margin-top:15px; margin-bottom:10px; max-height:250px;" title="Panana Be Argentina" alt="Panana Be Logo">
+        	 style="margin-right:auto; margin-left:auto; margin-top:15px; margin-bottom:10px; max-height:200px;" title="Panana Be Argentina" alt="Panana Be Logo">
     </a>
 	<nav class="navbar navbar-default" role="navigation" style="background-color:transparent; border:none;">
     	<div class="container">
@@ -106,7 +122,7 @@
 
       
     <!-- CONTENIDO -->  
-    <div class="container">
+    <div class="container" style=" margin-bottom: 75px;">
     	<div class="span8">
                 <noscript>
                 	<div class="alert alert-danger" role="alert" style="text-align:center; margin-top: 15px;">
@@ -132,8 +148,9 @@
         	</div>
     </div>
         
-    <!-- Footer -->
-    <div class="navbar navbar-fixed-bottom piePagina hidden-xs ">
+    <!-- Footer  -->
+
+    <div class="footer">
     	<div class="container">
     	<div class="row">
         	<div class="col-sm-4 col-md-4">
@@ -176,6 +193,7 @@
     	</div>
         </div>
 	</div>
+
             
        
 	<script type="text/javascript" src="{$_layoutParams.root}public/js/jquery-1.11.1.min.js"></script>

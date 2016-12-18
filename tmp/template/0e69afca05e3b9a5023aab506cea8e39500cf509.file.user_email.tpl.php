@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2016-11-29 18:33:26
+<?php /* Smarty version Smarty-3.1.8, created on 2016-12-17 15:48:28
          compiled from "C:\xampp\htdocs\pananabe\views\compra\user_email.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:5611583ca16ddd4336-39883875%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0e69afca05e3b9a5023aab506cea8e39500cf509' => 
     array (
       0 => 'C:\\xampp\\htdocs\\pananabe\\views\\compra\\user_email.tpl',
-      1 => 1480373680,
+      1 => 1480373682,
       2 => 'file',
     ),
   ),

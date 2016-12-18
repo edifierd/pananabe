@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2016-11-29 00:18:50
+<?php /* Smarty version Smarty-3.1.8, created on 2016-12-17 16:07:00
          compiled from "C:\xampp\htdocs\pananabe\views\contacto\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3464583cbb5aa7dfc1-14859570%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4a9e659bb75de0691d15ee664b563e10c605bbe4' => 
     array (
       0 => 'C:\\xampp\\htdocs\\pananabe\\views\\contacto\\index.tpl',
-      1 => 1480373680,
+      1 => 1480373682,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_583cbb5aacb463_64329636',
   'variables' => 
   array (
     '_layoutParams' => 0,
     'campos' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_583cbb5aacb463_64329636',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_583cbb5aacb463_64329636')) {function content_583cbb5aacb463_64329636($_smarty_tpl) {?>
 <div class="row">

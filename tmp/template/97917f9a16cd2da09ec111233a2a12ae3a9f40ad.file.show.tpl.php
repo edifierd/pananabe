@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2016-11-29 18:33:22
+<?php /* Smarty version Smarty-3.1.8, created on 2016-12-17 16:30:42
          compiled from "C:\xampp\htdocs\pananabe\views\prenda\show.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:11072583ca07f60d206-76227938%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '97917f9a16cd2da09ec111233a2a12ae3a9f40ad' => 
     array (
       0 => 'C:\\xampp\\htdocs\\pananabe\\views\\prenda\\show.tpl',
-      1 => 1480373681,
+      1 => 1481988640,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_583ca07f6d17e6_22061070')) {function content_583ca07f6d17e6_22061070($_smarty_tpl) {?>
-<div class="row">
+<div class="row" style="margin-bottom:20px;">
 	<div class="col-xs-12 col-sm-6 col-md-6" >
     	<div class="row">
         	<div class="col-md-12" style="height:500px;">

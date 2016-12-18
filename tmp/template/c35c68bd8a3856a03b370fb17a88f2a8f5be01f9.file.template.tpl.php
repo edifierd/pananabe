@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2016-11-29 00:16:25
+<?php /* Smarty version Smarty-3.1.8, created on 2016-12-17 16:35:05
          compiled from "C:\xampp\htdocs\pananabe\views\layout\pananabe\template.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:27482583ca023c5a356-38491859%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c35c68bd8a3856a03b370fb17a88f2a8f5be01f9' => 
     array (
       0 => 'C:\\xampp\\htdocs\\pananabe\\views\\layout\\pananabe\\template.tpl',
-      1 => 1480373681,
+      1 => 1481988903,
       2 => 'file',
     ),
   ),
@@ -72,17 +72,9 @@ $_smarty_tpl->tpl_vars['css']->_loop = true;
 
         
         <style type="text/css">
-			.barra{
-				background-color: transparent;
-				border: none;
-				font-size: 17px;
-			}
-			.piePagina{
-				background-color: #DADADA;
-				border-top-color: #000;
-				border-top-width: 1px;
-				height: 60px;
-				color: #000;
+			html{
+  				position:relative; 
+  				min-height: 100%;
 			}
 			
 			body{
@@ -91,19 +83,43 @@ $_smarty_tpl->tpl_vars['css']->_loop = true;
 				color: #000;
 				font-weight:bold;
 				font-family: Garamond;
+				margin: 0;
+				padding: 0;
+			}
+			
+			.barra{
+				background-color: transparent;
+				border: none;
+				font-size: 17px;
+			}
+			
+			.footer{
+				bottom: 0;
+				left: 0;
+				right: 0;
+				top: 0;
+				width: 100%;
+				position: absolute;
+				margin-top: auto;
+				background-color: #DADADA;
+				border-top-color: #000;
+				border-top-width: 1px;
+				height: 60px;
+				color: #000;
 			}
 			
         </style>
+        
 </head>
     
-<body>
+<body >
 	<!-- HEADER -->
 	<header>
 	<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 ">
     	<img src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['ruta_img'];?>
 logo.png" class=" img-responsive" 
-        	 style="margin-right:auto; margin-left:auto; margin-top:15px; margin-bottom:10px; max-height:250px;" title="Panana Be Argentina" alt="Panana Be Logo">
+        	 style="margin-right:auto; margin-left:auto; margin-top:15px; margin-bottom:10px; max-height:200px;" title="Panana Be Argentina" alt="Panana Be Logo">
     </a>
 	<nav class="navbar navbar-default" role="navigation" style="background-color:transparent; border:none;">
     	<div class="container">
@@ -181,7 +197,7 @@ $_smarty_tpl->tpl_vars['i']->_loop = true;
 
       
     <!-- CONTENIDO -->  
-    <div class="container">
+    <div class="container" style=" margin-bottom: 75px;">
     	<div class="span8">
                 <noscript>
                 	<div class="alert alert-danger" role="alert" style="text-align:center; margin-top: 15px;">
@@ -210,8 +226,9 @@ $_smarty_tpl->tpl_vars['i']->_loop = true;
         	</div>
     </div>
         
-    <!-- Footer -->
-    <div class="navbar navbar-fixed-bottom piePagina hidden-xs ">
+    <!-- Footer  -->
+
+    <div class="footer">
     	<div class="container">
     	<div class="row">
         	<div class="col-sm-4 col-md-4">
@@ -257,6 +274,7 @@ contacto" class="redes" title="Contacto">
     	</div>
         </div>
 	</div>
+
             
        
 	<script type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
