@@ -18,7 +18,7 @@
         	cant+=1;
 			ruta = _root_+'public/img/prendas/upl_'+fotoNombre+'.jpg';
             //$('#imagen1Foto').show(); 
-			alert('entro');
+			alert('entro'); 
 			setTimeout(function() {
 				var ajax = $.ajax({
                   type: "GET",
