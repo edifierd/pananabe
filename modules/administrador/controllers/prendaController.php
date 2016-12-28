@@ -14,49 +14,11 @@ class prendaController extends administradorController
 		ini_set('max_execution_time', 300);
     }
     
-    public function index()
-    {
-		$this->_view->assign('titulo', 'Guardar Prenda 1 de 4');
+    public function index(){
+		$this->_view->assign('titulo', 'Cargar informacion Prenda ');
 		$this->_view->assign('marcado', '');
-		
-	 	$this->_view->renderizar('index', 'usuarios');
-	}
-	
-	public function paso1(){
-		$this->_view->assign('titulo', 'Guardar Prenda 2 de 4');
-		$this->_view->assign('marcado', '');
-        
-        $this->_view->assign('producto', $_POST);
-		$this->_view->renderizar('paso2', 'usuarios');
-	}
-	
-	public function paso2(){
-		$this->_view->assign('titulo', 'Guardar Prenda 3 de 4');
-		$this->_view->assign('marcado', '');
-		
-		$this->_view->assign('fotoFrente',$this->guardarFoto($_FILES));
-        $this->_view->assign('producto', $_POST);
-		
-		$this->_view->renderizar('paso3', 'usuarios');
-	}
-	
-	public function paso3(){
-		$this->_view->assign('titulo', 'Guardar Prenda 4 de 4');
-		$this->_view->assign('marcado', '');
-		
-		$this->_view->assign('fotoPerfil',$this->guardarFoto($_FILES));
-        $this->_view->assign('producto', $_POST);
-		
-		$this->_view->renderizar('paso4', 'usuarios');
-	}
-	
-	public function paso4(){
-		$this->_view->assign('titulo', 'Guardar -Admin');
-		$this->_view->assign('marcado', '');
-		
-		$fotoAtras = $this->guardarFoto($_FILES);
-        
-        if ($this->_prenda->insertarPrenda(
+		if ($this->getInt('enviado') == 1){
+			if ($this->_prenda->insertarPrenda(
 							$this->getTexto('nombre'), 
 							$this->getTexto('descripcion'),
 							$this->getInt('precio'),
@@ -64,15 +26,95 @@ class prendaController extends administradorController
 							$this->getInt('m'),
 							$this->getInt('l'),
 							$this->getInt('xl'),
-							$this->getTexto('fotoFrente'), 
-							$this->getTexto('fotoPerfil'),
-							$fotoAtras)
-							)
-		{ $this->_view->assign('_mensaje', 'TODO CORRECTO'); } else {$this->_view->assign('_error', 'no se guardo');}
-		
-		$this->index();
+							'', 
+							'',
+							'')
+				 ) 
+			{	
+				$this->cargarFotos($this->_prenda->last());
+				$this->_view->assign('_mensaje', 'Se cargaron correctamente los datos'); 
+				exit;
+			} else {
+				$this->_view->assign('campos', $_POST);
+				$this->_view->assign('_error', 'Algo salio mal. Intente cargar la prenda nuevamente.');
+			}
+		} 
+
+	 	$this->_view->renderizar('index', 'usuarios');
 	}
 	
+	public function cargarFotos($prenda = false){
+		$this->_view->assign('titulo', 'Cargar Fotos de la Prenda');
+		$this->_view->assign('prenda', $prenda);
+		$this->_view->assign('marcado', '');
+		$this->_view->setJs(array('canvas-to-blob.min','resize','process','validaciones'));
+
+		$this->_view->renderizar('cargarFotos', '');
+	}
+	
+	public function finalizarPublicacion(){
+		if($this->getInt('enviado') == 1){
+			$this->_view->assign('titulo', 'Publicacion Finalizada');
+			$this->_view->assign('prenda', $this->_prenda->find($this->getInt('idPrenda')));
+			$this->_view->assign('marcado', '');
+			$this->_view->assign('_mensaje', 'Se finalizo exitosamente la publicacion');
+			$this->_view->renderizar('finalizarPublicacion', '');
+		} else {
+			$this->_view->assign('_error', 'Algo salio mal. Intente cargar la prenda nuevamente.');
+			$this->_view->renderizar('index', '');
+		}
+	}
+	
+	public function uploader(){
+		// Recuperando imagem em base64
+		// Exemplo: data:image/png;base64,AAAFBfj42Pj4
+		$imagen = $_POST['imagen'];
+		
+		// Separando tipo dos datos da imagen
+		// $tipo: data:image/png
+		// $datos: base64,AAAFBfj42Pj4
+		list($tipo, $datos) = explode(';', $imagen);
+
+		// Isolando apenas o tipo da imagen
+		// $tipo: image/png
+		list(, $tipo) = explode(':', $tipo);
+		
+
+		// Isolando apenas os datos da imagen
+		// $datos: AAAFBfj42Pj4
+		list(, $datos) = explode(',', $datos);
+
+		//Convertendo base64 para imagen
+	    $datos = base64_decode($datos);
+
+		// Gerando nombre aleatório para a imagen
+		$nombre = 'upl_' . $_POST['nombre'];
+		
+		//Ruta
+		$ruta = ROOT . 'public' . DS . 'img' . DS . 'prendas' . DS;
+
+		
+		// Salvando imagen em disco
+		if (file_put_contents($ruta."{$nombre}.jpg", $datos)){
+		
+			$data = json_decode(stripslashes($_POST['datos']),true);
+
+			$this->_prenda->modificarFoto($data[0],$data[1],"{$nombre}.jpg");
+			
+			$thumb = new upload($ruta."{$nombre}.jpg");
+            $thumb->image_resize = true;
+            $thumb->image_y = $thumb->image_dst_y / 2;
+            $thumb->image_x = $thumb->image_dst_x / 2;
+            $thumb->file_name_body_pre = 'thumb_';
+            $thumb->process($ruta . 'thumb' . DS);
+				
+		}
+	}
+	
+	
+	
+	
+	/*
 	public function guardarFoto($img){
 		$imagen = false;
 		if($img['imagen']['name']){
@@ -100,7 +142,7 @@ class prendaController extends administradorController
             }
         }
 		return $imagen;
-	}
+	}*/
 }
 
 ?>

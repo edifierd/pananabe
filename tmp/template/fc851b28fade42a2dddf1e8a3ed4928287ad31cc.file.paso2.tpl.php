@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2016-11-28 22:23:03
+<?php /* Smarty version Smarty-3.1.8, created on 2016-12-26 21:07:30
          compiled from "C:\xampp\htdocs\pananabe\modules\administrador\views\prenda\paso2.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:16581583ca037578663-86888334%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fc851b28fade42a2dddf1e8a3ed4928287ad31cc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\pananabe\\modules\\administrador\\views\\prenda\\paso2.tpl',
-      1 => 1480353056,
+      1 => 1480373680,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_583ca0375d14e2_34771856',
   'variables' => 
   array (
     '_layoutParams' => 0,
     'producto' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_583ca0375d14e2_34771856',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_583ca0375d14e2_34771856')) {function content_583ca0375d14e2_34771856($_smarty_tpl) {?>
 <h2> Cargar Producto - Paso 2 / 4 </h2>

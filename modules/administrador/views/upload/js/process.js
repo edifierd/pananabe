@@ -1,111 +1,122 @@
-  // Iniciando biblioteca
-        var resize = new window.resize();
-        resize.init();
 
-        // Declarando variáveis
-        var imagens;
-        var imagem_atual;
+// Iniciando biblioteca
+var resize = new window.resize();
+resize.init();
 
-        // Quando carregado a página
-        $(function ($) {
+// Declarando variáveis
+var imagenes;
+var imagen_actual;
 
-            // Quando selecionado as imagens
-            $('#imagem').on('change', function () {
-                enviar();
-            });
+// Quando carregado a página
+$(function ($) {
 
-        });
+/* Quando selecionado as imagenes
+$('#imagen').on('change', function () {
+		enviar();
+    });
+});
+*/
 
-        /*
-         Envia os arquivos selecionados
-         */
-        function enviar()
-        {
-            // Verificando se o navegador tem suporte aos recursos para redimensionamento
-            if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
-                alert('O navegador não suporta os recursos utilizados pelo aplicativo');
-                return;
-            }
+/* Envia los archivos seleccionados */
+function enviar() {
+	// Verificando se o navegador tem suporte aos recursos para redimensionamento
+	if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+		alert('Su navegador no soporta el uso de archivos Blob');
+		return;
+	}
 
-            // Alocando imagens selecionadas
-            imagens = $('#imagem')[0].files;
+	// Alocando imagenes selecionadas
+	imagenes = $('#imagen')[0].files;
 
-            // Se selecionado pelo menos uma imagem
-            if (imagens.length > 0)
-            {
-                // Definindo progresso de carregamento
-                $('#progresso').attr('aria-valuenow', 0).css('width', '0%');
+	// Se selecionado pelo menos uma imagen
+	if (imagenes.length > 0) {   
 
-                // Escondendo campo de imagem
-                $('#imagem').hide();
+		// Definindo progresso de carregamento
+		$('#progresso').attr('aria-valuenow', 0).css('width', '0%');
 
-                // Iniciando redimensionamento
-                imagem_atual = 0;
-                redimensionar();
-            }
-        }
+		// Escondendo campo de imagen
+		$('#imagen').hide();
+				
+		// Iniciando redimensionamento
+		imagen_actual = 0;
+		redimensionarImagen();
+	}
+}
+		
+function redimensionarImagen() {
+	//Verifico que sea un archivo valido
+    if (!(typeof imagenes[imagen_actual] !== 'object') || !(imagenes[imagen_actual] == null)){
+    	// Redimensionando
+    	resize.photo(imagenes[imagen_actual], 800, 'dataURL', function (imagen) {
 
-        /*
-         Redimensiona uma imagem e passa para a próxima recursivamente
-         */
-        function redimensionar()
-        {
-            // Se redimensionado todas as imagens
-            if (imagem_atual > imagens.length)
-            {
-                // Definindo progresso de finalizado
-                $('#progresso').html('Imagen(s) enviada(s) com sucesso');
+    		// Enviando imagen al servidor
+    		$.post(_root_ + 'administrador/upload/uploader', {imagen: imagen}, function() { 
+					$('#mensaje').html('Imagen(s) enviada(s) com sucesso'); } 
+			);
+			$('#mensaje').html('Imagen(s) enviada(s) com sucesso'); 
 
-                // Limpando imagens
-                limpar();
+    	});
 
-                // Exibindo campo de imagem
-                $('#imagem').show();
+    	// Limpando imagenes
+    	limpar();
 
-                // Finalizando
-                return;
-            }
+    	// Exibindo campo de imagen
+    	$('#imagen').show();
+	}
+}
+		
+		
+// Redimencionado multiple recursivo 
+function redimencionadoMultiple() {
+	// Se redimensionado todas as imagenes
+    if (imagen_actual > imagenes.length) {
+    	// Definindo progresso de finalizado
+        $('#progresso').html('Imagen(s) enviada(s) com sucesso');
 
-            // Se não for um arquivo válido
-            if ((typeof imagens[imagem_atual] !== 'object') || (imagens[imagem_atual] == null))
-            {
-                // Passa para a próxima imagem
-                imagem_atual++;
-                redimensionar();
-                return;
-            }
+		// Limpando imagenes
+		limpar();
 
-            // Redimensionando
-            resize.photo(imagens[imagem_atual], 800, 'dataURL', function (imagem) {
+		// Exibindo campo de imagen
+		$('#imagen').show();
 
-                // Salvando imagem no servidor
-                $.post(_root_ + 'administrador/upload/uploader', {imagem: imagem}, function() {
+		// Finalizando
+		return;
+	}
 
-                    // Definindo porcentagem
-                    var porcentagem = (imagem_atual + 1) / imagens.length * 100;
+	// Se não for um arquivo válido
+	if ((typeof imagenes[imagen_actual] !== 'object') || (imagenes[imagen_actual] == null)) {
+		// Passa para a próxima imagen
+		imagen_actual++;
+		redimensionar();
+		return;
+	}
 
-                    // Atualizando barra de progresso
-                    $('#progresso').text(Math.round(porcentagem) + '%').attr('aria-valuenow', porcentagem).css('width', porcentagem + '%');
+	// Redimensionando
+	resize.photo(imagenes[imagen_actual], 800, 'dataURL', function (imagen) {
 
-                    // Aplica delay de 1 segundo
-                    // Apenas para evitar sobrecarga de requisições
-                    // e ficar visualmente melhor o progresso
-                    setTimeout(function () {
-                        // Passa para a próxima imagem
-                        imagem_atual++;
-                        redimensionar();
-                    }, 1000);
+		// Salvando imagen no servidor
+		$.post(_root_ + 'administrador/upload/uploader', {imagen: imagen}, function() {
 
-                });
+			// Definindo porcentagem
+			var porcentagem = (imagen_actual + 1) / imagenes.length * 100;
 
-            });
-        }
+			// Atualizando barra de progresso
+			$('#progresso').text(Math.round(porcentagem) + '%').attr('aria-valuenow', porcentagem).css('width', porcentagem + '%');
 
-        /*
-         Limpa os arquivos selecionados
-         */
-        function limpar()
-        {
-            var input = $("#imagem");
-            input.replaceWith(input.val('').clone(true));
-        }
+			// Aplica delay de 1 segundo
+			// Apenas para evitar sobrecarga de requisições
+			// e ficar visualmente melhor o progresso
+			setTimeout(function () {
+				// Passa para a próxima imagen
+				imagen_actual++;
+				redimensionar();
+			}, 1000);
+		});
+	});
+}
+
+//Limpa os arquivos selecionados 
+function limpar() {
+	var input = $("#imagen");
+	input.replaceWith(input.val('').clone(true));
+}

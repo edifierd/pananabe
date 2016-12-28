@@ -10,9 +10,17 @@
         <div class="form-group row">
 
             <div class="col-xs-12">
-                <input id="imagem" type="file" accept="image/*" multiple/>
+                <input id="imagen" type="file" accept="image/*" />
+            </div>
+            
+            <div class="col-xs-12">
+            	<br />
+                <div id="mensaje" style="color:#0F3; font-size:18px;"></div>
             </div>
 
         </div>
 
     </form>
+    
+    
+ 

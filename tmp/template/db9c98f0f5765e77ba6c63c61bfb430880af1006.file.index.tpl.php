@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2016-12-18 05:46:09
+<?php /* Smarty version Smarty-3.1.8, created on 2016-12-19 04:19:12
          compiled from "C:\xampp\htdocs\pananabe\modules\administrador\views\upload\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3056558561032235ec0-63429841%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'db9c98f0f5765e77ba6c63c61bfb430880af1006' => 
     array (
       0 => 'C:\\xampp\\htdocs\\pananabe\\modules\\administrador\\views\\upload\\index.tpl',
-      1 => 1482036291,
+      1 => 1482117501,
       2 => 'file',
     ),
   ),
@@ -31,10 +31,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <div class="form-group row">
 
             <div class="col-xs-12">
-                <input id="imagem" type="file" accept="image/*" multiple/>
+                <input id="imagen" type="file" accept="image/*" />
+            </div>
+            
+            <div class="col-xs-12">
+            	<br />
+                <div id="mensaje" style="color:#0F3; font-size:18px;"></div>
             </div>
 
         </div>
 
     </form>
+    
+    
+ 
 <?php }} ?>
