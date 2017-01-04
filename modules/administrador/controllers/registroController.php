@@ -1,6 +1,6 @@
 <?php
 
-class registroController extends Controller
+class registroController extends administradorController
 {
     private $_registro;
     

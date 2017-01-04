@@ -1,6 +1,6 @@
 <?php
 
-class indexUserController extends Controller
+class indexUserController extends administradorController
 {
     private $_usuarios;
     

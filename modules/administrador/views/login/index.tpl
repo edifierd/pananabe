@@ -3,7 +3,9 @@
     table.table td input { margin: 0; }
 </style>
 
-<h2>Iniciar Sesi&oacute;n</h2>
+<h2> BIENVENIDO AL PANEL DE ADMINISTRACIÓN </h2>
+
+<h3>Iniciar Sesi&oacute;n</h3>
 
 <form name="form1" method="post" action="">
     <input type="hidden" value="1" name="enviar" />
@@ -20,5 +22,5 @@
         </tr>
     </table>
         
-    <p><button type="submit" class="btn btn-primary"><li class="icon-ok icon-white"> </li> Entrar</button></p>
+    <p><button type="submit" class="btn btn-primary"><li class="glyphicon glyphicon-ok" style="margin-right:7px;"> </li> Entrar</button></p>
 </form>

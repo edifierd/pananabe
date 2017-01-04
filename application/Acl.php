@@ -193,7 +193,7 @@ class ACL
             return;
         }
         
-        header("location:" . BASE_URL . "error/access/5050");
+        header("location:" . BASE_URL . "administrador/error/access/5050");
         exit;
     }
 }

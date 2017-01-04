@@ -1,6 +1,6 @@
 <?php
 
-class loginController extends Controller
+class loginController extends administradorController
 {
     private $_login;
     
@@ -13,7 +13,7 @@ class loginController extends Controller
     public function index()
     {
         if(Session::get('autenticado')){
-            $this->redireccionar();
+            $this->redireccionar('administrador');
         }
         
         $this->_view->assign('titulo', 'Iniciar Sesion');
@@ -57,7 +57,7 @@ class loginController extends Controller
             Session::set('id_usuario', $row['id']);
             Session::set('tiempo', time());
             
-            $this->redireccionar();
+            $this->redireccionar('administrador');
         }
         
         $this->_view->renderizar('index','login');
@@ -67,7 +67,7 @@ class loginController extends Controller
     public function cerrar()
     {
         Session::destroy();
-        $this->redireccionar();
+        $this->redireccionar('administrador');
     }
 }
 

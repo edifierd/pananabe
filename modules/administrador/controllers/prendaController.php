@@ -8,6 +8,8 @@ class prendaController extends administradorController
     public function __construct() 
     {
         parent::__construct();
+		$this->_acl->acceso('nuevo_prenda');
+		
 		$this->_prenda = $this->loadModel('prenda');
 		$this->_categorias = $this->loadModel('categoria');
 		ini_set('memory_limit', '500M');
@@ -18,13 +20,11 @@ class prendaController extends administradorController
     
     public function index(){
 		$this->_view->assign('titulo', 'Administracion de Prendas');
-		$this->_view->assign('marcado', '');
 		$this->_view->renderizar('index', '');
 	}
 	
 	public function cargarGenero(){
 		$this->_view->assign('titulo', 'Genero - Cargar Prenda');
-		$this->_view->assign('marcado', '');
 		$this->_view->renderizar('cargarGenero', '');
 	}
 	
@@ -61,7 +61,6 @@ class prendaController extends administradorController
 			$this->_view->assign('categoria', $this->_categorias->all($this->getTexto('genero')));
 		}
 		$this->_view->assign('titulo', 'Información - Cargar Prenda');
-		$this->_view->assign('marcado', '');
 		$this->_view->setJs(array('validaciones'));
 	 	$this->_view->renderizar('cargarDatos', '');
 	}
@@ -69,7 +68,6 @@ class prendaController extends administradorController
 	public function cargarFotos($prenda = false){
 		$this->_view->assign('titulo', 'Fotos - Cargar Prenda');
 		$this->_view->assign('prenda', $prenda);
-		$this->_view->assign('marcado', '');
 		$this->_view->setJs(array('canvas-to-blob.min','resize','process','validaciones'));
 		$this->_view->renderizar('cargarFotos', '');
 	}
@@ -80,7 +78,6 @@ class prendaController extends administradorController
 			$this->_prenda->modificarEstado($prenda['id'],1);
 			$this->_view->assign('titulo', 'Publicacion Finalizada');
 			$this->_view->assign('prenda', $prenda);
-			$this->_view->assign('marcado', '');
 			$this->_view->assign('_mensaje', 'Se finalizo exitosamente la publicacion');
 			$this->_view->renderizar('cargarGenero', '');
 		} else {

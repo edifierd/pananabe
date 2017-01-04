@@ -23,6 +23,7 @@ abstract class Controller
         $this->_request = $this->_registry->_request;
         $this->_view = new View($this->_request, $this->_acl);
 		$this->_view->assign('params', $this->getParams());
+		$this->_view->assign('marcado', '');
     }
     
     abstract public function index();
