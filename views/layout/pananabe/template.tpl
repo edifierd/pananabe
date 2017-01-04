@@ -197,7 +197,7 @@
             
        
 	<script type="text/javascript" src="{$_layoutParams.root}public/js/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="{$_layoutParams.ruta_js}bootstrap.js"></script>
+	<script type="text/javascript" src="{$_layoutParams.ruta_js}bootstrap.min.js"></script>
     <script type="text/javascript" src="{$_layoutParams.ruta_js}funciones.js"></script>
     <script type="text/javascript">
     	var _root_ = '{$_layoutParams.root}';

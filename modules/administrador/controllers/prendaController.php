@@ -3,11 +3,13 @@
 class prendaController extends administradorController
 {    
 	private $_prenda;
+	private $_categorias;
 
     public function __construct() 
     {
         parent::__construct();
 		$this->_prenda = $this->loadModel('prenda');
+		$this->_categorias = $this->loadModel('categoria');
 		ini_set('memory_limit', '500M');
 		ini_set('upload_max_filesize', '10M');
 		ini_set('post_max_size', '10M');
@@ -15,50 +17,72 @@ class prendaController extends administradorController
     }
     
     public function index(){
-		$this->_view->assign('titulo', 'Cargar informacion Prenda ');
+		$this->_view->assign('titulo', 'Administracion de Prendas');
 		$this->_view->assign('marcado', '');
-		if ($this->getInt('enviado') == 1){
+		$this->_view->renderizar('index', '');
+	}
+	
+	public function cargarGenero(){
+		$this->_view->assign('titulo', 'Genero - Cargar Prenda');
+		$this->_view->assign('marcado', '');
+		$this->_view->renderizar('cargarGenero', '');
+	}
+	
+	public function cargarDatos(){
+		if ($this->getInt('enviado') == 2){
+			//ADMINISTRO LAS CATEGORIAS
+			if ($this->getTexto('genero') == 'hombre'){ $genero = 1; }else{ $genero = 2; }
+			if (is_array($this->getPostParam('categorias'))){$categorias = $this->getPostParam('categorias'); } else {$categorias = array();}	
+			array_push($categorias, $genero);
+			//PROCEDO A CARGAR LA PRENDA
 			if ($this->_prenda->insertarPrenda(
 							$this->getTexto('nombre'), 
 							$this->getTexto('descripcion'),
+							$this->filtrarInt($this->getTexto('temporada')),
 							$this->getInt('precio'),
 							$this->getInt('s'),
 							$this->getInt('m'),
 							$this->getInt('l'),
 							$this->getInt('xl'),
-							'', 
-							'',
-							'')
+							$categorias
+							)
 				 ) 
 			{	
-				$this->cargarFotos($this->_prenda->last());
-				$this->_view->assign('_mensaje', 'Se cargaron correctamente los datos'); 
+				$this->_view->assign('_mensaje', 'Se cargo correctamente la informacion de la prenda'); 
+				$this->cargarFotos($this->_prenda->last());	
 				exit;
 			} else {
 				$this->_view->assign('campos', $_POST);
 				$this->_view->assign('_error', 'Algo salio mal. Intente cargar la prenda nuevamente.');
 			}
 		} 
-
-	 	$this->_view->renderizar('index', 'usuarios');
+		if ($this->getInt('enviado') == 1){
+			$this->_view->assign('genero',$this->getTexto('genero'));
+			$this->_view->assign('categoria', $this->_categorias->all($this->getTexto('genero')));
+		}
+		$this->_view->assign('titulo', 'Información - Cargar Prenda');
+		$this->_view->assign('marcado', '');
+		$this->_view->setJs(array('validaciones'));
+	 	$this->_view->renderizar('cargarDatos', '');
 	}
 	
 	public function cargarFotos($prenda = false){
-		$this->_view->assign('titulo', 'Cargar Fotos de la Prenda');
+		$this->_view->assign('titulo', 'Fotos - Cargar Prenda');
 		$this->_view->assign('prenda', $prenda);
 		$this->_view->assign('marcado', '');
 		$this->_view->setJs(array('canvas-to-blob.min','resize','process','validaciones'));
-
 		$this->_view->renderizar('cargarFotos', '');
 	}
 	
 	public function finalizarPublicacion(){
 		if($this->getInt('enviado') == 1){
+			$prenda = $this->_prenda->find($this->getInt('idPrenda'));
+			$this->_prenda->modificarEstado($prenda['id'],1);
 			$this->_view->assign('titulo', 'Publicacion Finalizada');
-			$this->_view->assign('prenda', $this->_prenda->find($this->getInt('idPrenda')));
+			$this->_view->assign('prenda', $prenda);
 			$this->_view->assign('marcado', '');
 			$this->_view->assign('_mensaje', 'Se finalizo exitosamente la publicacion');
-			$this->_view->renderizar('finalizarPublicacion', '');
+			$this->_view->renderizar('cargarGenero', '');
 		} else {
 			$this->_view->assign('_error', 'Algo salio mal. Intente cargar la prenda nuevamente.');
 			$this->_view->renderizar('index', '');
@@ -110,7 +134,6 @@ class prendaController extends administradorController
 				
 		}
 	}
-	
 	
 	
 	

@@ -10,6 +10,10 @@ class prendaController extends Controller
         $this->_prenda = $this->loadModel('prenda');
     }
 	
+	public function index(){	
+		$this->todo();
+    }
+	
 	public function todo(){	
 		//echo "Session Index= ".Session::get("rubro");
 		Session::set("rubro",0);
@@ -152,141 +156,6 @@ class prendaController extends Controller
         $this->_view->assign('titulo', "Tabla de Talles - Panana Be Argentina");
         $this->_view->renderizar('tablaTalles', '');
 	}
-	
-	
-	public function nuevo()
-    {
-        $this->_acl->acceso('nuevo_post');
-        
-        $this->_view->assign('titulo', 'Nuevo Post');
-        $this->_view->setJsPlugin(array('jquery.validate'));
-        $this->_view->setJs(array('nuevo'));
-        
-        if($this->getInt('guardar') == 1){
-            $this->_view->assign('datos', $_POST);
-            
-            if(!$this->getTexto('titulo')){
-                $this->_view->assign('_error', 'Debe introducir el titulo del post');
-                $this->_view->renderizar('nuevo', 'post');
-                exit;
-            }
-            
-            if(!$this->getTexto('cuerpo')){
-                $this->_view->assign('_error', 'Debe introducir el cuerpo del post');
-                $this->_view->renderizar('nuevo', 'post');
-                exit;
-            }
-            
-            $imagen = '';
-            
-            if($_FILES['imagen']['name']){
-                $ruta = ROOT . 'public' . DS . 'img' . DS . 'post' . DS;
-                $upload = new upload($_FILES['imagen'], 'es_Es');
-                $upload->allowed = array('image/*');
-                $upload->file_new_name_body = 'upl_' . uniqid();
-                $upload->process($ruta);
-                
-                if($upload->processed){
-                    $imagen = $upload->file_dst_name;
-                    $thumb = new upload($upload->file_dst_pathname);
-                    $thumb->image_resize = true;
-                    $thumb->image_x = 100;
-                    $thumb->image_y = 70;
-                    $thumb->file_name_body_pre = 'thumb_';
-                    $thumb->process($ruta . 'thumb' . DS);
-                }
-                else{
-                    $this->_view->assign('_error', $upload->error);
-                    $this->_view->renderizar('nuevo', 'post');
-                    exit;
-                }
-            }
-            
-            $this->_post->insertarPost(
-                    $this->getPostParam('titulo'),
-                    $this->getPostParam('cuerpo'),
-                    $imagen
-                    );
-            
-            $this->redireccionar('post');
-        }       
-        
-        $this->_view->renderizar('nuevo', 'post');
-    }
-    
-    public function editar($id)
-    {
-        $this->_acl->acceso('editar_post');
-        
-        if(!$this->filtrarInt($id)){
-            $this->redireccionar('post');
-        }
-        
-        if(!$this->_post->getPost($this->filtrarInt($id))){
-            $this->redireccionar('post');
-        }
-        
-        $this->_view->assign('titulo', 'Editar Post');
-        $this->_view->setJs(array('nuevo'));
-        
-        if($this->getInt('guardar') == 1){
-            $this->_view->assign('datos', $_POST);
-            
-            if(!$this->getTexto('titulo')){
-                $this->_view->assign('_error', 'Debe introducir el titulo del post');
-                $this->_view->renderizar('editar', 'post');
-                exit;
-            }
-            
-            if(!$this->getTexto('cuerpo')){
-                $this->_view->assign('_error', 'Debe introducir el cuerpo del post');
-                $this->_view->renderizar('editar', 'post');
-                exit;
-            }
-            
-            $this->_post->editarPost(
-                    $this->filtrarInt($id),
-                    $this->getPostParam('titulo'),
-                    $this->getPostParam('cuerpo')
-                    );
-            
-            $this->redireccionar('post');
-        }
-        
-        $this->_view->assign('datos', $this->_post->getPost($this->filtrarInt($id)));
-        $this->_view->renderizar('editar', 'post');
-    }
-    
-    public function eliminar($id)
-    {
-        $this->_acl->acceso('eliminar_post');
-        
-        if(!$this->filtrarInt($id)){
-            $this->redireccionar('post');
-        }
-        
-        if(!$this->_post->getPost($this->filtrarInt($id))){
-            $this->redireccionar('post');
-        }
-        
-        $this->_post->eliminarPost($this->filtrarInt($id));
-        $this->redireccionar('post');
-    }
-	
-	public function index(){	
-		//echo "Session Index= ".Session::get("rubro");
-    	/*$paginador = new Paginador();
-        $this->_view->assign('prendas', $paginador->paginar($this->_prenda->all(),false,8));
-		$this->_view->assign('paginacion', $paginador->getView('paginacion_ajax'));
-				
-		$this->_view->assign('marcado', '');
-		$this->_view->assign('description', '');
-		$this->_view->assign('keywords', '');
-        $this->_view->assign('titulo', 'Ver Todo');
-		$this->_view->setJs(array('paginadorIndex'));
-        $this->_view->renderizar('all', 'todo');*/
-    }
-   
    
    /*
    public function prueba($pagina = false){

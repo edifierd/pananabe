@@ -8,6 +8,7 @@
     	<META name="keywords" content="{$keywords}">
         <link rel="icon" type="image/png" href="{$_layoutParams.ruta_img}icono.ico" />
         <link href="{$_layoutParams.ruta_css}bootstrap.min.css" rel="stylesheet" type="text/css"> 
+        <link href="{$_layoutParams.ruta_css}bootstrap-select.min.css" rel="stylesheet" type="text/css"> 
         <link href="{$_layoutParams.ruta_css}template.css" rel="stylesheet" type="text/css">   
         
         {if isset($_layoutParams.css) && count($_layoutParams.css)}
@@ -21,52 +22,106 @@
 </head>
     
 <body>
-	<!-- HEADER -->
-	<header style="background-color:#FFF;">
-    	<h1 style="margin-left:25px;">Panel de Administración</h1>
-    </header>
 
-      
-    <!-- CONTENIDO -->  
-    <div class="container">
-    	<div class="span8">
-                <noscript>
-                	<div class="alert alert-danger" role="alert" style="text-align:center; margin-top: 15px;">
-                    	<b><h3>¡ Para el correcto funcionamiento debe tener el soporte para javascript habilitado !</h3></b>
-                    </div>
-                </noscript>
-                    
-                {if isset($_error)}
-                    <div id="_errl" class="alert alert-danger" style="margin-top:20px;">
-                        <a class="close" data-dismiss="alert">x</a>
-                        {$_error}
-                    </div>
-                {/if}
+	<div id="wrapper">
+        <div class="overlay"></div>
+    
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="{$_layoutParams.root}administrador" style="color:#FFF;">
+                       Admin Panel
+                    </a>
+                </li>
+                <li>
+                    <a href="{$_layoutParams.root}administrador/prenda/cargarGenero">Cargar Prenda</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Events</a>
+                </li>
+                <li>
+                    <a href="#">Team</a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Dropdown heading</li>
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li><a href="#">Separated link</a></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/maridlcrmn">Follow me</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /#sidebar-wrapper -->
 
-                {if isset($_mensaje)}
-                    <div id="_msgl" class="alert alert-success" style="margin-top:20px;">
-                        <a class="close" data-dismiss="alert">x</a>
-                        {$_mensaje}
-                    </div>
-                {/if}
-				<br><!-- eliminar esto el <br> --> 
-                {include file=$_contenido}
-        	</div>
-    </div>
-        
-    <!-- Footer -->
-    <div class="navbar navbar-fixed-bottom piePagina hidden-xs">
-		<div class="navbar-inner">
-        	<div class="container" >
-            	<ul class="nav nav-pills" style="margin-top:9px;">
-				</ul>
-			</div>
-		</div>
-	</div>
+        <!-- CONTENIDO DE LA PAGINA -->
+        <div id="page-content-wrapper">
+            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+    			<span class="hamb-middle"></span>
+				<span class="hamb-bottom"></span>
+                <span style=" margin-left:35px;"><b>MENÚ</b></span>
+            </button>
             
-       
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                    	<div class="col-md-11" >
+    						<div class="span8">
+                				<noscript>
+                					<div class="alert alert-danger" role="alert" style="text-align:center; margin-top: 15px;">
+                    					<b><h3>¡ Para el correcto funcionamiento debe tener el soporte para javascript habilitado !</h3></b>
+                   					</div>
+                				</noscript>
+                    
+                				{if isset($_error)}
+                    				<div id="_errl" class="alert alert-danger" style="margin-top:20px;">
+                        				<a class="close" data-dismiss="alert">x</a>
+                        				{$_error}
+                    				</div>
+                				{/if}
+
+                				{if isset($_mensaje)}
+                    				<div id="_msgl" class="alert alert-success" style="margin-top:20px;">
+                        				<a class="close" data-dismiss="alert">x</a>
+                        				{$_mensaje}
+                    				</div>
+                				{/if}
+                                
+                				{include file=$_contenido}
+        					</div>
+						</div>               
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
 	<script type="text/javascript" src="{$_layoutParams.root}public/js/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="{$_layoutParams.ruta_js}bootstrap.js"></script>
+	<script type="text/javascript" src="{$_layoutParams.ruta_js}bootstrap.min.js"></script>
+    <script type="text/javascript" src="{$_layoutParams.ruta_js}bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="{$_layoutParams.ruta_js}menu.js"></script>
     <script type="text/javascript">
     	var _root_ = '{$_layoutParams.root}';
     </script>
