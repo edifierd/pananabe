@@ -1,6 +1,6 @@
 <?php
 
-class indexUserModel extends Model
+class userModel extends Model
 {
     public function __construct()
     {

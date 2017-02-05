@@ -5,8 +5,8 @@ class prendaController extends administradorController
 	private $_prenda;
 	private $_categorias;
 
-    public function __construct() 
-    {
+    public function __construct(){
+		
         parent::__construct();
 		$this->_acl->acceso('nuevo_prenda');
 		

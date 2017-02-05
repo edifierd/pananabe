@@ -34,7 +34,7 @@ class registroModel extends Model
 		
         $this->_db->prepare(
                 "insert into usuarios values" .
-                "(null, :nombre, :usuario, :password, :email, 4, 0, now(), :codigo)"
+                "(null, :nombre, :usuario, :password, :email, 1, 0, now(), :codigo)"
                 )
                 ->execute(array(
                     ':nombre' => $nombre,

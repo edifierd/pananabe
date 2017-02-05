@@ -1,4 +1,4 @@
-<h2>Dar dealta nuevo usuario</h2>
+<h2>Dar de alta nuevo usuario</h2>
 
 <div class="well span5">
     <form name="form1" method="post" action="" class="form">

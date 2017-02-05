@@ -16,6 +16,7 @@ class prendaModel extends Model
 				SELECT p.id, p.nombre, p.descripcion,p.temporada, p.precio, p.S, p.M ,p. L ,p.XL, p.foto_frente, p.foto_atras, p.foto_perfil, c.nombre AS categoria, c.genero
 				FROM prenda p INNER JOIN prenda_a_categoria pc ON pc.id_prenda = p.id
 						      INNER JOIN categoria c ON pc.id_categoria = c.id
+				WHERE estado = 1
 				ORDER BY p.id DESC
 		 	");
 		} else {
@@ -24,7 +25,7 @@ class prendaModel extends Model
 				SELECT p.id, p.nombre, p.descripcion, p.precio, p.foto_frente, c.nombre AS categoria, c.genero
 				FROM prenda p INNER JOIN prenda_a_categoria pc ON pc.id_prenda = p.id
 						      INNER JOIN categoria c ON pc.id_categoria = c.id
-				WHERE pc.id_categoria = ".$rubro."
+				WHERE pc.id_categoria = ".$rubro." AND estado = 1
 				ORDER BY p.id DESC
 		 	");
 

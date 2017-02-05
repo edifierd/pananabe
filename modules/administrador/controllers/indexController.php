@@ -11,7 +11,7 @@ class indexController extends administradorController
     public function index()
     {
 		if(!Session::get('autenticado')){
-			$this->redireccionar('administrador/login');
+			$this->redireccionar('administrador/usuarios');
 		}
 		
 		$this->_view->assign('titulo', 'Panel de Administración');

@@ -262,7 +262,7 @@ class View extends Smarty
             return get_layout_positions();
         }
         
-        throw new Exception('Error configuracion layout');
+        throw new Exception('Error configuracion layout'.$this->_template);
     }
     
     private function getWidgets()

@@ -35,8 +35,14 @@
                        Admin Panel
                     </a>
                 </li>
-                <li>
-                    <a href="{$_layoutParams.root}administrador/prenda/cargarGenero">Cargar Prenda</a>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Prendas<span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Administracion de prendas</li>
+                    <li><a href="{$_layoutParams.root}administrador/prenda/cargarGenero">Cargar</a></li>
+                    <li><a href="#">Modificar</a></li>
+                    <li><a href="#">Eliminar</a></li>
+                  </ul>
                 </li>
                 <li>
                     <a href="#">About</a>
@@ -57,15 +63,12 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     <li class="dropdown-header">Manejo de usuarios</li>
-                    <li><a href="#">Agregar Usuario</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li><a href="#">Separated link</a></li>
-                    <li><a href="#">One more separated link</a></li>
+                    <li><a href="{$_layoutParams.root}administrador/usuarios/registro">Nuevo Usuario</a></li>
+                    <li><a href="{$_layoutParams.root}administrador/usuarios/listado">Listado Usuarios</a></li>
                   </ul>
                 </li>
                 <li>
-                    <a href="{$_layoutParams.root}administrador/login/cerrar">Cerrar Sesión</a>
+                    <a href="{$_layoutParams.root}administrador/usuarios/cerrar">Cerrar Sesión</a>
                 </li>
             </ul>
         </nav>
@@ -108,9 +111,9 @@
                         				{$_mensaje}
                     				</div>
                 				{/if}
-                                
-                				{include file=$_contenido}
         					</div>
+                            
+                            {include file=$_contenido}
 						</div>               
                     </div>
                 </div>

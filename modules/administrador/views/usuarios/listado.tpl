@@ -15,7 +15,7 @@
             <td>{$us.usuario}</td>
             <td>{$us.role}</td>
             <td>
-                <a href="{$_layoutParams.root}usuarios/index/permisos/{$us.id}">
+                <a href="{$_layoutParams.root}administrador/usuarios/permisos/{$us.id}">
                    Permisos
                 </a>
             </td>
