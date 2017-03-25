@@ -1,11 +1,10 @@
 <?php
 
-class prendaModel extends Model
-{
+class prendaModel extends Model{
 	private $rubro;
 	
     public function __construct() {
-        parent::__construct();
+        parent::__construct('');
     }
 	
 	
@@ -45,8 +44,7 @@ class prendaModel extends Model
         return $prenda->fetch();
 	}
 	
-	public function decrementarStock($id, $talle, $cantidad)
-    {
+	public function decrementarStock($id, $talle, $cantidad){
         $id = (int) $id;
 		
 		$prenda = $this->find($id);
@@ -64,29 +62,11 @@ class prendaModel extends Model
 		} 
 		return false;
     }
-    
-    public function eliminarPost($id)
-    {
-        $id = (int) $id;
-        $this->_db->query("DELETE FROM posts WHERE id = $id");
-    }
-    
-    public function insertarPrueba($nombre)
-    {
-        $this->_db->prepare("INSERT INTO prueba VALUES (null, :nombre)")
-                ->execute(
-                        array(
-                           ':nombre' => $nombre
-                        ));
-    }
 	
-    public function getPrueba($condicion = "")
-    {
-        $post = $this->_db->query(
-                "select `r`.*, `p`.`pais`, `c`.`ciudad` from `prueba` `r`, `paises` `p`, `ciudades` `c`" .
-                "where `r`.`id_pais` = `p`.`id` and `r`.`id_ciudad` = `c`.`id` $condicion order by id asc");
-        return $post->fetchAll();
-    }
+	public function nuevo(array $var){}
+	public function editar(array $var){}
+	public function eliminar(array $var){}
+    
     
 }
 

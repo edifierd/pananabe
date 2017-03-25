@@ -3,14 +3,12 @@
 class usuariosController extends administradorController
 {
     private $_usuarios;
-	private $_login;
-	private $_registro;
+	private $_aclm;
     
     public function __construct(){
         parent::__construct();
         $this->_usuarios = $this->loadModel('user');
-		$this->_login = $this->loadModel('login');
-		$this->_registro = $this->loadModel('registro');
+		$this->_aclm = $this->loadModel('acl');
     }
 	
 	public function index(){
@@ -21,6 +19,8 @@ class usuariosController extends administradorController
         $this->_view->assign('titulo', 'Iniciar Sesion');
         
         if($this->getInt('enviar') == 1){
+			
+			//usar array_merge para --- ver tambien application/Registry
             $this->_view->assign('datos', $_POST);
             
             if(!$this->getAlphaNum('usuario')){
@@ -35,7 +35,7 @@ class usuariosController extends administradorController
                 exit;
             }
             
-            $row = $this->_login->getUsuario(
+            $row = $this->_usuarios->getUsuarioLogin(
                     $this->getAlphaNum('usuario'),
                     $this->getSql('pass')
                     );
@@ -54,7 +54,7 @@ class usuariosController extends administradorController
                         
             Session::set('autenticado', true);
             Session::set('level', $row['role']);
-            Session::set('usuario', $row['usuario']);
+            Session::set('usuario', $row);
             Session::set('id_usuario', $row['id']);
             Session::set('tiempo', time());
             
@@ -73,15 +73,18 @@ class usuariosController extends administradorController
         if(!Session::get('autenticado')){
 			$this->redireccionar('administrador');
 		}
+		
+		$this->_acl->acceso('control_usuarios');
         
+		$this->_view->assign('roles', $this->_aclm->getRoles());
         $this->_view->assign('titulo', 'Registro');
         
         if($this->getInt('enviar') == 1){ //Si recibo los datos creo el nuevo usuario
             $this->_view->assign('datos', $_POST);
-            
-            if(!$this->getSql('nombre')){
-                $this->_view->assign('_error', 'Debe introducir su nombre');
-                $this->_view->renderizar('registro', 'registro');
+			
+			if($this->getInt('rol') == 0){
+                $this->_view->assign('_error', 'Debe seleccionar un Rol de permisos.');
+                $this->_view->renderizar('nuevo', '');
                 exit;
             }
             
@@ -91,7 +94,7 @@ class usuariosController extends administradorController
                 exit;
             }
             
-            if($this->_registro->verificarUsuario($this->getAlphaNum('usuario'))){
+            if($this->_usuarios->verificarUsuario($this->getAlphaNum('usuario'))){
                 $this->_view->assign('_error', 'El usuario ' . $this->getAlphaNum('usuario') . ' ya existe');
                 $this->_view->renderizar('registro', 'registro');
                 exit;
@@ -103,8 +106,26 @@ class usuariosController extends administradorController
                 exit;
             }
             
-            if($this->_registro->verificarEmail($this->getPostParam('email'))){
+            if($this->_usuarios->verificarEmail($this->getPostParam('email'))){
                 $this->_view->assign('_error', 'Esta direccion de correo ya esta registrada');
+                $this->_view->renderizar('registro', 'registro');
+                exit;
+            }
+			
+			if(!$this->getTexto('nombre')){
+                $this->_view->assign('_error', 'Debe introducir su nombre');
+                $this->_view->renderizar('registro', 'registro');
+                exit;
+            }
+			
+			if(!$this->getTexto('apellido')){
+                $this->_view->assign('_error', 'Debe introducir su apellido');
+                $this->_view->renderizar('registro', 'registro');
+                exit;
+            }
+			
+			if(!$this->getDni('dni')){
+                $this->_view->assign('_error', 'No es un numero de DNI valido');
                 $this->_view->renderizar('registro', 'registro');
                 exit;
             }
@@ -120,18 +141,17 @@ class usuariosController extends administradorController
                 $this->_view->renderizar('registro', 'registro');
                 exit;
             }
+
+			$datos['usuario'] = $this->getAlphaNum('usuario');
+			$datos['email'] = $this->getPostParam('email');
+			$datos['nombre'] = $this->getTexto('nombre');
+			$datos['apellido'] = $this->getTexto('apellido');
+			$datos['dni'] = $this->getDni('dni');
+			$datos['password'] = $this->getPostParam('confirmar');
+			$datos['rol'] = $this->getInt('rol');
+            $this->_usuarios->registrarUsuario($datos);
             
-            $this->getLibrary('class.phpmailer');
-            $mail = new PHPMailer();
-			
-            $this->_registro->registrarUsuario(
-                    $this->getSql('nombre'),
-                    $this->getAlphaNum('usuario'),
-                    $this->getSql('pass'),
-                    $this->getPostParam('email')
-                    );
-            
-            $usuario = $this->_registro->verificarUsuario($this->getAlphaNum('usuario'));
+            $usuario = $this->_usuarios->verificarUsuario($this->getAlphaNum('usuario'));
 			
             if(!$usuario){
                 $this->_view->assign('_error', 'Error al registrar el usuario');
@@ -140,6 +160,9 @@ class usuariosController extends administradorController
             }
 			
 			/* CUANDO SE DESEA USAR LA ACTIVACION DE CUENTA POR CORREO 
+			
+			$this->getLibrary('class.phpmailer');
+            $mail = new PHPMailer();
 			
             $mail->From = 'www.mvc.dlancedu.com';
             $mail->FromName = 'Tutorial MVC';
@@ -161,21 +184,20 @@ class usuariosController extends administradorController
 			
 			$this->activar($usuario['id'],$usuario['codigo']);
 			$this->_view->assign('datos', false);
-            $this->_view->assign('_mensaje', 'Registro Completado, revise su email para activar su cuenta');
+            $this->_view->assign('_mensaje', 'Registro Completado exitosamente');
         }        
         
         $this->_view->renderizar('registro', 'registro');
     }
 
     public function activar($id, $codigo){
-		
         if(!$this->filtrarInt($id) || !$this->filtrarInt($codigo)){
             $this->_view->assign('_error', 'Esta cuenta no existe');
             $this->_view->renderizar('activar', 'registro');
             exit;   
             }
 
-        $row = $this->_registro->getUsuario(
+        $row = $this->_usuarios->getUsuarioByCodigo(
                             $this->filtrarInt($id),
                             $this->filtrarInt($codigo)
                             );
@@ -192,19 +214,19 @@ class usuariosController extends administradorController
             exit;
         }
 
-        $this->_registro->activarUsuario(
+        $this->_usuarios->activarUsuario(
                             $this->filtrarInt($id),
                             $this->filtrarInt($codigo)
                             );
 
-        $row = $this->_registro->getUsuario(
+        $row = $this->_usuarios->getUsuarioByCodigo(
                             $this->filtrarInt($id),
                             $this->filtrarInt($codigo)
                             );
 
         if($row['estado'] == 0){
-            $this->_view->assign('_error', 'Error al activar la cuenta, por favor intente mas tarde');
-            $this->_view->renderizar('activar', 'registro');
+            $this->_view->assign('_error', 'No se ha podido activar la cuenta');
+            $this->_view->renderizar('registro', 'registro');
             exit;
         }
 
@@ -217,8 +239,8 @@ class usuariosController extends administradorController
 		if(!Session::get('autenticado')){
 			$this->redireccionar('administrador');
 		}
+		$this->_acl->acceso('control_usuarios');
 		
-        $this->_view->setJs(array('prueba'));
         $this->_view->assign('titulo', 'Usuarios');
 		$this->_view->assign('marcado', '');
         $this->_view->assign('usuarios', $this->_usuarios->getUsuarios());
@@ -230,6 +252,8 @@ class usuariosController extends administradorController
 		if(!Session::get('autenticado')){
 			$this->redireccionar('administrador');
 		}
+		
+		$this->_acl->acceso('super_usuario');
 		
         $id = $this->filtrarInt($usuarioID);
         
@@ -299,6 +323,81 @@ class usuariosController extends administradorController
         
         $this->_view->renderizar('permisos', 'usuarios');
     }
+	
+	public function eliminar($id_user){
+		if(!Session::get('autenticado')){
+			$this->redireccionar('administrador');
+		}
+		
+		if($id_user == 1 or $id_user == $this->_current_user['id']){
+			$this->redireccionar('administrador');
+		}
+		$this->_acl->acceso('control_usuarios');
+		
+		$this->_usuarios->eliminar(array(id_user => $id_user)); //Este si
+		
+		$this->redireccionar('administrador/usuarios/listado');
+
+	}
+	
+	public function perfil($id_user){		
+		if(!Session::get('autenticado')){
+			$this->redireccionar('administrador');
+		}
+		
+		$current = $this->current_user();
+		if($id_user != $current['id']){
+			$this->redireccionar('administrador');
+		}
+		
+		$this->_acl->acceso('control_perfil');
+		
+        $id = $this->filtrarInt($id_user);
+        if(!$id){
+            $this->redireccionar('administrador');
+        }
+		
+		$usuario = $this->_usuarios->getUsuario($id);
+		if(!$usuario){
+			$this->redireccionar('administrador');
+		}
+		
+		$this->_view->assign('usuario', $usuario);
+		$this->_view->assign('titulo', 'Permisos de usuario');
+		
+		if($this->getInt('guardar') == 1){ 
+		
+			if($usuario['pass'] != (Hash::getHash('sha1', $this->getPostParam('passActual') , HASH_KEY))){
+				$this->_view->assign('_error', 'La contraseña ingresada no es correcta');
+                $this->_view->renderizar('perfil', '');
+                exit;
+			}
+			
+			if(!$this->getSql('passNueva')){
+                $this->_view->assign('_error', 'Debe introducir su contraseña');
+                $this->_view->renderizar('perfil', '');
+                exit;
+            }
+		
+			if($this->getPostParam('passNueva') != $this->getPostParam('passConfirmar')){
+                $this->_view->assign('_error', 'Los contraseñas no coinciden');
+                $this->_view->renderizar('perfil', '');
+                exit;
+            }
+			
+			$datos['password'] = $this->getPostParam('passConfirmar');
+            if($this->_usuarios->editarUser($id,$datos)){
+				$this->_view->assign('_error', 'Hubo un error al actualizar los datos.');
+                $this->_view->renderizar('perfil', '');
+                exit;
+			} else {
+				$this->_view->assign('_mensaje', 'Se actualizaron los datos del perfil.');
+			}
+		}
+		$this->_view->renderizar('perfil', 'usuarios');
+	}
+	
+	
 }
 
 ?>

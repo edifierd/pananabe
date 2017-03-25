@@ -82,7 +82,7 @@
 
 		<div class="collapse navbar-collapse navbar-ex1-collapse" id="navbar-1">
     		<ul class="nav nav-justified">
-				{foreach item=it from=$_layoutParams.menu}
+				{foreach item=it from=$menu}
                 	{if isset($_layoutParams.item) && $_layoutParams.item == $it.id}
                     	{assign var="_item_style" value='active'}
                     {else}

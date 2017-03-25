@@ -4,7 +4,7 @@ class contactoModel extends Model
 {
 	
     public function __construct() {
-        parent::__construct();
+        parent::__construct('');
     }
 	
 	public function insertarMensajeContacto($nombre, $apellido, $localidad, $correo, $telefono, $mensaje)

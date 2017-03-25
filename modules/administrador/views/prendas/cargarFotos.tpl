@@ -1,7 +1,7 @@
 
 <h1>Cargar Fotos: </h1>
 
-<form method="post" action="{$_layoutParams.root}administrador/prenda/finalizarPublicacion" role="form">
+<form method="post" action="{$_layoutParams.root}administrador/prendas/finalizarPublicacion" role="form">
 	<div class="form-group row">
     	<div class="col-xs-12"> Foto Frente </div>
     	<div class="col-xs-12" >

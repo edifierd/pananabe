@@ -35,11 +35,12 @@ class Session
         $_SESSION[$clave] = $valor;
     }
     
-    public static function get($clave)
-    {
+    public static function get($clave){
         if(isset($_SESSION[$clave]))
             return $_SESSION[$clave];
+		return false;
     }
+	
     
     public static function acceso($level)
     {
@@ -138,7 +139,7 @@ class Session
             return;
         }
         
-        if(time() - Session::get('tiempo') > (SESSION_TIME * 60)){
+        if(time() - Session::get('tiempo') > (SESSION_TIME * 120)){
             Session::destroy();
             header('location:' . BASE_URL . 'administrador/error/access/8080');
         }

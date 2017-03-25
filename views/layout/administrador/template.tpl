@@ -9,6 +9,7 @@
         <link rel="icon" type="image/png" href="{$_layoutParams.ruta_img}icono.ico" />
         <link href="{$_layoutParams.ruta_css}bootstrap.min.css" rel="stylesheet" type="text/css"> 
         <link href="{$_layoutParams.ruta_css}bootstrap-select.min.css" rel="stylesheet" type="text/css"> 
+        <link href="{$_layoutParams.ruta_css}font-awesome.min.css" rel="stylesheet" type="text/css"> 
         <link href="{$_layoutParams.ruta_css}template.css" rel="stylesheet" type="text/css">   
         
         {if isset($_layoutParams.css) && count($_layoutParams.css)}
@@ -32,41 +33,41 @@
             <ul class="nav sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="{$_layoutParams.root}administrador" style="color:#FFF;">
-                       Admin Panel
+                       Administración
                     </a>
                 </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Prendas<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Administracion de prendas</li>
-                    <li><a href="{$_layoutParams.root}administrador/prenda/cargarGenero">Cargar</a></li>
-                    <li><a href="#">Modificar</a></li>
-                    <li><a href="#">Eliminar</a></li>
-                  </ul>
+                {if $_acl->permiso('control_prendas')}
+					<li>
+                    	<a href="{$_layoutParams.root}administrador/prendas/nuevo">Prendas</a>
+                	</li>
+                {/if}
+                {if $_acl->permiso('control_categorias')}
+					<li>
+                    	<a href="{$_layoutParams.root}administrador/categorias/nuevo">Categorias</a>
+                	</li>
+                {/if}
+                {if $_acl->permiso('control_usuarios')}
+                	<li class="dropdown">
+                  		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios y Permisos<span class="caret"></span></a>
+                  		<ul class="dropdown-menu" role="menu">
+                    		<li class="dropdown-header">Manejo de usuarios</li>
+                    		<li><a href="{$_layoutParams.root}administrador/usuarios/registro">Nuevo Usuario</a></li>
+                    		<li><a href="{$_layoutParams.root}administrador/usuarios/listado">Listado Usuarios</a></li>
+                            {if $_acl->permiso('super_usuario')}
+                            	<li class="dropdown-header">ACL</li>
+                    			<li><a href="{$_layoutParams.root}administrador/acl/roles">Roles</a></li>
+                    			<li><a href="{$_layoutParams.root}administrador/acl/permisos">Permisos</a></li>
+                            {/if}
+                  		</ul>
+                	</li>
+                {/if}
+                {if $_acl->permiso('control_perfil')}
+                <li >
+                    <a href="{$_layoutParams.root}administrador/usuarios/perfil/{$current_user.id}" style="color:#FFF;">
+                       Mi Perfil
+                    </a>
                 </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Events</a>
-                </li>
-                <li>
-                    <a href="#">Team</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Manejo de usuarios</li>
-                    <li><a href="{$_layoutParams.root}administrador/usuarios/registro">Nuevo Usuario</a></li>
-                    <li><a href="{$_layoutParams.root}administrador/usuarios/listado">Listado Usuarios</a></li>
-                  </ul>
-                </li>
+                {/if}
                 <li>
                     <a href="{$_layoutParams.root}administrador/usuarios/cerrar">Cerrar Sesión</a>
                 </li>
@@ -77,7 +78,6 @@
 
         <!-- CONTENIDO DE LA PAGINA -->
         <div id="page-content-wrapper">
-        	
             {if $_acl->permiso('admin_access')}
             <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
                 <span class="hamb-top"></span>
@@ -87,7 +87,7 @@
             </button>
             {/if}
             
-            <div class="container">
+            <div class="" style="margin-left: 25px;"> <!-- Elimine la clase container !!!!!!!!!!!!!!!!!!!!!!!!! -->
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                     	<div class="col-md-11" >

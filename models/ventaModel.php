@@ -4,7 +4,7 @@ class ventaModel extends Model
 {
 	
     public function __construct() {
-        parent::__construct();
+        parent::__construct('');
     }
 	
 	

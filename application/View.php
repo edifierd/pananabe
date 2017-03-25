@@ -54,8 +54,7 @@ class View extends Smarty
         }
     }
     
-    public function renderizar($vista, $item = false, $noLayout = false)
-    {
+    public function renderizar($vista, $item = false, $noLayout = false){
         if($item){
             $this->_item = $item;
         }
@@ -65,91 +64,11 @@ class View extends Smarty
         $this->cache_dir = ROOT . 'tmp' . DS .'cache' . DS;
         $this->compile_dir = ROOT . 'tmp' . DS .'template' . DS;
         
-        $menu = array(
-			array(
-                'id' => 'inicio',
-                'titulo' => 'INICIO',
-                'enlace' => BASE_URL,
-                'imagen' => '',
-				'dropdown' => ''
-                ),
-				
-            array(
-                'id' => 'hombre',
-                'titulo' => 'HOMBRE',
-                'enlace' => BASE_URL.'prenda/hombre',
-                'imagen' => '',
-				'dropdown' => ''
-                ),
-				
-			array(
-                'id' => 'mujer',
-                'titulo' => 'MUJER',
-                'enlace' => BASE_URL,
-                'imagen' => '',
-                'dropdown' => array (
-							  		array(
-               					    	'id' => 'bikinis',
-                						'titulo' => 'BIKINIS',
-               							'enlace' => BASE_URL.'prenda/bikini',
-                						'imagen' => '',
-										'dropdown' => ''
-               						),
-									
-									array(
-               					    	'id' => 'enteras',
-                						'titulo' => 'ENTERAS',
-               							'enlace' => BASE_URL.'prenda/entera',
-                						'imagen' => '',
-										'dropdown' => ''
-										
-               						),
-									
-									array(
-               					    	'id' => 'mujerTodo',
-                						'titulo' => 'TODO MUJER',
-               							'enlace' => BASE_URL.'prenda/mujer',
-                						'imagen' => '',
-										'dropdown' => ''
-										
-               						)
-							  )
-                ),
-			
-			array(
-                'id' => 'todo',
-                'titulo' => 'VER TODO',
-                'enlace' => BASE_URL . 'prenda/todo',
-                'imagen' => '',
-				'dropdown' => ''
-                ),
-				
-			array(
-                'id' => 'contacto',
-                'titulo' => 'CONTACTO',
-                'enlace' => BASE_URL.'contacto',
-                'imagen' => '',
-				'dropdown' => ''
-                )
-			
-        );
-        
-        /*if(!Session::get('autenticado')){    PARA CUANDO SE NECESITA MANEJO DE USUARIOS 
-            $menu[] = array(
-                'id' => 'registro',
-                'titulo' => 'Registro',
-                'enlace' => BASE_URL . 'usuarios/registro',
-                'imagen' => 'icon-book'
-            );
-        }*/
-        
-        
         $_params = array(
 			'view' => $this->_rutas['actualView'],
             'ruta_css' => BASE_URL . 'views/layout/' . $this->_template . '/css/',
             'ruta_img' => BASE_URL . 'views/layout/' . $this->_template . '/img/',
             'ruta_js' => BASE_URL . 'views/layout/' . $this->_template . '/js/',
-            'menu' => $menu,
             'item' => $this->_item,
 			'img' => $this->_rutas['img'],
 			'css' => $this->_css,
@@ -206,17 +125,22 @@ class View extends Smarty
         }
     }
     
-    public function setJsPlugin(array $js)
-    {
+    public function setJsPlugin(array $js,$dir = false){
+		
         if(is_array($js) && count($js)){
             for($i=0; $i < count($js); $i++){
-                $this->_jsPlugin[] = BASE_URL . 'public/js/' .  $js[$i] . '.js';
+				if (!$dir){
+                	$this->_jsPlugin[] = BASE_URL . 'public/js/' .  $js[$i] . '.js';
+				} else {
+					$this->_jsPlugin[] = BASE_URL . 'public/js/' .  $dir . '/' .  $js[$i] . '.js';
+				}
             }
         } 
         else {
             throw new Exception('Error de js plugin');
         }
     }
+	
     
     public function setTemplate($template)
     {

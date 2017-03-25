@@ -1,7 +1,7 @@
 
 <h2>Indicar el Genero de la prenda a cargar</h2>
 
-<form enctype="multipart/form-data" method="post" action="{$_layoutParams.root}administrador/prenda/cargarDatos">
+<form enctype="multipart/form-data" method="post" action="{$_layoutParams.root}administrador/prendas/cargarDatos">
 
 	<select id="genero" name="genero" class="selectpicker" title="Seleccione el genero" >
 		<option value="hombre" >Hombre</option>

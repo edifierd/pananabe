@@ -13,7 +13,7 @@ window.resize = (function () {
 		},
 
 		photo: function(file, maxSize, outputType, callback) {
-
+			
 			var _this = this;
 
 			var reader = new FileReader();
@@ -22,10 +22,11 @@ window.resize = (function () {
 			}
 			reader.readAsDataURL(file);
 
+
 		},
 
 		resize: function(dataURL, maxSize, outputType, callback) {
-
+			
 			var _this = this;
 
 			var image = new Image();

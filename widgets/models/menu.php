@@ -3,7 +3,7 @@
 class menuModelWidget extends Model
 {
     public function __construct(){
-        parent::__construct();
+        parent::__construct('');
     }
     
     public function getMenu()
@@ -52,6 +52,14 @@ class menuModelWidget extends Model
                 )
         );
     }
+	
+	public function nuevo(array $var){}
+	
+	public function editar(array $var){}
+	
+	public function eliminar(array $var){}
+	
+	public function find(array $var){}
 }
 
 ?>

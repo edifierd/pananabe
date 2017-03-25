@@ -20,8 +20,18 @@ $('#imagen').on('change', function () {
 
 
 
-/* Envia los archivos seleccionados */
-function enviar(inputName, data) {
+/* 
+
+Envia los archivos seleccionados 
+
+Parametros de entrada: 
+	- inputName (nombre del campo de formulario)
+	- data (array con informacion extra a utilizar)
+
+*/
+
+
+function enviar(inputName, controlador, data) {
 	// Verificando se o navegador tem suporte aos recursos para redimensionamento
 	if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
 		alert('Su navegador no soporta el uso de archivos Blob');
@@ -35,39 +45,42 @@ function enviar(inputName, data) {
 	if (imagenes.length > 0) {   
 
 		// Definindo progresso de carregamento
-		$('#progresso').attr('aria-valuenow', 0).css('width', '0%');
+		//$('#progresso').attr('aria-valuenow', 0).css('width', '0%');
 
 		// Escondendo campo de imagen
-		$('#'+inputName).hide();
+		//$('#'+inputName).hide();
 				
 		// Iniciando redimensionamento
 		imagen_actual = 0;
-		return redimensionarImagen(data);
+		return redimensionarImagen(data, controlador);
 	}
 }
 		
-function redimensionarImagen(data) {
-	
-	var jsonStringArray = JSON.stringify(data);
+function redimensionarImagen(data, controlador) {
+
+	//var jsonStringArray = JSON.stringify(data); //No lo estoy usando era para enviar el array lo mande dirctamente
 			
 	//Verifico que sea un archivo valido
     if (!(typeof imagenes[imagen_actual] !== 'object') || !(imagenes[imagen_actual] == null)){
 		
 		fotoNombre = new Date().getTime().toString(16);
 		
-    	// Redimensionando
-    	resize.photo(imagenes[imagen_actual], 800, 'dataURL', function (imagen) {
-			
-			
+		// Redimensionando
+    	resize.photo(imagenes[imagen_actual], 1000, 'dataURL', function (imagen) { //Antes decia 800 en rojo
     		// Enviando imagen al servidor
-    		$.post(_root_ + 'administrador/prenda/uploader', {imagen: imagen, nombre: fotoNombre ,datos: jsonStringArray }, function() { 
+    		$.post(_root_ + 'administrador/' + controlador + '/uploader', {imagen: imagen, 
+																		   nombre: fotoNombre, 
+																		   controlador: controlador,
+																		   datos: data }, function() { 
 					//$('#mensaje').html('Imagen(s) enviada(s) com sucesso'); 
 					} 
 			);
 			
 			$('#mensaje').html('Imagen enviada con exito.'); 
 			
+			
     	});
+		
 		return fotoNombre;
 	}
 	return '';

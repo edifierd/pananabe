@@ -1,6 +1,6 @@
 <h2> Cargar Datos de la prenda </h2>
 
-<form enctype="multipart/form-data" method="post" action="{$_layoutParams.root}administrador/prenda/cargarDatos">
+<form enctype="multipart/form-data" method="post" action="{$_layoutParams.root}administrador/prendas/cargarDatos">
 	
     Categorias de genero {$genero}:<br />
     <select id="categorias[]" name="categorias[]" class="selectpicker" title="Seleccione multiples categorias..." multiple>

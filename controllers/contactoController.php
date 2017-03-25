@@ -5,8 +5,7 @@ class contactoController extends Controller
 {    
 	private $_contacto;
 	
-    public function __construct() 
-    {
+    public function __construct(){
         parent::__construct();
 		$this->_contacto = $this->loadModel('contacto');
     }
@@ -144,6 +143,8 @@ if(!$mail->send()) {
 	private function redireccionarContacto($campos = ''){
 		$this->index($campos);
 	}
+	
+	public function getModel($nombre){}
 }
 
 ?>

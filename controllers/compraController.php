@@ -10,8 +10,7 @@ class compraController extends Controller
 	private $_user;
 	private $_venta;
 
-    public function __construct() 
-    {
+    public function __construct() {
         parent::__construct();
         $this->_prenda = $this->loadModel('prenda');
 		$this->_user = $this->loadModel('user');
@@ -19,6 +18,8 @@ class compraController extends Controller
     }
 	
 	public function index(){}
+	
+	public function getModel($nombre){}
 	
 	public function mercadoPago($producto,$cantidad,$talle,$user){
 		$this->_view->assign('marcado', '');

@@ -269,6 +269,8 @@ class prendaController extends Controller
 		
 		$this->_view->renderizar('ajax/listaPrendas', false, true);
 	}*/
+	
+	public function getModel($nombre){}
 }
 
 ?>

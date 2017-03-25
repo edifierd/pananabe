@@ -1,13 +1,12 @@
 <?php
 
-class indexController extends Controller
-{
+class indexController extends sitioWebController{
+	
     public function __construct() {
         parent::__construct();
     }
     
-    public function index()
-    {
+    public function index(){
         //print_r($this->_view->getLayoutPositions());
 		//$this->_view->assign('widget', $this->_view->widget('menu', 'getMenu'));
         $this->_view->assign('titulo', 'Inicio');
@@ -36,6 +35,8 @@ class indexController extends Controller
 		$this->_view->setCss(array('estilos'));
         $this->_view->renderizar('index', 'inicio');
     }
+	
+	public function getModel($nombre){}
 	
 }
 
