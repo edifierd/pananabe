@@ -7,22 +7,37 @@
 	<div class="row" style=" border-bottom: 1px solid #CCC; padding-bottom:5px;">
     	<div class="col-xs-12 col-sm-4" style="text-align:center;">
         	<label>Foto Frente: (SOLO IMAGENES .jpg .png)</label>
-     		<input id="imagen1" type="file" accept="image/*" onchange="mostrarFoto(enviar('imagen1','prendas',new Array({$id_prenda},'foto_frente')),1,'prendas'); "/>		
-     		<img src="{$_layoutParams.root}public/img/sin_imagen.png" id="imagen1Foto" style="width:50%; height:auto; margin-top:15px;"/>
+            <input type="hidden" name="foto_frente" value="{$datos.foto_frente}">
+     		<input id="imagen1" type="file" accept="image/*" onchange="mostrarFoto(enviar('imagen1','prendas',new Array({$id_prenda},'foto_frente')),1,'prendas'); "/>	
+            {if $datos.foto_frente != ''}	
+            	<img src="{$_layoutParams.root}public/img/prendas/thumb/thumb_{$datos.foto_frente}" id="imagen1Foto" style="width:50%; height:auto; margin-top:15px;"/>
+            {else}
+            	<img src="{$_layoutParams.root}public/img/sin_imagen.png" id="imagen1Foto" style="width:50%; height:auto; margin-top:15px;"/>
+            {/if}
             <img src="{$_layoutParams.root}public/img/carga.gif" id="imagen1Carga" style="width:50%; height:auto; margin-top:15px;"/>
         </div>
         
         <div class="col-xs-12 col-sm-4" style="text-align:center;">
         	<label>Foto Perfil: (SOLO IMAGENES .jpg .png)</label>
-     		<input id="imagen2" type="file" accept="image/*" onchange="mostrarFoto(enviar('imagen2','prendas',new Array({$id_prenda},'foto_perfil')),2,'prendas'); "/>		
-    		<img src="{$_layoutParams.root}public/img/sin_imagen.png" id="imagen2Foto" style="width:50%; height:auto; margin-top:15px;"/>
+            <input type="hidden" name="foto_perfil" value="{$datos.foto_perfil}">
+     		<input id="imagen2" type="file" accept="image/*" onchange="mostrarFoto(enviar('imagen2','prendas',new Array({$id_prenda},'foto_perfil')),2,'prendas'); "/>	
+            {if $datos.foto_perfil != ''}	
+            	<img src="{$_layoutParams.root}public/img/prendas/thumb/thumb_{$datos.foto_perfil}" id="imagen2Foto" style="width:50%; height:auto; margin-top:15px;"/>
+            {else}
+            	<img src="{$_layoutParams.root}public/img/sin_imagen.png" id="imagen2Foto" style="width:50%; height:auto; margin-top:15px;"/>
+            {/if}	
             <img src="{$_layoutParams.root}public/img/carga.gif" id="imagen2Carga" style="width:50%; height:auto; margin-top:15px;"/>
         </div>
         
         <div class="col-xs-12 col-sm-4" style="text-align:center;">
         	<label>Foto Atras: (SOLO IMAGENES .jpg .png)</label>
+            <input type="hidden" name="foto_atras" value="{$datos.foto_atras}">
      		<input id="imagen3" type="file" accept="image/*" onchange="mostrarFoto(enviar('imagen3','prendas',new Array({$id_prenda},'foto_atras')),3,'prendas'); "/>		
-            <img src="{$_layoutParams.root}public/img/sin_imagen.png" id="imagen3Foto" style="width:50%; height:auto; margin-top:15px;"/>
+            {if $datos.foto_atras != ''}	
+            	<img src="{$_layoutParams.root}public/img/prendas/thumb/thumb_{$datos.foto_atras}" id="imagen3Foto" style="width:50%; height:auto; margin-top:15px;"/>
+            {else}
+            	<img src="{$_layoutParams.root}public/img/sin_imagen.png" id="imagen3Foto" style="width:50%; height:auto; margin-top:15px;"/>
+            {/if}
             <img src="{$_layoutParams.root}public/img/carga.gif" id="imagen3Carga" style="width:50%; height:auto; margin-top:15px;"/>
         </div>
     </div>
@@ -36,7 +51,16 @@
                     <td>
                     <select id="categorias[]" name="categorias[]" class="selectpicker" title="Seleccione multiples categorias..." multiple>
     					{foreach from=$categorias item=curr_c}
-        				<option value="{$curr_c.id}" >{$curr_c.nombre} - {$curr_c.genero}</option>
+                        	{$esta = false}
+                        	{foreach from=$categoriasModel->getCategoriasPrenda($id_prenda) item=c}
+                            	{if $c.nombre == $curr_c.nombre }
+                                	<option value="{$curr_c.id}" selected>{$curr_c.nombre} - {$curr_c.genero}</option>
+                                    {$esta = true}	
+                                {/if}
+                            {/foreach}
+                            {if !$esta}
+                            	<option value="{$curr_c.id}">{$curr_c.nombre} - {$curr_c.genero}</option>
+                            {/if}
 						{/foreach}
 					</select>
                     </td>

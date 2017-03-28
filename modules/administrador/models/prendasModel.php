@@ -23,9 +23,10 @@ class prendasModel extends Model{
 											l = ".$var['l'].", 
 											xl = ".$var['xl'].", 
 											xxl = ".$var['xxl'].",
-											estado = 1
+											estado = 'act'
 						WHERE id = ".$var['id']);
 		if($sql){
+			$this->eliminarCategoria($var['id']);
 			foreach ($var['categorias'] as &$id_categoria){
 				$this->insertarCategoria($var['id'],$id_categoria);
 			}
@@ -34,7 +35,9 @@ class prendasModel extends Model{
 		return false;
 	}
 	
-	public function eliminar(array $var){}
+	public function eliminar(array $var){
+        return $this->_db->query("UPDATE prendas SET `estado` = 'fin' WHERE `id` = ".$var['id']);
+	}
 	
 	private function insertarCategoria($id_prenda,$id_categoria){
 		$this->_db->prepare("INSERT INTO prenda_a_categoria VALUES (null, :id_prenda, :id_categoria )")->execute(
@@ -42,6 +45,10 @@ class prendasModel extends Model{
                 	 ':id_prenda' => $id_prenda,
 					 ':id_categoria' => $id_categoria
                 ));
+	}
+	
+	private function eliminarCategoria($id_prenda){
+		$this->_db->query("DELETE FROM prenda_a_categoria WHERE id_prenda = ".$id_prenda);
 	}
 	
 	public function modificarImagen($nombreImagen, $datosAuxiliares){
@@ -63,26 +70,19 @@ class prendasModel extends Model{
 	
 	//----------- METODOS ANTIGUOS -----------
 	
-	public function all($rubro=false){
-		
+	public function all($rubro=false,$est=false){	
+		$estado = '';
 		if(!$rubro){
-			//$prenda = $this->_db->query("SELECT * FROM prenda ORDER BY prenda.id DESC");	
-			$prenda = $this->_db->query("
-				SELECT p.id, p.nombre, p.descripcion,p.temporada, p.precio, p.S, p.M ,p. L ,p.XL, p.foto_frente, p.foto_atras, p.foto_perfil, c.nombre AS categoria, c.genero
-				FROM prendas p INNER JOIN prenda_a_categoria pc ON pc.id_prenda = p.id
-						      INNER JOIN categorias c ON pc.id_categoria = c.id
-				ORDER BY P.id DESC
-		 	");
+			if($est){
+				$estado = " WHERE p.estado = '".$est."'";
+			}	
+			$prenda = $this->_db->query(" SELECT * FROM prendas p ".$estado." ORDER BY p.id DESC ");
 		} else {
 			$rubro = (int) $rubro;
-			$prenda = $this->_db->query("
-				SELECT p.id, p.nombre, p.descripcion, p.precio, p.foto_frente, c.nombre AS categoria, c.genero
-				FROM prendas p INNER JOIN prenda_a_categoria pc ON pc.id_prenda = p.id
-						      INNER JOIN categorias c ON pc.id_categoria = c.id
-				WHERE pc.id_categoria = ".$rubro."
-				ORDER BY p.id DESC
-		 	");
-
+			if($est){
+				$estado = "AND p.estado = '".$est."'";
+			}	
+			$prenda = $this->_db->query(" SELECT * FROM prendas p  WHERE pc.id_categoria = ".$rubro." ".$estado." ORDER BY p.id DESC ");
 		}
 		return $prenda->fetchall();
 	}
@@ -102,6 +102,7 @@ class prendasModel extends Model{
 		}
         return $prenda->fetch();
 	}
+	
 	
 	public function decrementarStock($id, $talle, $cantidad)
     {
@@ -135,24 +136,6 @@ class prendasModel extends Model{
 		return false;
     }
 	
-	private function insertarPrendaModelo($nombre, $descripcion, $temporada, $precio, $s, $m, $l, $xl, $foto_frente, $foto_atras, $foto_perfil){
-		return $this->_db->prepare("INSERT INTO prendas (nombre, descripcion, temporada, precio, S, M, L, XL, foto_frente, foto_atras, foto_perfil)
-									VALUES (:nombre, :descripcion, :temporada , :precio, :S, :M, :L, :XL , :foto_frente, :foto_atras, :foto_perfil)"
-		)->execute(
-        	array(
-            	':nombre' => $nombre,
-            	':descripcion' => $descripcion,
-				':temporada' => $temporada,
-				':precio' => $precio,
-				':S' => $s,
-				':M' => $m,
-				':L' => $l,
-				':XL' => $xl,
-				':foto_frente' => $foto_frente,
-				':foto_atras' => $foto_atras,
-				':foto_perfil' => $foto_perfil
-			));		
-	}
 	
 	public function last(){
 		$prenda = $this->_db->query("SELECT * FROM prendas ORDER BY id DESC LIMIT 1");	

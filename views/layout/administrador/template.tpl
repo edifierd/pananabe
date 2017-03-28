@@ -38,7 +38,7 @@
                 </li>
                 {if $_acl->permiso('control_prendas')}
 					<li>
-                    	<a href="{$_layoutParams.root}administrador/prendas/nuevo">Prendas</a>
+                    	<a href="{$_layoutParams.root}administrador/prendas/listado">Prendas</a>
                 	</li>
                 {/if}
                 {if $_acl->permiso('control_categorias')}

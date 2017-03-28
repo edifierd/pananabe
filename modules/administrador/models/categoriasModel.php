@@ -31,8 +31,15 @@ class categoriasModel extends Model{
 		return $categorias->fetchall();
 	}
 	
-	
-	
+	public function getCategoriasPrenda($id){
+		$id = (int) $id;
+		$cat = $this->_db->query("SELECT c.nombre 
+								 FROM categorias c INNER JOIN prenda_a_categoria pc ON pc.id_categoria = c.id
+						      	 WHERE pc.id_prenda = ".$id
+							    );
+		return $cat->fetchall();
+	}
+
 }
 
 

@@ -46,7 +46,7 @@ class categoriasController extends administradorController {
 		
 		$this->_view->renderizar('nuevo');
 	}
-    
+
 }
 
 ?>
