@@ -13,9 +13,32 @@ class categoriasModel extends Model{
 	
 	public function editar(array $var){}
 	
-	public function eliminar(array $var){}
+	public function eliminar(array $var){
+		$categoria = $this->_db->query("
+				DELETE
+				FROM categorias  
+				WHERE id = ".$var['id']."
+		 	");
+			
+		$prenda_a_categoria = $this->_db->query("
+				DELETE
+				FROM prenda_a_categoria 
+				WHERE id_categoria = ".$var['id']."
+		 	");
+		if($categoria and $prenda_a_categoria){
+			return true;
+		}
+		return false;
+	}
 	
-	public function find(array $var){}
+	public function find(array $var){
+		$categoria = $this->_db->query("
+				SELECT * 
+				FROM categorias  
+				WHERE id = ".$var['id']."
+		 	");
+		return $categoria->fetch();
+	}
 	
 	public function all($genero = false){
 		if(!$genero){

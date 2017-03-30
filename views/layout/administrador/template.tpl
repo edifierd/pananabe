@@ -43,7 +43,7 @@
                 {/if}
                 {if $_acl->permiso('control_categorias')}
 					<li>
-                    	<a href="{$_layoutParams.root}administrador/categorias/nuevo">Categorias</a>
+                    	<a href="{$_layoutParams.root}administrador/categorias">Categorias</a>
                 	</li>
                 {/if}
                 {if $_acl->permiso('control_usuarios')}

@@ -23,6 +23,7 @@ class prendasModel extends Model{
 											l = ".$var['l'].", 
 											xl = ".$var['xl'].", 
 											xxl = ".$var['xxl'].",
+											descuento = ".$var['descuento'].",
 											estado = 'act'
 						WHERE id = ".$var['id']);
 		if($sql){
@@ -37,6 +38,17 @@ class prendasModel extends Model{
 	
 	public function eliminar(array $var){
         return $this->_db->query("UPDATE prendas SET `estado` = 'fin' WHERE `id` = ".$var['id']);
+	}
+	
+	public function findByCategoria(array $var){
+		$id_categoria = $var['id'];
+        $sql = $this->_db->query("
+			SELECT *
+			FROM `prendas` p INNER JOIN prenda_a_categoria pc ON pc.id_prenda = p.id
+			GROUP BY p.id
+			HAVING COUNT(pc.id) = 1 AND pc.id_categoria = ".$id_categoria."
+		");
+		return $sql->fetchall();
 	}
 	
 	private function insertarCategoria($id_prenda,$id_categoria){

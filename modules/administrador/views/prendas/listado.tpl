@@ -48,10 +48,10 @@
                         {/foreach}
                     </div>
                     <div class="col-sm-2" style="text-align:center;">
-                    	<a href="{$_layoutParams.root}administrador/prendas/editar/{$p.id}" class="btn btn-primary btn-xs" style="margin-right:10px;">
-                        	<i class="fa fa-pencil fa-2x"></i>
-                        </a>
                         {if $p.estado == 'act'}
+                        	<a href="{$_layoutParams.root}administrador/prendas/editar/{$p.id}" class="btn btn-primary btn-xs" style="margin-right:10px;">
+                        	<i class="fa fa-pencil fa-2x"></i>
+                        	</a>
                         	<a href="{$_layoutParams.root}administrador/prendas/eliminar/{$p.id}" 
                        		onClick="javascript: return confirm('¿Estas seguro?');" class="btn btn-danger btn-xs" style="margin-right:10px;"><i class="fa fa-trash fa-2x"></i></a>
                         {else}

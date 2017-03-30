@@ -4,20 +4,22 @@
         <input type="hidden" value="1" name="enviar" />
         
         <p>
+            <label>Genero</label>
         <select id="genero" name="genero" class="selectpicker" title="Seleccione el genero" >
 			<option value="hombre" >Hombre</option>
     		<option value="mujer" >Mujer</option>
             <option value="unisex" >Unisex</option>
 		</select>
-    	</p>
-
-        <p>
-            <label>Nombre: </label>
-            <input type="text" name="nombre" value="{$datos.nombre|default:""}" />
         </p>
-
+        
+        <p>
+        	<label>Nombre</label>
+            <input type="text" name="nombre" value="{$datos.nombre|default:""}" />
+		</p>
+            
         <p>
             <button type="submit" class="btn btn-primary">Crear Categoria</button>
-            <a href="{$_layoutParams.root}administrador" class="btn btn-danger" style="margin-left:25px;">Cancelar</a>
+            <a href="{$_layoutParams.root}administrador/categorias" class="btn btn-danger" style="margin-left:25px;">Cancelar</a>
         </p>
+
     </form>

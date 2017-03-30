@@ -115,6 +115,7 @@ class prendasController extends administradorController{
 							'l' => $this->getInt('l'),
 							'xl' => $this->getInt('xl'),
 							'xxl' => $this->getInt('xxl'),
+							'descuento' => 0,
 							'categorias' => $this->getPostParam('categorias')
 			);
 			//PROCEDO A CARGAR LA PRENDA
@@ -144,8 +145,14 @@ class prendasController extends administradorController{
 		if(!$prenda){
 			$this->redireccionar('administrador/prendas/listado');
 		}
+		
+		if($prenda['estado'] != 'act' ){
+			$this->redireccionar('administrador/prendas/listado');
+		}
+		
 		$this->_view->assign('id_prenda',$id);
 		$this->_view->assign('datos', $prenda);
+		$this->_view->assign('imgs', $prenda);
 		$this->_view->assign('categoriasModel',$this->_categorias);
 		$this->_view->assign('categorias', $this->_categorias->all());
 		
@@ -154,64 +161,70 @@ class prendasController extends administradorController{
 		
 		if ($this->getInt('guardar') == 1){
 			$this->_view->assign('datos', $_POST);
-			$id_prenda = Session::get("id_prenda");
+
 			if (!is_array($this->getPostParam('categorias'))){
 				$this->_view->assign('_error', 'Debe seleccionar una categoria');
-				$this->_view->renderizar('nuevo', '');
+				$this->_view->renderizar('editar', '');
 				exit;
 		    } 	
 
 			if(!$this->getTexto('nombre')){
 				$this->_view->assign('_error', 'No se ha ingresado un Nombre valido.');
-                $this->_view->renderizar('nuevo', '');
+                $this->_view->renderizar('editar', '');
                 exit;
 			}
 			
 			if(!$this->getTexto('descripcion')){
 				$this->_view->assign('_error', 'No se ha ingresado una descripcion.');
-                $this->_view->renderizar('nuevo', '');
+                $this->_view->renderizar('editar', '');
                 exit;
 			}
 			
 			if(!$this->getInt('temporada')){
 				$this->_view->assign('_error', 'No se ha ingresado una temporada.');
-                $this->_view->renderizar('nuevo', '');
+                $this->_view->renderizar('editar', '');
                 exit;
 			}
 			
 			if(!$this->getInt('precio')){
 				$this->_view->assign('_error', 'No se ha indicado un precio. O no es valido.');
-                $this->_view->renderizar('nuevo', '');
+                $this->_view->renderizar('editar', '');
+                exit;
+			}
+			
+			if(($this->getInt('descuento') < 0) or ($this->getInt('descuento') > 99) ){
+				$this->_view->assign('_error', 'El valor indicado como descuento no parece ser correcto.');
+                $this->_view->renderizar('editar', '');
                 exit;
 			}
 			
 			if(!$this->getInt('s') and ($this->getInt('s') != 0)){
 				$this->_view->assign('_error', 'No se ha indicado el stock en talle S. O no es valido.');
-                $this->_view->renderizar('nuevo', '');
+                $this->_view->renderizar('editar', '');
                 exit;
 			}
 			
 			if(!$this->getInt('m') and ($this->getInt('m') != 0)){
 				$this->_view->assign('_error', 'No se ha indicado indicado el stock en talle M. O no es valido.');
-                $this->_view->renderizar('nuevo', '');
+                $this->_view->renderizar('editar', '');
                 exit;
 			}
 			
 			if(!$this->getInt('l') and ($this->getInt('l') != 0)){
 				$this->_view->assign('_error', 'No se ha indicado indicado el stock en talle L. O no es valido.');
-                $this->_view->renderizar('nuevo', '');
+                $this->_view->renderizar('editar', '');
                 exit;
 			}
 			
 			if(!$this->getInt('xl') and ($this->getInt('xl') != 0)){
 				$this->_view->assign('_error', 'No se ha indicado indicado el stock en talle XL. O no es valido.');
-                $this->_view->renderizar('nuevo', '');
+                $this->_view->renderizar('editar', '');
                 exit;
 			}
 			
 			if(!$this->getInt('xxl') and ($this->getInt('xxl') != 0)){
 				$this->_view->assign('_error', 'No se ha indicado indicado el stock en talle XXL. O no es valido.');
-                $this->_view->renderizar('nuevo', '');
+                $this->_view->renderizar('editar', '');
                 exit;
 			}
 			
@@ -226,15 +239,14 @@ class prendasController extends administradorController{
 							'l' => $this->getInt('l'),
 							'xl' => $this->getInt('xl'),
 							'xxl' => $this->getInt('xxl'),
+							'descuento' => $this->getInt('descuento'),
 							'categorias' => $this->getPostParam('categorias')
 			);
 			//PROCEDO A CARGAR LA PRENDA
 			if ($this->_prendas->editar($parametros)){	
 				$this->_view->assign('_mensaje', 'Se modifico correctamente la informacion de la prenda.'); 
-				Session::destroy("id_prenda");
 			} else {
-				print_r($parametros);exit;
-				$this->_view->assign('_error', 'Algo salio mal. Intente cargar la prenda nuevamente.');
+				$this->_view->assign('_error', 'Algo salio mal. Intente modificar la prenda nuevamente.');
 			}
 		} 
 		

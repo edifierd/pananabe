@@ -7,10 +7,9 @@
 	<div class="row" style=" border-bottom: 1px solid #CCC; padding-bottom:5px;">
     	<div class="col-xs-12 col-sm-4" style="text-align:center;">
         	<label>Foto Frente: (SOLO IMAGENES .jpg .png)</label>
-            <input type="hidden" name="foto_frente" value="{$datos.foto_frente}">
      		<input id="imagen1" type="file" accept="image/*" onchange="mostrarFoto(enviar('imagen1','prendas',new Array({$id_prenda},'foto_frente')),1,'prendas'); "/>	
-            {if $datos.foto_frente != ''}	
-            	<img src="{$_layoutParams.root}public/img/prendas/thumb/thumb_{$datos.foto_frente}" id="imagen1Foto" style="width:50%; height:auto; margin-top:15px;"/>
+            {if $imgs.foto_frente != ''}	
+            	<img src="{$_layoutParams.root}public/img/prendas/thumb/thumb_{$imgs.foto_frente}" id="imagen1Foto" style="width:50%; height:auto; margin-top:15px;"/>
             {else}
             	<img src="{$_layoutParams.root}public/img/sin_imagen.png" id="imagen1Foto" style="width:50%; height:auto; margin-top:15px;"/>
             {/if}
@@ -19,10 +18,9 @@
         
         <div class="col-xs-12 col-sm-4" style="text-align:center;">
         	<label>Foto Perfil: (SOLO IMAGENES .jpg .png)</label>
-            <input type="hidden" name="foto_perfil" value="{$datos.foto_perfil}">
      		<input id="imagen2" type="file" accept="image/*" onchange="mostrarFoto(enviar('imagen2','prendas',new Array({$id_prenda},'foto_perfil')),2,'prendas'); "/>	
-            {if $datos.foto_perfil != ''}	
-            	<img src="{$_layoutParams.root}public/img/prendas/thumb/thumb_{$datos.foto_perfil}" id="imagen2Foto" style="width:50%; height:auto; margin-top:15px;"/>
+            {if $imgs.foto_perfil != ''}	
+            	<img src="{$_layoutParams.root}public/img/prendas/thumb/thumb_{$imgs.foto_perfil}" id="imagen2Foto" style="width:50%; height:auto; margin-top:15px;"/>
             {else}
             	<img src="{$_layoutParams.root}public/img/sin_imagen.png" id="imagen2Foto" style="width:50%; height:auto; margin-top:15px;"/>
             {/if}	
@@ -31,10 +29,9 @@
         
         <div class="col-xs-12 col-sm-4" style="text-align:center;">
         	<label>Foto Atras: (SOLO IMAGENES .jpg .png)</label>
-            <input type="hidden" name="foto_atras" value="{$datos.foto_atras}">
      		<input id="imagen3" type="file" accept="image/*" onchange="mostrarFoto(enviar('imagen3','prendas',new Array({$id_prenda},'foto_atras')),3,'prendas'); "/>		
-            {if $datos.foto_atras != ''}	
-            	<img src="{$_layoutParams.root}public/img/prendas/thumb/thumb_{$datos.foto_atras}" id="imagen3Foto" style="width:50%; height:auto; margin-top:15px;"/>
+            {if $imgs.foto_atras != ''}	
+            	<img src="{$_layoutParams.root}public/img/prendas/thumb/thumb_{$imgs.foto_atras}" id="imagen3Foto" style="width:50%; height:auto; margin-top:15px;"/>
             {else}
             	<img src="{$_layoutParams.root}public/img/sin_imagen.png" id="imagen3Foto" style="width:50%; height:auto; margin-top:15px;"/>
             {/if}
@@ -84,6 +81,13 @@
                     <td><h4 style="margin-right:8px;">Precio:</h4></td>
                     <td>
                    <input type="number" class="form-control" name="precio" id="precio" placeholder="Ingrese el precio" value="{$datos.precio|default:""}" style="border-radius: 0px;">
+                    </td>
+                </tr>
+                
+                <tr>                  
+                    <td><h4 style="margin-right:8px;">Porcentaje de descuento:</h4></td>
+                    <td>
+                   <input type="number" class="form-control" name="descuento" id="descuento" placeholder="Ingrese un descuento" value="{$datos.descuento|default:""}" style="border-radius: 0px;">
                     </td>
                 </tr>
             </table> 
