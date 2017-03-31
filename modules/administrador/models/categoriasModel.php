@@ -60,7 +60,10 @@ class categoriasModel extends Model{
 								 FROM categorias c INNER JOIN prenda_a_categoria pc ON pc.id_categoria = c.id
 						      	 WHERE pc.id_prenda = ".$id
 							    );
-		return $cat->fetchall();
+		if ($cat->rowCount() > 0){
+        	return $cat->fetchall();
+		}
+		return array();
 	}
 
 }

@@ -44,7 +44,7 @@ class categoriasController extends administradorController {
                 $this->_view->renderizar('nuevo', '');
                 exit;
 			} 
-			$this->redireccionar('administrador');
+			$this->redireccionar('administrador/categorias');
 		}
 		
 		$this->_view->renderizar('nuevo');
@@ -65,7 +65,7 @@ class categoriasController extends administradorController {
 		
 		$this->_categorias->eliminar(array('id' => $id));
 		
-		
+		$this->redireccionar('administrador/categorias');
 	}
 }
 

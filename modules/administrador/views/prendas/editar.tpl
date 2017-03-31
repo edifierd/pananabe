@@ -1,5 +1,10 @@
 <h2> Cargar Datos de la prenda </h2>
 
+<div class="btn-group" style="margin-bottom:20px;">
+	<a href="{$_layoutParams.root}administrador/prendas" class="btn btn-default"> <i class="fa fa-arrow-left fa-lg"></i> Atras</a></li>
+
+</div>
+
 <form enctype="multipart/form-data" method="post" action="">
 
 <div class="well">

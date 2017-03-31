@@ -276,6 +276,33 @@ class prendasController extends administradorController{
 			$this->redireccionar('administrador/prendas/listado');
 		}
 		
+		$categorias = $this->_categorias->getCategoriasPrenda($id);
+		
+		if(count($categorias) == 0){
+			$this->_view->assign('titulo', "Reactivar Prenda");
+			$this->_view->assign('p', $prenda);
+			$this->_view->assign('categorias', $this->_categorias->all());
+			
+			if ($this->getInt('guardar') == 1){
+				if (!is_array($this->getPostParam('categorias'))){
+					$this->_view->assign('_error', 'Debe seleccionar una categoria');
+					$this->_view->renderizar('reactivar', '');
+					exit;
+		    	} 
+				
+				$parametros = array(
+							'id' => $id,
+							'categorias' => $this->getPostParam('categorias')
+				);
+				$this->_prendas->insertarCategorias($parametros);
+				$this->_prendas->modificarEstado($id,'act');
+				$this->redireccionar('administrador/prendas/listado');
+			}
+			
+			$this->_view->renderizar('reactivar', '');
+			exit;
+		} 
+			
 		$this->_prendas->modificarEstado($id,'act');
 		$this->redireccionar('administrador/prendas/listado');
 	}

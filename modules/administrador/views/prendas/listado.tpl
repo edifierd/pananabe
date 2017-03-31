@@ -57,7 +57,7 @@
                         {else}
                         	<a href="{$_layoutParams.root}administrador/prendas/reactivar/{$p.id}" 
                         	onClick="javascript: return confirm('¿Estas seguro?');" class="btn btn-warning btn-xs" style="margin-right:10px;">
-                            	<i class="fa fa-check-square-o fa-2x"></i>
+                            	<i class="fa fa-check-square-o fa-2x"></i> Reactivar
                             </a>
                         {/if}
                     </div>

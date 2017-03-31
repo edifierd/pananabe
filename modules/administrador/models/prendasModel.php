@@ -40,10 +40,16 @@ class prendasModel extends Model{
         return $this->_db->query("UPDATE prendas SET `estado` = 'fin' WHERE `id` = ".$var['id']);
 	}
 	
+	public function insertarCategorias(array $var){
+		foreach ($var['categorias'] as &$id_categoria){
+				$this->insertarCategoria($var['id'],$id_categoria);
+		}
+	}
+		
 	public function findByCategoria(array $var){
 		$id_categoria = $var['id'];
         $sql = $this->_db->query("
-			SELECT *
+			SELECT p.id,p.descripcion,p.temporada,p.precio,p.descuento,p.S,p.M,p.L,p.XL,p.XXL,p.estado,p.foto_frente,p.foto_perfil,p.foto_atras,pc.id_categoria
 			FROM `prendas` p INNER JOIN prenda_a_categoria pc ON pc.id_prenda = p.id
 			GROUP BY p.id
 			HAVING COUNT(pc.id) = 1 AND pc.id_categoria = ".$id_categoria."

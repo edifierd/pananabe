@@ -5,6 +5,7 @@
 	<a href="{$_layoutParams.root}administrador/categorias/nuevo" class="btn btn-default"> Nueva Categoria </a>
 </div>
 
+{if isset($categorias) && count($categorias)}
 <table class="table">
 	<tr>
     	<th>Genero</th>
@@ -23,3 +24,6 @@
    		</tr>
     {/foreach}
 </table>
+{else}
+	<h3 style="margin-top:30px;">No se han cargado categorias</h3>
+{/if}
