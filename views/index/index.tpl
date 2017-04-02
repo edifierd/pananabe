@@ -1,7 +1,7 @@
 
 <div class="row container" style="margin-top:45px; margin-bottom:20px;">
 	<div class=" col-xs-6 col-sm-6 col-md-6">
-    	<a href="{$_layoutParams.root}prenda/mujer" onmouseover="transparenciaImagen(1,0.5)" onmouseout="transparenciaImagen(1,1)">
+    	<a href="{$_layoutParams.root}prenda/categoria/mujer" onmouseover="transparenciaImagen(1,0.5)" onmouseout="transparenciaImagen(1,1)">
         	<img src="{$_layoutParams.img}mujer.jpg" class="img-responsive img-circle" id="1"
             									     style="width:350px; margin-left: auto; margin-right: auto;"
                                                      alt="Trajes de baño para Mujer"
@@ -13,7 +13,7 @@
     </div>
 
 	<div class="col-xs-6 col-sm-6 col-md-6" >
-    	<a href="{$_layoutParams.root}prenda/hombre" onmouseover="transparenciaImagen(2,0.5)" onmouseout="transparenciaImagen(2,1)">
+    	<a href="{$_layoutParams.root}prenda/categoria/hombre" onmouseover="transparenciaImagen(2,0.5)" onmouseout="transparenciaImagen(2,1)">
         	<img src="{$_layoutParams.img}hombre.jpg" class="img-responsive img-circle" id="2"
             										  style="width:350px; margin-left: auto; margin-right: auto;" 
                                                       alt="Trajes de baño para Hombre"

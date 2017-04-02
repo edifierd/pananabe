@@ -20,7 +20,7 @@ class sitioWebController extends Controller {
 		$mujer = array();
 		foreach ($this->_categorias->get('mujer') as $item){
 			$mujer[$item['id']] = array(
-									'id' => strtolower($item['nombre']),
+									'id' => $item['identificador'],
                 					'titulo' => strtoupper($item['nombre']),
                						'enlace' => BASE_URL.'prenda/categoria/'.$item['identificador'],
                 					'imagen' => '',
@@ -28,8 +28,8 @@ class sitioWebController extends Controller {
 							);
 		}
 		$mujer[9999] = array(
-									'id' => 'todo',
-                					'titulo' => 'TODO',
+									'id' => 'mujer',
+                					'titulo' => 'TODO MUJER',
                						'enlace' => BASE_URL.'prenda/categoria/mujer',
                 					'imagen' => '',
 									'dropdown' => ''
@@ -38,16 +38,16 @@ class sitioWebController extends Controller {
 		$hombre = array();
 		foreach ($this->_categorias->get('hombre') as $item){
 			$hombre[$item['id']] = array(
-									'id' => strtolower($item['nombre']),
+									'id' => $item['identificador'],
                 					'titulo' => strtoupper($item['nombre']),
-               						'enlace' => BASE_URL.'prenda/'.strtolower($item['nombre']),
+               						'enlace' => BASE_URL.'prenda/categoria/'.$item['identificador'],
                 					'imagen' => '',
 									'dropdown' => ''
 								);
 		}
 		$hombre[9999] = array(
-									'id' => 'todo',
-                					'titulo' => 'TODO',
+									'id' => 'hombre',
+                					'titulo' => 'TODO HOMBRE',
                						'enlace' => BASE_URL.'prenda/categoria/hombre',
                 					'imagen' => '',
 									'dropdown' => ''
@@ -81,7 +81,7 @@ class sitioWebController extends Controller {
 			array(
                 'id' => 'todo',
                 'titulo' => 'VER TODO',
-                'enlace' => BASE_URL . 'prenda/todo',
+                'enlace' => BASE_URL . 'prenda/categoria/todo',
                 'imagen' => '',
 				'dropdown' => ''
                 ),

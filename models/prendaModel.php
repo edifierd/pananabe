@@ -8,38 +8,52 @@ class prendaModel extends Model{
     }
 	
 	
-	public function all($rubro=false){
-		if(!$rubro){
+	public function all($categoria=false){
+		if(!$categoria){
 			//$prenda = $this->_db->query("SELECT * FROM prenda ORDER BY prenda.id DESC");	
 			$prenda = $this->_db->query("
 				SELECT p.id, p.nombre, p.descripcion,p.temporada, p.precio, p.S, p.M ,p. L ,p.XL, p.foto_frente, p.foto_atras, p.foto_perfil, c.nombre AS categoria, c.genero
-				FROM prenda p INNER JOIN prenda_a_categoria pc ON pc.id_prenda = p.id
-						      INNER JOIN categoria c ON pc.id_categoria = c.id
-				WHERE estado = 1
+				FROM prendas p INNER JOIN prenda_a_categoria pc ON pc.id_prenda = p.id
+						      INNER JOIN categorias c ON pc.id_categoria = c.id
+				WHERE estado = 'act'
 				ORDER BY p.id DESC
 		 	");
 		} else {
-			$rubro = (int) $rubro;
+			if (is_int($categoria)){
+				$sql = " c.id = ".$categoria;
+			} else {
+				$sql = " c.identificador = '".$categoria."'";
+			}
 			$prenda = $this->_db->query("
 				SELECT p.id, p.nombre, p.descripcion, p.precio, p.foto_frente, c.nombre AS categoria, c.genero
-				FROM prenda p INNER JOIN prenda_a_categoria pc ON pc.id_prenda = p.id
-						      INNER JOIN categoria c ON pc.id_categoria = c.id
-				WHERE pc.id_categoria = ".$rubro." AND estado = 1
+				FROM prendas p INNER JOIN prenda_a_categoria pc ON pc.id_prenda = p.id
+						      INNER JOIN categorias c ON pc.id_categoria = c.id
+				WHERE ".$sql." AND estado = 'act'
 				ORDER BY p.id DESC
 		 	");
-
 		}
 		return $prenda->fetchall();
 	}
+	
+	public function allByGenero($genero){
+		$prenda = $this->_db->query("
+				SELECT p.id, p.nombre, p.descripcion, p.precio, p.foto_frente, c.nombre AS categoria, c.genero
+				FROM prendas p INNER JOIN prenda_a_categoria pc ON pc.id_prenda = p.id
+						      INNER JOIN categorias c ON pc.id_categoria = c.id
+				WHERE c.genero = '".$genero."' OR c.genero = 'unisex' AND estado = 'act'
+				ORDER BY p.id DESC
+		 	");
+		return $prenda->fetchall();
+	}
 
-	public function find($id){
-		$id = (int) $id;
+	public function find(array $var){
+		$id = (int) $var['id'];
         //$prenda = $this->_db->query("select * from prenda where id = $id");
 		$prenda = $this->_db->query("
 				SELECT p.id, p.nombre, p.descripcion,p.temporada, p.precio, p.S, p.M ,p. L ,p.XL, p.foto_frente, p.foto_atras, p.foto_perfil, c.nombre AS categoria, c.genero
-				FROM prenda p INNER JOIN prenda_a_categoria pc ON pc.id_prenda = p.id
-						      INNER JOIN categoria c ON pc.id_categoria = c.id
-				WHERE p.id = ".$id."
+				FROM prendas p INNER JOIN prenda_a_categoria pc ON pc.id_prenda = p.id
+						      INNER JOIN categorias c ON pc.id_categoria = c.id
+				WHERE p.id = ".$id." AND estado = 'act'
 		 	");
         return $prenda->fetch();
 	}

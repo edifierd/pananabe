@@ -13,11 +13,19 @@
             >
             <div class="row">
             	<div class="col-md-12">
+                	{if $datos.foto_frente != ''}
                 	<img src="{$_layoutParams.root}public/img/prendas/thumb/thumb_{$datos.foto_frente}" class="img-responsive" id="{$datos.id}" 
                     	 style="margin-right:auto; margin-left:auto; width:auto; height:320px;"
                          title="{$datos.nombre} para {$datos.genero}"
                          alt="{$datos.nombre} para {$datos.genero}"
                      />
+                     {else}
+                     <img src="{$_layoutParams.root}public/img/sin_imagen.png" class="img-responsive" id="{$datos.id}" 
+                    	 style="margin-right:auto; margin-left:auto; width:auto; height:320px;"
+                         title="{$datos.nombre} para {$datos.genero}"
+                         alt="{$datos.nombre} para {$datos.genero}"
+                     />
+                     {/if}
                 </div>
                 <div class="col-md-12" style="text-align:center;">
                 	<b>{$datos.nombre}</b>

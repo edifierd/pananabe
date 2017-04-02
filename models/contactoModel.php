@@ -7,8 +7,7 @@ class contactoModel extends Model
         parent::__construct('');
     }
 	
-	public function insertarMensajeContacto($nombre, $apellido, $localidad, $correo, $telefono, $mensaje)
-    {
+	public function insertarMensajeContacto($nombre, $apellido, $localidad, $correo, $telefono, $mensaje){
         $this->_db->prepare("INSERT INTO contacto VALUES (null, :apellido, :nombre, :localidad, :correo, :telefono, :mensaje)") ->execute(
                         array(
 						   ':apellido' => $apellido,
@@ -19,6 +18,12 @@ class contactoModel extends Model
 						   ':mensaje' => $mensaje
                         ));
     }
+	
+	public function nuevo(array $var){}
+	public function editar(array $var){}
+	public function eliminar(array $var){}
+	
+	public function find(array $var){}
 	
 }
 

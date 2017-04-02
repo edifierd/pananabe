@@ -39,4 +39,9 @@ class ventaModel extends Model
 						   ':id_prenda' => $id_prenda
                         ));
     }
+	
+	public function nuevo(array $var){}
+	public function editar(array $var){}
+	public function eliminar(array $var){}
+	
 }

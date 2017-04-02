@@ -103,7 +103,7 @@
                         			{else}
                             			{assign var="_item_style" value=''}
                         			{/if}
-                                	<li><a href="{$itd.enlace}" > {$itd.titulo}</a></li>
+                                	<li class="{$_item_style}"><a href="{$itd.enlace}" > {$itd.titulo}</a></li>
                            		{/foreach}
           					</ul>
         				</li> 

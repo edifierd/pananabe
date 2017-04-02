@@ -1,8 +1,8 @@
 <?php
 
 
-class contactoController extends Controller
-{    
+class contactoController extends sitioWebController{
+	   
 	private $_contacto;
 	
     public function __construct(){

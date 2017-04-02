@@ -7,12 +7,24 @@
                 title="{$datos.nombre}"/>
             </div>
             <div class="col-md-12">
-            	<a onmouseover="cambiarImagen(5000,'{$_layoutParams.root}public/img/prendas/{$datos.foto_frente}')" href="javascript:void(0);">
-                	<img src="{$_layoutParams.root}public/img/prendas/{$datos.foto_frente}" class="img-responsive fotoMin" alt="{$datos.nombre} foto frente"/>
-                </a>
-                <a onmouseover="cambiarImagen(5000,'{$_layoutParams.root}public/img/prendas/{$datos.foto_perfil}')" href="javascript:void(0);">
-                	<img src="{$_layoutParams.root}public/img/prendas/{$datos.foto_perfil}" class="img-responsive fotoMin"  alt="{$datos.nombre} foto perfil"/>
-                </a>
+            	{if $datos.foto_frente == ''}
+            		<a onmouseover="cambiarImagen(5000,'{$_layoutParams.root}public/img/sin_imagen.png')" href="javascript:void(0);">
+                		<img src="{$_layoutParams.root}public/img/prendas/{$datos.foto_frente}" class="img-responsive fotoMin" alt="{$datos.nombre} foto frente"/>
+                	</a>
+                {else}
+                	<a onmouseover="cambiarImagen(5000,'{$_layoutParams.root}public/img/prendas/{$foto_frente}')" href="javascript:void(0);">
+                		<img src="{$_layoutParams.root}public/img/prendas/{$datos.foto_frente}" class="img-responsive fotoMin" alt="{$datos.nombre} foto frente"/>
+                	</a>
+                {/if}
+                {if $datos.foto_perfil != ''}
+                    <a onmouseover="cambiarImagen(5000,'{$_layoutParams.root}public/img/prendas/{$datos.foto_perfil}')" href="javascript:void(0);">
+                		<img src="{$_layoutParams.root}public/img/prendas/{$datos.foto_perfil}" class="img-responsive fotoMin"  alt="{$datos.nombre} foto perfil"/>
+                	</a>
+                {else}
+                	<a onmouseover="cambiarImagen(5000,'{$_layoutParams.root}public/img/sin_imagen.png')" href="javascript:void(0);">
+                		<img src="{$_layoutParams.root}public/img/prendas/{$datos.foto_perfil}" class="img-responsive fotoMin"  alt="{$datos.nombre} foto perfil"/>
+                	</a>
+                {/if}
                 <a onmouseover="cambiarImagen(5000,'{$_layoutParams.root}public/img/prendas/{$datos.foto_atras}')" href="javascript:void(0);">
                 	<img src="{$_layoutParams.root}public/img/prendas/{$datos.foto_atras}" class="img-responsive fotoMin"  alt="{$datos.nombre} foto atras"/>
                 </a>

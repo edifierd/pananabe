@@ -4,8 +4,8 @@
 
 //http://localhost/pananabe/pananabe/compra/rta/?collection_id=1867040&collection_status=pending&preference_id=232116276-d185f7cf-36e7-4c48-9e62-e5750f9ea99b&external_reference=null&payment_type=ticket&merchant_order_id=null
 
-class compraController extends Controller
-{
+class compraController extends sitioWebController{
+
     private $_prenda;
 	private $_user;
 	private $_venta;
