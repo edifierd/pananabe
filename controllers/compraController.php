@@ -14,7 +14,7 @@ class compraController extends sitioWebController{
         parent::__construct();
         $this->_prenda = $this->loadModel('prenda');
 		$this->_user = $this->loadModel('user');
-		$this->_venta = $this->loadModel('venta');
+		$this->_venta = $this->loadModel('ventas');
     }
 	
 	public function index(){}
@@ -90,16 +90,15 @@ class compraController extends sitioWebController{
 		$this->_view->assign('keywords', '');
         $this->_view->assign('titulo', 'Verificación de usuario - PananaBe Argentina');
 		
-		if(!$this->validarEmail($this->getPostParam('correo'))){
-			
-			if(!$this->getTexto('talle') or ($this->getTexto('talle') == "null")){
-            	$this->redireccionar("prenda/show/".$pruductId);
-            	exit;
-        	} else if(!$this->getInt('cantidad')) {
-            	$this->redireccionar("prenda/show/".$pruductId);
-           		exit;
-			}
+		if(!$this->getTexto('talle') or ($this->getTexto('talle') == "null")){
+            $this->redireccionar("prenda/show/".$pruductId);
+            exit;
+        } else if(!$this->getInt('cantidad')) {
+            $this->redireccionar("prenda/show/".$pruductId);
+           	exit;
+		}
 		
+		if(!$this->validarEmail($this->getPostParam('correo'))){
 			$prenda = $this->getPrenda($pruductId);
 			$this->_view->assign('datos', $prenda);
 			$this->_view->assign('campos', $_POST);
@@ -159,14 +158,14 @@ class compraController extends sitioWebController{
             $this->redireccionar();
         }
 		
-		if(!$this->_venta->find($this->filtrarInt($id_venta))){
+		$venta = $this->_venta->find(array('id'=>$this->filtrarInt($id_venta)));
+		if(!$venta){
             $this->redireccionar();
         }
-		$venta = $this->_venta->find($this->filtrarInt($id_venta));
 		
 		$this->_view->assign('venta', $venta);
 		$this->_view->assign('prenda', $this->getPrenda($venta['id_prenda']));
-		$this->_view->assign('user', $this->_user->find($venta['id_user']));
+		$this->_view->assign('user', $this->_user->find(array ('id' => $venta['id_user'])));
 		$this->_view->assign('total', $venta['cant'] * $venta['precio']);
 		
 		$this->_view->assign('marcado', '');
@@ -182,11 +181,12 @@ class compraController extends sitioWebController{
             $this->redireccionar('prenda');
         }
         
-        if(!$this->_prenda->find($this->filtrarInt($id))){
+		$prenda = $this->_prenda->find(array('id'=>$this->filtrarInt($id)));
+        if(!$prenda){
             $this->redireccionar('prenda');
         }
 		
-		return $this->_prenda->find($this->filtrarInt($id));
+		return $prenda;
 	}
 	
 	private function redireccionarCompra($campos = ''){

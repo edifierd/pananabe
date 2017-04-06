@@ -15,7 +15,7 @@ class prendaController extends sitioWebController{
 		$this->categoria('todo');
     }
 	
-	public function categoria($categoriaIdentificador){
+	public function categoria($categoriaIdentificador,$id_categoria=false){
 		$this->_view->assign('description', 'Trajes de baño Panana Be.Vea mallas para Hombre, Mujer, Niños y Niñas. Todos los talles y modelos disponibles como Bikini o mallas 
 		enteras. Contamos con todas las formas de pago. Tarjeta de credito. ');
 		$this->_view->assign('keywords', 'panana, panana be, pananabe, panana be argentina, argentina, traje de baño panana be, traje de baño argentina, malla, traje, traje de 
@@ -23,21 +23,33 @@ class prendaController extends sitioWebController{
 		modelos, short, short hombre, temporada, año');
         $this->_view->assign('titulo', 'Todos los modelos - Panana Be Argentina');
 		$this->_view->assign('tituloAuxiliar','para Hombre');
+		$this->_view->setJs(array('paginadorIndex'));
 		
 		if (($categoriaIdentificador == 'hombre') or ($categoriaIdentificador == 'mujer')){
 			$prendas = $this->_prenda->allByGenero($categoriaIdentificador);
+			$this->_id_categoria = $categoriaIdentificador;
 		} elseif ($categoriaIdentificador == 'todo'){
 			$prendas = $this->_prenda->all();
+			$this->_id_categoria = $categoriaIdentificador;
 		} else {
-			$prendas = $this->_prenda->all($categoriaIdentificador);
+			$prendas = $this->_prenda->all((int)$id_categoria);
 		}
 		
 		$paginador = new Paginador();
-        $this->_view->assign('prendas', $paginador->paginar($prendas,false,8));
-		$this->_view->assign('paginacion', $paginador->getView('paginacion_ajax'));
-		
-		$this->_view->setJs(array('paginadorIndex'));
-        $this->_view->renderizar('categoria', $categoriaIdentificador);
+		if ($this->getInt('pagina')){
+			$pagina = $this->getInt('pagina');
+			$this->_view->assign('prendas', $paginador->paginar($prendas,$pagina,8));
+			$this->_view->assign('paginacion', $paginador->getView('paginacion_ajax'));
+			$_params = array(
+				'root' => BASE_URL,
+			);
+			$this->_view->assign('_layoutParams', $_params);
+			$this->_view->renderizar('ajax/listaPrendas', false, true);
+		} else {
+			$this->_view->assign('prendas', $paginador->paginar($prendas,false,8));
+			$this->_view->assign('paginacion', $paginador->getView('paginacion_ajax'));
+			$this->_view->renderizar('categoria', $categoriaIdentificador);
+		}
 	}
 		
 	public function show($id){
@@ -85,11 +97,23 @@ class prendaController extends sitioWebController{
         $this->_view->renderizar('tablaTalles', '');
 	}
 	
-	public function paginador(){
-		$rubro = Session::get("rubro");
-		//echo "Session Paginador = ".$_SESSION["rubro"];
-		
+
+	
+	public function getModel($nombre){}
+   
+   /*
+   
+   	public function paginador(){
+		echo "ver: ".$this->_categoria;exit;
 		$pagina = $this->getInt('pagina'); //Recibe el numero de la pagina por POST
+		
+		if (($categoriaIdentificador == 'hombre') or ($categoriaIdentificador == 'mujer')){
+			$prendas = $this->_prenda->allByGenero($categoriaIdentificador);
+		} elseif ($categoriaIdentificador == 'todo'){
+			$prendas = $this->_prenda->all();
+		} else {
+			$prendas = $this->_prenda->all((int)$id_categoria);
+		}
 		
 		$paginador = new Paginador();
 		$this->_view->assign('prendas', $paginador->paginar($this->_prenda->all($rubro), $pagina,8));
@@ -102,11 +126,6 @@ class prendaController extends sitioWebController{
 		$this->_view->assign('_layoutParams', $_params);	
 		$this->_view->renderizar('ajax/listaPrendas', false, true);
 	}
-	
-	public function getModel($nombre){}
-   
-   /*
-   
    
    public function todo(){	
 		//echo "Session Index= ".Session::get("rubro");
@@ -186,6 +205,23 @@ class prendaController extends sitioWebController{
         $this->_view->renderizar('index', 'mujer');
     }
 	
+	public function paginadorEntera(){
+		$pagina = $this->getInt('pagina'); //Recibe el numero de la pagina por POST
+		
+		$paginador = new Paginador();
+		
+		$this->_view->assign('prendas', $paginador->paginar($this->_prenda->all(3), $pagina,8));
+		$this->_view->assign('paginacion', $paginador->getView('paginacion_ajax'));
+		
+		$_params = array(
+			'root' => BASE_URL,
+		);
+		
+		$this->_view->assign('_layoutParams', $_params);
+		
+		$this->_view->renderizar('ajax/listaPrendas', false, true);
+	}
+	
 	// ------------------------------------------------------------------------------------------------------------------------------
    
    
@@ -230,24 +266,6 @@ class prendaController extends sitioWebController{
 		
         $this->_view->renderizar('index', 'todo');
     }*/
-	
-		/*public function paginadorEntera(){
-		$pagina = $this->getInt('pagina'); //Recibe el numero de la pagina por POST
-		
-		$paginador = new Paginador();
-		
-		$this->_view->assign('prendas', $paginador->paginar($this->_prenda->all(3), $pagina,8));
-		$this->_view->assign('paginacion', $paginador->getView('paginacion_ajax'));
-		
-		$_params = array(
-			'root' => BASE_URL,
-		);
-		
-		$this->_view->assign('_layoutParams', $_params);
-		
-		$this->_view->renderizar('ajax/listaPrendas', false, true);
-	}*/
-	
 	
 	/*public function paginadorBikini(){
 		$pagina = $this->getInt('pagina'); //Recibe el numero de la pagina por POST

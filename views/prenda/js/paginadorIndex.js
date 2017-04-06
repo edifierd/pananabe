@@ -7,7 +7,7 @@ $(document).on('ready', function(){
     var paginacion = function(pagina){
         var pagina = 'pagina=' + pagina;
 
-        $.post(_root_ + 'prenda/paginador', pagina , function(data){
+        $.post(_root_ + 'prenda/categorias', pagina , function(data){
             $("#lista_registros").html('');
             $("#lista_registros").html(data);
         });

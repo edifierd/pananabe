@@ -18,11 +18,11 @@ class prendasModel extends Model{
 											descripcion = '".$var['descripcion']."', 
 											temporada = ".$var['temporada'].", 
 											precio = ".$var['precio'].", 
-											s = ".$var['s'].", 
-											m = ".$var['m'].", 
-											l = ".$var['l'].", 
-											xl = ".$var['xl'].", 
-											xxl = ".$var['xxl'].",
+											S = ".$var['s'].", 
+											M = ".$var['m'].", 
+											L = ".$var['l'].", 
+											XL = ".$var['xl'].", 
+											XXL = ".$var['xxl'].",
 											descuento = ".$var['descuento'].",
 											estado = 'act'
 						WHERE id = ".$var['id']);

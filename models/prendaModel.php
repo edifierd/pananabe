@@ -12,7 +12,7 @@ class prendaModel extends Model{
 		if(!$categoria){
 			//$prenda = $this->_db->query("SELECT * FROM prenda ORDER BY prenda.id DESC");	
 			$prenda = $this->_db->query("
-				SELECT p.id, p.nombre, p.descripcion,p.temporada, p.precio, p.S, p.M ,p. L ,p.XL, IFNULL(p.foto_frente,'sin_imagen.png') as foto_frente, 
+				SELECT p.id, p.nombre, p.descripcion, p.precio, p.descuento, IFNULL(p.foto_frente,'sin_imagen.png') as foto_frente, 
 					   c.nombre AS categoria, c.genero
 				FROM prendas p INNER JOIN prenda_a_categoria pc ON pc.id_prenda = p.id
 						      INNER JOIN categorias c ON pc.id_categoria = c.id
@@ -26,7 +26,7 @@ class prendaModel extends Model{
 				$sql = " c.identificador = '".$categoria."'";
 			}
 			$prenda = $this->_db->query("
-				SELECT p.id, p.nombre, p.descripcion, p.precio, IFNULL(p.foto_frente,'sin_imagen.png') as foto_frente, c.nombre AS categoria, c.genero
+				SELECT p.id, p.nombre, p.descripcion, p.precio, p.descuento, IFNULL(p.foto_frente,'sin_imagen.png') as foto_frente, c.nombre AS categoria, c.genero
 				FROM prendas p INNER JOIN prenda_a_categoria pc ON pc.id_prenda = p.id
 						      INNER JOIN categorias c ON pc.id_categoria = c.id
 				WHERE ".$sql." AND estado = 'act'
@@ -38,7 +38,7 @@ class prendaModel extends Model{
 	
 	public function allByGenero($genero){
 		$prenda = $this->_db->query("
-				SELECT p.id, p.nombre, p.descripcion, p.precio, p.foto_frente, c.nombre AS categoria, c.genero
+				SELECT p.id, p.nombre, p.descripcion, p.precio, p.descuento, p.foto_frente, c.nombre AS categoria, c.genero
 				FROM prendas p INNER JOIN prenda_a_categoria pc ON pc.id_prenda = p.id
 						      INNER JOIN categorias c ON pc.id_categoria = c.id
 				WHERE c.genero = '".$genero."' OR c.genero = 'unisex' AND estado = 'act'
@@ -51,8 +51,8 @@ class prendaModel extends Model{
 		$id = (int) $var['id'];
         //$prenda = $this->_db->query("select * from prenda where id = $id");
 		$prenda = $this->_db->query("
-				SELECT p.id, p.nombre, p.descripcion,p.temporada, p.precio, p.S, p.M ,p. L ,p.XL, IFNULL(p.foto_frente,'sin_imagen.png') as foto_frente,
-					   IFNULL(p.foto_atras,'sin_imagen.png') as foto_atras, IFNULL(p.foto_atras,'sin_imagen.png') as foto_atras , c.nombre AS categoria, c.genero
+				SELECT p.id, p.nombre, p.descripcion,p.temporada, p.precio, p.descuento, p.S, p.M ,p.L ,p.XL,p.XXL, IFNULL(p.foto_frente,'sin_imagen.png') as foto_frente,
+					   IFNULL(p.foto_atras,'sin_imagen.png') as foto_atras, IFNULL(p.foto_perfil,'sin_imagen.png') as foto_perfil , c.nombre AS categoria, c.genero
 				FROM prendas p INNER JOIN prenda_a_categoria pc ON pc.id_prenda = p.id
 						      INNER JOIN categorias c ON pc.id_categoria = c.id
 				WHERE p.id = ".$id." AND estado = 'act'
@@ -63,11 +63,11 @@ class prendaModel extends Model{
 	public function decrementarStock($id, $talle, $cantidad){
         $id = (int) $id;
 		
-		$prenda = $this->find($id);
+		$prenda = $this->find(array('id'=>$id));
 		
 		if($prenda[$talle] >= $cantidad){
 			$nuevoStock = (int) $prenda[$talle] - (int) $cantidad;
-			$this->_db->prepare("UPDATE prenda SET ".$talle." = :cantidad WHERE id = :id")
+			$this->_db->prepare("UPDATE prendas SET ".$talle." = :cantidad WHERE id = :id")
                 ->execute(
                         array(
                            ':id' => $id,

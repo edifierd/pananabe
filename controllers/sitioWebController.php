@@ -22,7 +22,7 @@ class sitioWebController extends Controller {
 			$mujer[$item['id']] = array(
 									'id' => $item['identificador'],
                 					'titulo' => strtoupper($item['nombre']),
-               						'enlace' => BASE_URL.'prenda/categoria/'.$item['identificador'],
+               						'enlace' => BASE_URL.'prenda/categoria/'.$item['identificador'].'/'.$item['id'],
                 					'imagen' => '',
 									'dropdown' => ''
 							);
@@ -40,7 +40,7 @@ class sitioWebController extends Controller {
 			$hombre[$item['id']] = array(
 									'id' => $item['identificador'],
                 					'titulo' => strtoupper($item['nombre']),
-               						'enlace' => BASE_URL.'prenda/categoria/'.$item['identificador'],
+               						'enlace' => BASE_URL.'prenda/categoria/'.$item['identificador'].'/'.$item['id'],
                 					'imagen' => '',
 									'dropdown' => ''
 								);

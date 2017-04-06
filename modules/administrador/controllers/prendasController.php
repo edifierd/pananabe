@@ -198,31 +198,31 @@ class prendasController extends administradorController{
                 exit;
 			}
 			
-			if(!$this->getInt('s') and ($this->getInt('s') != 0)){
+			if(!$this->getInt('S') and ($this->getInt('S') != 0)){
 				$this->_view->assign('_error', 'No se ha indicado el stock en talle S. O no es valido.');
                 $this->_view->renderizar('editar', '');
                 exit;
 			}
 			
-			if(!$this->getInt('m') and ($this->getInt('m') != 0)){
+			if(!$this->getInt('M') and ($this->getInt('M') != 0)){
 				$this->_view->assign('_error', 'No se ha indicado indicado el stock en talle M. O no es valido.');
                 $this->_view->renderizar('editar', '');
                 exit;
 			}
 			
-			if(!$this->getInt('l') and ($this->getInt('l') != 0)){
+			if(!$this->getInt('L') and ($this->getInt('L') != 0)){
 				$this->_view->assign('_error', 'No se ha indicado indicado el stock en talle L. O no es valido.');
                 $this->_view->renderizar('editar', '');
                 exit;
 			}
 			
-			if(!$this->getInt('xl') and ($this->getInt('xl') != 0)){
+			if(!$this->getInt('XL') and ($this->getInt('XL') != 0)){
 				$this->_view->assign('_error', 'No se ha indicado indicado el stock en talle XL. O no es valido.');
                 $this->_view->renderizar('editar', '');
                 exit;
 			}
 			
-			if(!$this->getInt('xxl') and ($this->getInt('xxl') != 0)){
+			if(!$this->getInt('XXL') and ($this->getInt('XXL') != 0)){
 				$this->_view->assign('_error', 'No se ha indicado indicado el stock en talle XXL. O no es valido.');
                 $this->_view->renderizar('editar', '');
                 exit;
@@ -234,11 +234,11 @@ class prendasController extends administradorController{
 							'descripcion' => $this->getTexto('descripcion'),
 							'temporada' => $this->getTexto('temporada'),
 							'precio' => $this->getInt('precio'),
-							's' => $this->getInt('s'),
-							'm' => $this->getInt('m'),
-							'l' => $this->getInt('l'),
-							'xl' => $this->getInt('xl'),
-							'xxl' => $this->getInt('xxl'),
+							's' => $this->getInt('S'),
+							'm' => $this->getInt('M'),
+							'l' => $this->getInt('L'),
+							'xl' => $this->getInt('XL'),
+							'xxl' => $this->getInt('XXL'),
 							'descuento' => $this->getInt('descuento'),
 							'categorias' => $this->getPostParam('categorias')
 			);

@@ -14,7 +14,7 @@
 </div>
 
 <div style="text-align:center">
-<h3>Al recibir el pago nos pondremos en contacto contigo por medio de correo o por telefono para concretar la entrega</h3>
+<h3>Al recibir el pago nos pondremos en contacto contigo por medio de correo o por teléfono para concretar la entrega.</h3>
 
 <h3>Cualquier duda podes comunicarte con nosotros haciendo <a href="{$_layoutParams.root}contacto">click aqui</a>.</h3>
 

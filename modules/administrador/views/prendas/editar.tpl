@@ -104,35 +104,35 @@
             	<tr>
                 	<td><h4 style="margin-right:8px;">S:</h4></td>
                     <td>
-                    <input type="number" class="form-control" name="s" id="s" placeholder="Stock talle S" value="{$datos.s|default:"0"}" style="border-radius: 0px; ">
+                    <input type="number" class="form-control" name="S" id="S" placeholder="Stock talle S" value="{$datos.S|default:"0"}" style="border-radius: 0px; ">
                     </td>
                 </tr>
                 
                 <tr>
                 	<td><h4 style="margin-right:8px;">M:</h4></td>
                     <td>
-                    <input type="number" class="form-control" name="m" id="m" placeholder="Stock talle M" value="{$datos.m|default:"0"}" style="border-radius: 0px; ">
+                    <input type="number" class="form-control" name="M" id="M" placeholder="Stock talle M" value="{$datos.M|default:"0"}" style="border-radius: 0px; ">
                     </td>
                 </tr>
                 
                 <tr>
                 	<td><h4 style="margin-right:8px;">L:</h4></td>
                     <td>
-                    <input type="number" class="form-control" name="l" id="l" placeholder="Stock talle L" value="{$datos.l|default:"0"}" style="border-radius: 0px; ">
+                    <input type="number" class="form-control" name="L" id="L" placeholder="Stock talle L" value="{$datos.L|default:"0"}" style="border-radius: 0px; ">
                     </td>
                 </tr>
                 
                 <tr>
                 	<td><h4 style="margin-right:8px;">XL:</h4></td>
                     <td>
-                    <input type="number" class="form-control" name="xl" id="xl" placeholder="Stock talle XL" value="{$datos.xl|default:"0"}" style="border-radius: 0px;">
+                    <input type="number" class="form-control" name="XL" id="XL" placeholder="Stock talle XL" value="{$datos.XL|default:"0"}" style="border-radius: 0px;">
                     </td>
                 </tr>
                 
                 <tr>
                 	<td><h4 style="margin-right:8px;">XXL:</h4></td>
                     <td>
-                    <input type="number" class="form-control" name="xxl" id="xxl" placeholder="Stock talle XXL" value="{$datos.xxl|default:"0"}" style="border-radius: 0px;">
+                    <input type="number" class="form-control" name="XXL" id="XXL" placeholder="Stock talle XXL" value="{$datos.XXL|default:"0"}" style="border-radius: 0px;">
                     </td>
                 </tr>
             </table>

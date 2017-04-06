@@ -31,7 +31,11 @@
                 	<b>{$datos.nombre}</b>
                 </div>
                 <div class="col-md-12" style="text-align:center;">
-                	${$datos.precio}
+                	{if $datos.descuento == 0}
+        				${$datos.precio}
+        			{else}
+        				${math equation="t-((x * y)/100)" x=$datos.precio y=$datos.descuento t=$datos.precio} <span style="color:#060;"> - {$datos.descuento} % OFF </span>
+        			{/if}
                 </div>
         	</div>
             </a>

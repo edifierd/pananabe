@@ -12,8 +12,8 @@ class userModel extends Model
 		return $user->fetch();
 	}
 	
-	public function find($id){
-		$id = (int) $id;
+	public function find(array $var){
+		$id = (int) $var['id'];
         $user = $this->_db->query("select * from users where users.id = $id");
         return $user->fetch();
 	}
@@ -25,8 +25,7 @@ class userModel extends Model
 		return $user->fetchall();
 	}
 	
-	public function add($name,$surname,$email,$area_phone_code,$phone_number,$document_number)
-    {
+	public function add($name,$surname,$email,$area_phone_code,$phone_number,$document_number){
         return $this->_db->prepare("INSERT INTO users VALUES (null, :name, :surname, :email, :date_created, :area_phone_code, :phone_number, :document_number)")
                 ->execute(
                         array(
@@ -40,4 +39,8 @@ class userModel extends Model
                         ));
 
     }
+	
+	public function nuevo(array $var){}
+	public function editar(array $var){}
+	public function eliminar(array $var){}
 }
