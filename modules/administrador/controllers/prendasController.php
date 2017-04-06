@@ -56,8 +56,28 @@ class prendasController extends administradorController{
                 exit;
 			}
 			
+			if(!$this->getTexto('nombre')){
+				$this->_view->assign('_error', 'No se ha ingresado un Nombre valido.');
+                $this->_view->renderizar('nuevo', '');
+                exit;
+			}
+			
+			$cantCaracteres = strlen($this->getTexto('nombre'));
+			if($cantCaracteres > 20 ){
+				$this->_view->assign('_error', 'El nombre no puede superar los <b>20</b> caracteres. [ contiene = '.$cantCaracteres.' ]');
+                $this->_view->renderizar('nuevo', '');
+                exit;
+			}
+			
 			if(!$this->getTexto('descripcion')){
 				$this->_view->assign('_error', 'No se ha ingresado una descripcion.');
+                $this->_view->renderizar('nuevo', '');
+                exit;
+			}
+			
+			$cantCaracteres = strlen($this->getTexto('descripcion'));
+			if($cantCaracteres > 200 ){
+				$this->_view->assign('_error', 'El descripcion no puede superar los <b>200</b> caracteres. [ contiene = '.$cantCaracteres.' ]');
                 $this->_view->renderizar('nuevo', '');
                 exit;
 			}
@@ -174,8 +194,22 @@ class prendasController extends administradorController{
                 exit;
 			}
 			
+			$cantCaracteres = strlen($this->getTexto('nombre'));
+			if($cantCaracteres > 20 ){
+				$this->_view->assign('_error', 'El nombre no puede superar los <b>20</b> caracteres. [ contiene = '.$cantCaracteres.' ]');
+                $this->_view->renderizar('editar', '');
+                exit;
+			}
+			
 			if(!$this->getTexto('descripcion')){
 				$this->_view->assign('_error', 'No se ha ingresado una descripcion.');
+                $this->_view->renderizar('editar', '');
+                exit;
+			}
+			
+			$cantCaracteres = strlen($this->getTexto('descripcion'));
+			if($cantCaracteres > 200 ){
+				$this->_view->assign('_error', 'El descripcion no puede superar los <b>200</b> caracteres. [ contiene = '.$cantCaracteres.' ]');
                 $this->_view->renderizar('editar', '');
                 exit;
 			}

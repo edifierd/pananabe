@@ -94,13 +94,17 @@ class prendasModel extends Model{
 			if($est){
 				$estado = " WHERE p.estado = '".$est."'";
 			}	
-			$prenda = $this->_db->query(" SELECT * FROM prendas p ".$estado." ORDER BY p.id DESC ");
+			$prenda = $this->_db->query(" 
+				SELECT p.id, p.nombre, p.descripcion, p.precio, p.temporada, p.descuento, p.estado, IFNULL(p.foto_frente,'sin_imagen.png') as foto_frente 
+				FROM prendas p ".$estado." 
+				ORDER BY p.id DESC 
+			");
 		} else {
 			$rubro = (int) $rubro;
 			if($est){
 				$estado = "AND p.estado = '".$est."'";
 			}	
-			$prenda = $this->_db->query(" SELECT * FROM prendas p  WHERE pc.id_categoria = ".$rubro." ".$estado." ORDER BY p.id DESC ");
+			$prenda = $this->_db->query("SELECT * FROM prendas p  WHERE pc.id_categoria = ".$rubro." ".$estado." ORDER BY p.id DESC ");
 		}
 		return $prenda->fetchall();
 	}
