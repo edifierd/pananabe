@@ -36,7 +36,13 @@ class compraController extends sitioWebController{
 			$mp = new MP ("6022230882957804","7LRdLDvcyApShD2yUHNnPeXCxcSssaiv");
 			$mp->sandbox_mode(FALSE);
 		
-		
+		    if($producto['descuento'] != 0){
+				$porc = ($producto['precio'] * $producto['descuento']) / 100;
+				$precio = $producto['precio'] - $porc;
+			}else{
+				$precio = $producto['precio'];
+			}
+			
 			$preference_data = array(
     			"items" => array(
         			array(
@@ -47,7 +53,7 @@ class compraController extends sitioWebController{
 						"description" => $producto['descripcion'],
 						"category_id" => "fashion", // Available categories at https://api.mercadopago.com/item_categories
 						"quantity" => (int) $cantidad,
-						"unit_price" => (int) $producto['precio']
+						"unit_price" => (int) $precio
         			)
 				),	
 				"payer" => array(
@@ -66,13 +72,13 @@ class compraController extends sitioWebController{
 				)
 			);
 		
-			$this->_venta->insertarVenta($fecha, $cantidad, $talle, $producto['precio'], $user['id'], $producto['id']);
+			$this->_venta->insertarVenta($fecha, $cantidad, $talle, $precio, $user['id'], $producto['id']);
 			$venta = $this->_venta->last();
 			$this->_view->assign('id_venta', $venta['id_venta']);
 			$this->_view->assign('datos', $producto);
 			$this->_view->assign('talle', $talle);
 			$this->_view->assign('cantidad', $cantidad);
-			$this->_view->assign('total',$cantidad * $producto['precio']);
+			$this->_view->assign('total',$cantidad * $precio);
 			$this->_view->assign('preference',$mp->create_preference($preference_data));
 			$this->_view->renderizar('mercadoPago', '');
 		} else {
@@ -100,9 +106,15 @@ class compraController extends sitioWebController{
 		
 		if(!$this->validarEmail($this->getPostParam('correo'))){
 			$prenda = $this->getPrenda($pruductId);
+			if($prenda['descuento'] != 0){
+				$porc = ($prenda['precio'] * $prenda['descuento']) / 100;
+				$precio = $prenda['precio'] - $porc;
+			}else{
+				$precio = $prenda['precio'];
+			}
 			$this->_view->assign('datos', $prenda);
 			$this->_view->assign('campos', $_POST);
-			$this->_view->assign('total',$this->getInt('cantidad') * $prenda['precio']);
+			$this->_view->assign('total',$this->getInt('cantidad') * $precio);
 			$this->_view->setJs(array('validarCorreo'));
 			$this->_view->renderizar('user_email', '');
 		} else if($this->_user->findByEmail($this->getPostParam('correo'))){
@@ -113,10 +125,16 @@ class compraController extends sitioWebController{
 			
 		} else {
 			$prenda = $this->getPrenda($pruductId);
+			if($prenda['descuento'] != 0){
+				$porc = ($prenda['precio'] * $prenda['descuento']) / 100;
+				$precio = $prenda['precio'] - $porc;
+			}else{
+				$precio = $prenda['precio'];
+			}
 			$this->_view->assign('datos', $prenda);
 			$this->_view->assign('talle', $this->getTexto('talle'));
 			$this->_view->assign('cantidad', $this->getInt('cantidad'));
-			$this->_view->assign('total',$this->getInt('cantidad') * $prenda['precio']);
+			$this->_view->assign('total',$this->getInt('cantidad') * $precio);
 			$this->_view->assign('email',$this->getPostParam('correo')); 
 			$this->_view->setJs(array('validarDatosUser'));
 			$this->_view->renderizar('user_info', '');
@@ -143,7 +161,13 @@ class compraController extends sitioWebController{
 			$this->_view->assign('datos', $prenda);
 			$this->_view->assign('talle', $this->getTexto('talle'));
 			$this->_view->assign('cantidad', $this->getInt('cantidad'));
-			$this->_view->assign('total',$this->getInt('cantidad') * $prenda['precio']);
+			if($prenda['descuento'] != 0){
+				$porc = ($prenda['precio'] * $prenda['descuento']) / 100;
+				$precio = $prenda['precio'] - $porc;
+			}else{
+				$precio = $prenda['precio'];
+			}
+			$this->_view->assign('total',$this->getInt('cantidad') * $precio);
 			$this->_view->assign('email',$this->getPostParam('email'));
 			$this->_view->assign('campos',$_POST);
 			$this->_view->assign('_error', 'Se ha producido un error. Por Favor inente nuevamente. <br> 

@@ -46,6 +46,16 @@
                     	<a href="{$_layoutParams.root}administrador/categorias">Categorias</a>
                 	</li>
                 {/if}
+                {if $_acl->permiso('control_ventas')}
+					<li>
+                    	<a href="{$_layoutParams.root}administrador/ventas">Ventas</a>
+                	</li>
+                {/if}
+                {if $_acl->permiso('control_mensajes')}
+					<li>
+                    	<a href="{$_layoutParams.root}administrador/contacto">Mensajes</a>
+                	</li>
+                {/if}
                 {if $_acl->permiso('control_usuarios')}
                 	<li class="dropdown">
                   		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios y Permisos<span class="caret"></span></a>

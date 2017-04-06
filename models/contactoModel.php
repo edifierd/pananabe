@@ -8,15 +8,7 @@ class contactoModel extends Model
     }
 	
 	public function insertarMensajeContacto($nombre, $apellido, $localidad, $correo, $telefono, $mensaje){
-        $this->_db->prepare("INSERT INTO contacto VALUES (null, :apellido, :nombre, :localidad, :correo, :telefono, :mensaje)") ->execute(
-                        array(
-						   ':apellido' => $apellido,
-						   ':nombre' => $nombre,
-						   ':localidad' => $localidad,
-						   ':correo' => $correo,
-						   ':telefono' => $telefono,
-						   ':mensaje' => $mensaje
-                        ));
+        $this->_db->query("INSERT INTO contacto VALUES (null, '".$nombre."','".$apellido."', '".$localidad."', '".$correo."','".$telefono."', '".$mensaje."')");
     }
 	
 	public function nuevo(array $var){}

@@ -27,11 +27,7 @@
   				<div class="panel-heading"><b>{$p.nombre}</b></div>
   				<div class="panel-body row">
     				<div class="col-sm-2" style="text-align:center;">
-                	{if $p.foto_frente == ''}
-                    	<img src="{$_layoutParams.root}public/img/sin_imagen.png" style="max-height:75px;"/>
-                    {else}
                     	<img src="{$_layoutParams.root}public/img/prendas/thumb/thumb_{$p.foto_frente}" style="max-height:75px;"/>
-                    {/if}
                     </div>
                     <div class="col-sm-2" style="text-align:center;">{$p.temporada}</div>
                     <div class="col-sm-2" style="text-align:center;">$ {$p.precio}</div>

@@ -90,7 +90,6 @@ if(!$mail->send()) {
 						$this->getPostParam('telefono'),
 						$this->getTexto('consulta')
 						);
-				
         $mail = new PHPMailer();
 		$mail->From = $this->getPostParam('correo');
         $mail->FromName = $this->getPostParam('apellido') . ' ' . $this->getPostParam('nombre');

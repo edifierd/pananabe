@@ -9,7 +9,7 @@
     <div class="col-sm-12 col-md-10">
     	<h2>{$datos.nombre}, talle {$campos.talle}</h2>
         <p>{$datos.descripcion}</p><br />
-        <p style="font-family:Arial"><b>{$campos.cantidad} x ${$datos.precio} = ${$total}</b></p>
+        <p style="font-family:Arial"><b>{$campos.cantidad} x ${math equation="t-((x * y)/100)" x=$datos.precio y=$datos.descuento t=$datos.precio} = ${$total}</b></p>
     </div>
 </div>
 
