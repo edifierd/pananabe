@@ -11,7 +11,6 @@ class contactoController extends sitioWebController{
     }
     
     public function index($campos = ''){
-		
         $this->_view->assign('titulo', 'Contacto - Panana Be Argentina');
 		$this->_view->assign('description', 'Contáctenos ante cualquier inquietud. Panana Be trajes de baño se encuentra ubicado en Brandsen Buenos Aires Argentina. 
 								Estamos en las redes sociales buscanos en Facebook y en Instagram.
@@ -107,7 +106,7 @@ if(!$mail->send()) {
 							 </ul>
 					   </p>' ;
         $mail->AltBody = 'Su servidor de correo no soporta html';
-        $mail->AddAddress("fedproducciones@gmail.com");
+        $mail->AddAddress("info@pananabe.com.ar");
         
 		if($mail->send()) {
 			$this->_view->assign('_mensaje', 'Su mensaje ha sido enviado correctamente. Pronto sera contactado. '. $mail->ErrorInfo);

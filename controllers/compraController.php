@@ -74,6 +74,9 @@ class compraController extends sitioWebController{
 		
 			$this->_venta->insertarVenta($fecha, $cantidad, $talle, $precio, $user['id'], $producto['id']);
 			$venta = $this->_venta->last();
+			
+			$this->notificacionCorreo($venta);
+			
 			$this->_view->assign('id_venta', $venta['id_venta']);
 			$this->_view->assign('datos', $producto);
 			$this->_view->assign('talle', $talle);
@@ -215,6 +218,43 @@ class compraController extends sitioWebController{
 	
 	private function redireccionarCompra($campos = ''){
 		$this->index($campos);
+	}
+	
+	private function notificacionCorreo($venta){
+		if($venta['descuento'] != 0){
+				$porc = ($venta['precio'] * $venta['descuento']) / 100;
+				$precio = $venta['precio'] - $porc;
+			}else{
+				$precio = $venta['precio'];
+			}
+		$mail = new PHPMailer();
+		$mail->From = 'ventas@pananabe.com.ar';
+        $mail->FromName = 'PananaBe Ventas';
+        $mail->Subject = 'Aviso de venta';
+        $mail->Body = '<p style="text-align:center;">
+						<h2>Felicitaciones se ha realizado una nueva venta.</h2> <br>
+						
+						Nombre: '.$venta['nombre'].'<br>
+						Talle: '.$venta['talle'].'<br>
+						Unidades: '.$venta['cant'].'<br>
+						Precio: '.$precio.'<br>
+						Total: '.$precio*$venta['cant'].'<br>
+
+						Nombre: '.$venta['name'].' '.$venta['surname'].'<br>
+						D.N.I: '.$venta['document_number'].'<br>
+						Correo: '.$venta['email'].'<br>
+						Tel: '.$venta['area_phone_code'].'-'.$venta['phone_number'].'<br>
+						
+						Puedes ver el detalle de la misma en <a href="'.BASE_URL.'administrador/ventas">'.BASE_URL.'administrador/ventas</a><br><br>
+												
+						<i>Por favor no responda este correo</i>
+					  </p>' ;
+
+        $mail->AltBody = 'Su servidor de correo no soporta html';
+        $mail->AddAddress('infopananabe@gmail.com');
+		$mail->send();
+		$mail->AddAddress('fedproducciones@gmail.com');
+		$mail->send();
 	}
 
 }
