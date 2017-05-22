@@ -1,5 +1,5 @@
 
-<h2>Todos nuestros trajes de baño  {$tituloAuxiliar} </h2><br /><br />
+<h3>Estas viendo nuestra categoria: <b>" {$tituloAuxiliar|ucfirst} "</b>. </h3><br /><br />
 
 <div id="lista_registros">
 {if isset($prendas) && count($prendas)}
