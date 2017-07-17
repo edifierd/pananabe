@@ -348,18 +348,18 @@ class prendasController extends administradorController{
 		$nombre = 'upl_'.uniqid();
 
 		$img = new upload($_FILES['imagen']);
-		$img->file_new_name_body   = $nombre;
-		if($img->process($ruta)){
-			$img = new upload($ruta.$nombre);
-			$img->file_new_name_body   = $nombre;
-			$img->file_name_body_pre = 'thumb_';
-			$img->image_resize = true;
-			$img->image_y = $thumb->image_dst_y / 2;
-			$img->image_x = $thumb->image_dst_x / 2;
-		}
-		// if (file_put_contents($ruta."{$nombre}.jpg", $datos)){
-		// }
-		$this->_prendas->modificarFoto(1, 'foto_atras', "prueba855565");
+		$img->file_new_name_body = $nombre;
+		$img->process($ruta);
+
+		$thumb = new upload($img->file_dst_pathname);
+		$thumb->file_name_body_pre = 'thumb_';
+		$thumb->image_resize = true;
+		$thumb->image_ratio = true;
+		$thumb->image_y = $img->image_dst_y / 2;
+		$thumb->image_x = $img->image_dst_x / 2;
+		$thumb->process($ruta . 'thumb' . DS);
+
+		$this->_prendas->modificarFoto($this->getInt('id'), 'foto_atras', $img->file_dst_name);
 		echo json_encode(array());exit;
 	}
 
