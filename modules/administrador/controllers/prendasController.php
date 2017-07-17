@@ -343,11 +343,24 @@ class prendasController extends administradorController{
 	}
 
 	public function uploadImagen(){
+
 		$ruta = ROOT . 'public' . DS . 'img' . DS . 'prendas' . DS;
+		$nombre = 'upl_'.uniqid();
+
+		$img = new upload($_FILES['imagen']);
+		$img->file_new_name_body   = $nombre;
+		if($img->process($ruta)){
+			$img = new upload($ruta.$nombre);
+			$img->file_new_name_body   = $nombre;
+			$img->file_name_body_pre = 'thumb_';
+			$img->image_resize = true;
+			$img->image_y = $thumb->image_dst_y / 2;
+			$img->image_x = $thumb->image_dst_x / 2;
+		}
 		// if (file_put_contents($ruta."{$nombre}.jpg", $datos)){
 		// }
 		$this->_prendas->modificarFoto(1, 'foto_atras', "prueba855565");
-		var_dump($_FILES['imagen']);exit;
+		echo json_encode(array());exit;
 	}
 
 

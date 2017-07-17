@@ -1924,6 +1924,7 @@ class upload {
             'gif' => 'image/gif',
             'png' => 'image/png',
             'bmp' => 'image/bmp',
+            'flif' => 'image/flif',
             'flv' => 'video/x-flv',
             'js' => 'application/x-javascript',
             'json' => 'application/json',
@@ -2035,7 +2036,7 @@ class upload {
      *    or   string $file Local filename
      * @param  string $lang Optional language code
      */
-    function upload($file, $lang = 'es_ES') {
+    function upload($file, $lang = 'en_GB') {
 
         $this->version            = '0.34dev';
 
@@ -2065,7 +2066,7 @@ class upload {
 
         $this->uploaded           = true;
         $this->no_upload_check    = false;
-        $this->processed          = true;
+        $this->processed          = false;
         $this->error              = '';
         $this->log                = '';
         $this->allowed            = array();
@@ -2125,13 +2126,13 @@ class upload {
 
         // determines the language
         $this->lang               = $lang;
-        if ($this->lang != 'en_GB' && file_exists(dirname(__FILE__).'/upload/lang') && file_exists(dirname(__FILE__).'/upload/lang/class.upload.' . $lang . '.php')) {
+        if ($this->lang != 'en_GB' && file_exists(dirname(__FILE__).'/lang') && file_exists(dirname(__FILE__).'/lang/class.upload.' . $lang . '.php')) {
             $translation = null;
-            include(dirname(__FILE__).'/upload/lang/class.upload.' . $lang . '.php');
+            include(dirname(__FILE__).'/lang/class.upload.' . $lang . '.php');
             if (is_array($translation)) {
                 $this->translation = array_merge($this->translation, $translation);
             } else {
-                $this->lang = 'es_ES';
+                $this->lang = 'en_GB';
             }
         }
 
@@ -2209,22 +2210,31 @@ class upload {
 
                     // this is the raw file data, base64-encoded, i.e.not uploaded
                     } else if (substr($file, 0, 7) == 'base64:') {
-                        $data = base64_decode(preg_replace('/^base64:(.*)/i', '$1', $file));
+                        $data = base64_decode(preg_replace('/^base64:(?:.*base64,)?(.*)/i', '$1', $file));
                         $file = 'base64';
                         $this->log .= '<b>source is a base64 data string of length ' . strlen($data) . '</b><br />';
                     }
 
-                    $this->no_upload_check = TRUE;
-                    $this->log .= '- requires a temp file ... ';
-                    $hash = $this->temp_dir() . md5($file . rand(1, 1000));
-                    if ($data && file_put_contents($hash, $data)) {
-                        $this->file_src_pathname = $hash;
-                        $this->log .= ' file created<br />';
-                        $this->log .= '&nbsp;&nbsp;&nbsp;&nbsp;temp file is: ' . $this->file_src_pathname . '<br />';
-                    } else {
-                        $this->log .= ' failed<br />';
+                    if (!$data) {
+                        $this->log .= '- source is empty!<br />';
                         $this->uploaded = false;
-                        $this->error = $this->translate('temp_file');
+                        $this->error = $this->translate('source_invalid');
+                    }
+
+                    $this->no_upload_check = TRUE;
+
+                    if ($this->uploaded) {
+                        $this->log .= '- requires a temp file ... ';
+                        $hash = $this->temp_dir() . md5($file . rand(1, 1000));
+                        if ($data && file_put_contents($hash, $data)) {
+                            $this->file_src_pathname = $hash;
+                            $this->log .= ' file created<br />';
+                            $this->log .= '&nbsp;&nbsp;&nbsp;&nbsp;temp file is: ' . $this->file_src_pathname . '<br />';
+                        } else {
+                            $this->log .= ' failed<br />';
+                            $this->uploaded = false;
+                            $this->error = $this->translate('temp_file');
+                        }
                     }
 
                     if ($this->uploaded) {
@@ -2712,7 +2722,9 @@ class upload {
      * @return integer Size in bytes
      */
     function getsize($size) {
+        if ($size === null) return null;
         $last = strtolower($size{strlen($size)-1});
+        $size = (int) $size;
         switch($last) {
             case 'g':
                 $size *= 1024;
