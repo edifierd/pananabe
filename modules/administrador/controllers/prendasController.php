@@ -149,11 +149,10 @@ class prendasController extends administradorController{
 		} else {
 			if(!Session::get("id_prenda")){
 				Session::set("id_prenda",$this->_prendas->nuevo(array()));
-				$this->_view->assign('id_prenda',Session::get("id_prenda"));
 			}
 			$this->_view->assign('datos', array('foto_frente' => ''));
 		}
-
+		$this->_view->assign('id_prenda',Session::get("id_prenda"));
     $this->_view->setJs(array('plugins/piexif.min','fileinput.min','locales/es','uploader'));
     $this->_view->setCss(array('fileinput.min','fileinput-rtl.min'));
 		$this->_view->renderizar('nuevo', '');
@@ -344,8 +343,11 @@ class prendasController extends administradorController{
 	}
 
 	public function uploadImagen(){
-		$this->_prendas->modificarFoto(6, 'foto_atras', "prueba855565");
-		return '{}';
+		$ruta = ROOT . 'public' . DS . 'img' . DS . 'prendas' . DS;
+		// if (file_put_contents($ruta."{$nombre}.jpg", $datos)){
+		// }
+		$this->_prendas->modificarFoto(1, 'foto_atras', "prueba855565");
+		var_dump($_FILES['imagen']);exit;
 	}
 
 

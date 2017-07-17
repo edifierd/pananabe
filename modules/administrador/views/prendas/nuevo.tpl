@@ -3,7 +3,7 @@
 <form enctype="multipart/form-data" method="post" action="">
 
 	<div class="well">
-
+		<span id="id_prenda" value="{$id_prenda}"></span>
 		<div class="row" style=" border-bottom: 1px solid #CCC; padding-bottom:5px;">
 			<form enctype="multipart/form-data" method="post" action="">
 				<div class="col-xs-12 col-sm-4" style="text-align:center;">
