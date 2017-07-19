@@ -344,6 +344,10 @@ class prendasController extends administradorController{
 
 	public function uploadImagen(){
 
+		if(!(isset($_FILES['imagen'])) || (empty($_FILES['imagen'])) ){
+			echo json_encode(array('msj'=>'exito'));exit;
+		}
+
 		$ruta = ROOT . 'public' . DS . 'img' . DS . 'prendas' . DS;
 		$nombre = 'upl_'.uniqid();
 
@@ -359,7 +363,26 @@ class prendasController extends administradorController{
 		$thumb->image_x = $img->image_dst_x / 2;
 		$thumb->process($ruta . 'thumb' . DS);
 
-		$this->_prendas->modificarFoto($this->getInt('id'), 'foto_atras', $img->file_dst_name);
+		$this->_prendas->uploadImagen($this->getInt('id'),$img->file_dst_name);
+		echo json_encode([
+			'initialPreview' => [
+				"<img src='".$img->file_dst_pathname."' class='file-preview-image'>",
+			],
+			'initialPreviewConfig' => [
+				['caption' => $img->file_dst_name,
+				'width' => '120px',
+				'url' => BASE_URL."administrador/prendas/deleteImagen",
+				//'key' => 10,
+				'extra' => ['id' => $this->getInt('id')]
+				]
+			],
+			'append' => true ]);exit;
+	}
+
+
+	public function deleteImagen(){
+
+		$this->_prendas->modificarFoto($this->getInt('id'), 'foto_atras', 'borradooo'.$this->getInt('id'));
 		echo json_encode(array());exit;
 	}
 
