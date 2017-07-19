@@ -348,41 +348,71 @@ class prendasController extends administradorController{
 			echo json_encode(array('msj'=>'exito'));exit;
 		}
 
-		$ruta = ROOT . 'public' . DS . 'img' . DS . 'prendas' . DS;
-		$nombre = 'upl_'.uniqid();
+		$ruta = ROOT . "public\img\prendas\\";
 
-		$img = new upload($_FILES['imagen']);
-		$img->file_new_name_body = $nombre;
-		$img->process($ruta);
+		$initialPreview = array();
+		$initialPreviewConfig = array();
 
-		$thumb = new upload($img->file_dst_pathname);
-		$thumb->file_name_body_pre = 'thumb_';
-		$thumb->image_resize = true;
-		$thumb->image_ratio = true;
-		$thumb->image_y = $img->image_dst_y / 2;
-		$thumb->image_x = $img->image_dst_x / 2;
-		$thumb->process($ruta . 'thumb' . DS);
 
-		$this->_prendas->uploadImagen($this->getInt('id'),$img->file_dst_name);
-		echo json_encode([
-			'initialPreview' => [
-				"<img src='".$img->file_dst_pathname."' class='file-preview-image'>",
-			],
-			'initialPreviewConfig' => [
-				['caption' => $img->file_dst_name,
+		foreach ($_FILES as $imagen){
+
+			$nombre = 'upl_'.uniqid();
+
+			$img = new upload($imagen);
+			$img->file_new_name_body = $nombre;
+			$img->process($ruta);
+
+			$thumb = new upload($img->file_dst_pathname);
+			$thumb->file_name_body_pre = 'thumb_';
+			$thumb->image_resize = true;
+			$thumb->image_ratio = true;
+			$thumb->image_y = $img->image_dst_y / 2;
+			$thumb->image_x = $img->image_dst_x / 2;
+			$thumb->process($ruta . 'thumb' . DS);
+
+			$foto_id = $this->_prendas->uploadImagen($this->getInt('id'),$img->file_dst_name);
+
+			$initialPreview[] = "<img src='".$ruta.$img->file_dst_name."' class='file-preview-image'>";
+			$initialPreviewConfig[] = [
+				'caption' => $img->file_dst_name,
 				'width' => '120px',
 				'url' => BASE_URL."administrador/prendas/deleteImagen",
-				//'key' => 10,
-				'extra' => ['id' => $this->getInt('id')]
-				]
-			],
+				'extra' => ['id' => $foto_id]
+			];
+		}
+
+		{"initialPreview":[""],
+			"initialPreviewConfig":[
+				{"caption":"",
+				"width":"120px",
+				"url":"http:\/\/localhost\/pananabe\/administrador\/prendas\/deleteImagen",
+				"extra":{"id":"2"}}],"append":true}
+
+		echo json_encode([
+			'initialPreview' => $initialPreview,
+			'initialPreviewConfig' => $initialPreviewConfig,
 			'append' => true ]);exit;
+
+
+		// echo json_encode([
+		// 	'initialPreview' => [
+		// 		"<img src='".$ruta.$img->file_dst_name."' class='file-preview-image'>",
+		// 	],
+		// 	'initialPreviewConfig' => [
+		// 		['caption' => $img->file_dst_name,
+		// 		'width' => '120px',
+		// 		'url' => BASE_URL."administrador/prendas/deleteImagen",
+		// 		//'key' => 10,
+		// 		'extra' => ['id' => $foto_id]
+		// 		]
+		// 	],
+		// 	'append' => true ]);exit;
 	}
 
 
 	public function deleteImagen(){
-
-		$this->_prendas->modificarFoto($this->getInt('id'), 'foto_atras', 'borradooo'.$this->getInt('id'));
+		$this->_prendas->deleteImagen($this->getInt('id'));
+		//$this->_prendas->modificarFoto($this->getInt('id'), 'foto_atras', 'borradooo'.$this->getInt('id'));
 		echo json_encode(array());exit;
 	}
 

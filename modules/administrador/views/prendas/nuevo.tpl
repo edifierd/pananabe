@@ -11,7 +11,7 @@
 					<input id="imagen1" type="file" accept="image/*" onchange="mostrarFoto(enviar('imagen1','prendas',new Array({$id_prenda},'foto_frente')),1,'prendas'); "/>
 					<img src="{$_layoutParams.root}public/img/sin_imagen.png" id="imagen1Foto" style="width:50%; height:auto; margin-top:15px;"/>
 					<img src="{$_layoutParams.root}public/img/carga.gif" id="imagen1Carga" style="width:50%; height:auto; margin-top:15px;"/> *}
-					<input id="file-3" name="imagen" type="file" accept="image/*" multiple>
+					<input id="file-3" name="imagen[]" type="file" accept="image/*" multiple>
 				</div>
 			</form>
 

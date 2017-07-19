@@ -6,6 +6,7 @@ var input = $("#file-3");
 
 input.fileinput({
     uploadUrl: _root_ + 'administrador/prendas/uploadImagen', // server upload action
+    language: 'es',
     uploadAsync: false,
     showUpload: false, // hide upload button
     showRemove: false, // hide remove button

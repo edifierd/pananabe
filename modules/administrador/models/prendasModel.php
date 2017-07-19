@@ -88,6 +88,13 @@ class prendasModel extends Model{
 
 	public function uploadImagen($id_prenda,$nombre){
 		$this->_db->query("INSERT INTO fotos VALUES(null,".$id_prenda.",'".$nombre."')");
+		$img = $this->_db->query("SELECT * FROM fotos f WHERE f.nombre = '".$nombre."'");
+		$foto = $img->fetch();
+		return $foto['id'];
+	}
+
+	public function deleteImagen($id_foto){
+		$this->_db->query("DELETE FROM fotos WHERE id = ".$id_foto);
 	}
 
 	//----------- METODOS ANTIGUOS -----------
