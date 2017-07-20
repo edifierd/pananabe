@@ -6,28 +6,10 @@
 		<span id="id_prenda" value="{$id_prenda}"></span>
 		<div class="row" style=" border-bottom: 1px solid #CCC; padding-bottom:5px;">
 			<form enctype="multipart/form-data" method="post" action="">
-				<div class="col-xs-12 col-sm-4" style="text-align:center;">
-					{* <label>Foto Frente: (SOLO IMAGENES .jpg .png)</label>
-					<input id="imagen1" type="file" accept="image/*" onchange="mostrarFoto(enviar('imagen1','prendas',new Array({$id_prenda},'foto_frente')),1,'prendas'); "/>
-					<img src="{$_layoutParams.root}public/img/sin_imagen.png" id="imagen1Foto" style="width:50%; height:auto; margin-top:15px;"/>
-					<img src="{$_layoutParams.root}public/img/carga.gif" id="imagen1Carga" style="width:50%; height:auto; margin-top:15px;"/> *}
+				<div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
 					<input id="file-3" name="imagen[]" type="file" accept="image/*" multiple>
 				</div>
 			</form>
-
-			<div class="col-xs-12 col-sm-4" style="text-align:center;">
-				<label>Foto Perfil: (SOLO IMAGENES .jpg .png)</label>
-				<input id="imagen2" type="file" accept="image/*" onchange="mostrarFoto(enviar('imagen2','prendas',new Array({$id_prenda},'foto_perfil')),2,'prendas'); "/>
-				<img src="{$_layoutParams.root}public/img/sin_imagen.png" id="imagen2Foto" style="width:50%; height:auto; margin-top:15px;"/>
-				<img src="{$_layoutParams.root}public/img/carga.gif" id="imagen2Carga" style="width:50%; height:auto; margin-top:15px;"/>
-			</div>
-
-			<div class="col-xs-12 col-sm-4" style="text-align:center;">
-				<label>Foto Atras: (SOLO IMAGENES .jpg .png)</label>
-				<input id="imagen3" type="file" accept="image/*" onchange="mostrarFoto(enviar('imagen3','prendas',new Array({$id_prenda},'foto_atras')),3,'prendas'); "/>
-				<img src="{$_layoutParams.root}public/img/sin_imagen.png" id="imagen3Foto" style="width:50%; height:auto; margin-top:15px;"/>
-				<img src="{$_layoutParams.root}public/img/carga.gif" id="imagen3Carga" style="width:50%; height:auto; margin-top:15px;"/>
-			</div>
 		</div>
 
 		<form enctype="multipart/form-data" method="post" action="">

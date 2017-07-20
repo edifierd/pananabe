@@ -153,7 +153,7 @@ class prendasController extends administradorController{
 			$this->_view->assign('datos', array('foto_frente' => ''));
 		}
 		$this->_view->assign('id_prenda',Session::get("id_prenda"));
-    $this->_view->setJs(array('plugins/piexif.min','fileinput.min','locales/es','uploader'));
+    $this->_view->setJs(array('plugins/sortable','plugins/purify','plugins/piexif.min','fileinput.min','locales/es','uploader'));
     $this->_view->setCss(array('fileinput.min','fileinput-rtl.min'));
 		$this->_view->renderizar('nuevo', '');
 	}
@@ -348,17 +348,27 @@ class prendasController extends administradorController{
 			echo json_encode(array('msj'=>'exito'));exit;
 		}
 
-		$ruta = ROOT . "public\img\prendas\\";
 
 		$initialPreview = array();
 		$initialPreviewConfig = array();
 
 
-		foreach ($_FILES as $imagen){
+		$files = array();
+		foreach ($_FILES['imagen'] as $k => $l) {
+			foreach ($l as $i => $v) {
+				if (!array_key_exists($i, $files))
+				$files[$i] = array();
+				$files[$i][$k] = $v;
+			}
+		}
+
+		$ruta = ROOT . "public/img/prendas/";
+
+		foreach ($files as $file) {
 
 			$nombre = 'upl_'.uniqid();
 
-			$img = new upload($imagen);
+			$img = new Upload($file);
 			$img->file_new_name_body = $nombre;
 			$img->process($ruta);
 
@@ -372,26 +382,24 @@ class prendasController extends administradorController{
 
 			$foto_id = $this->_prendas->uploadImagen($this->getInt('id'),$img->file_dst_name);
 
-			$initialPreview[] = "<img src='".$ruta.$img->file_dst_name."' class='file-preview-image'>";
+			$initialPreview[] = "<img src='".BASE_URL."public/img/prendas/".$img->file_dst_name."' class='file-preview-image' style='height:160px;'>";
 			$initialPreviewConfig[] = [
 				'caption' => $img->file_dst_name,
-				'width' => '120px',
-				'url' => BASE_URL."administrador/prendas/deleteImagen",
+				'url' => BASE_URL."administrador\prendas\deleteImagen",
 				'extra' => ['id' => $foto_id]
 			];
+
+			unset($img);
+			unset($thumb);
 		}
 
-		{"initialPreview":[""],
-			"initialPreviewConfig":[
-				{"caption":"",
-				"width":"120px",
-				"url":"http:\/\/localhost\/pananabe\/administrador\/prendas\/deleteImagen",
-				"extra":{"id":"2"}}],"append":true}
-
-		echo json_encode([
+		//var_dump($initialPreview);exit;
+		//var_dump($initialPreviewConfig);exit;
+		echo (json_encode([
 			'initialPreview' => $initialPreview,
 			'initialPreviewConfig' => $initialPreviewConfig,
-			'append' => true ]);exit;
+			'append' => true
+		]));exit;
 
 
 		// echo json_encode([

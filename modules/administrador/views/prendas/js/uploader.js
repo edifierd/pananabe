@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
-var id_prenda = $("#id_prenda").attr('value');
+  var id_prenda = $("#id_prenda").attr('value');
 
-var input = $("#file-3");
+  var input = $("#file-3");
 
-input.fileinput({
+  input.fileinput({
     uploadUrl: _root_ + 'administrador/prendas/uploadImagen', // server upload action
     language: 'es',
     uploadAsync: false,
@@ -18,12 +18,15 @@ input.fileinput({
     maxImageHeight: 500,
     resizePreference: 'height',
     allowedFileTypes: ['image']
-}).on("filebatchselected", function(event, files) {
+  }).on("filebatchselected", function(event, files) {
     // trigger upload method immediately after files are selected
     input.fileinput("upload");
-}).on('filereset', function(event) {
+  }).on('filereset', function(event) {
     //alert("filecleared");
-});
+  }).on('filesorted', function(event, params) {
+    //Obtengo las posiciones de las imagenes
+    console.log('File sorted ', params.previewId, params.oldIndex, params.newIndex, params.stack);
+  });
 
 });
 
