@@ -419,8 +419,10 @@ class prendasController extends administradorController{
 
 
 	public function deleteImagen(){
+		$foto = $this->_prendas->getImagenById($this->getInt('id'));
+		unlink(ROOT.'public/img/prendas/'.$foto['nombre']);
+		unlink(ROOT.'public/img/prendas/thumb/thumb_'.$foto['nombre']);
 		$this->_prendas->deleteImagen($this->getInt('id'));
-		//$this->_prendas->modificarFoto($this->getInt('id'), 'foto_atras', 'borradooo'.$this->getInt('id'));
 		echo json_encode(array());exit;
 	}
 

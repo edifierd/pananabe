@@ -21,9 +21,12 @@ $(document).ready(function() {
   }).on("filebatchselected", function(event, files) {
     // trigger upload method immediately after files are selected
     input.fileinput("upload");
+    var elem = input.fileinput('getFrames');
+    console.log(elem[0]);
   }).on('filereset', function(event) {
     //alert("filecleared");
   }).on('filesorted', function(event, params) {
+    console.log(params);
     //Obtengo las posiciones de las imagenes
     console.log('File sorted ', params.previewId, params.oldIndex, params.newIndex, params.stack);
   });
