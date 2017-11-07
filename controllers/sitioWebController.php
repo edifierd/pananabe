@@ -1,18 +1,18 @@
 <?php
 
-class sitioWebController extends Controller {    
+class sitioWebController extends Controller {
 
 	private $_categorias;
-	
-    public function __construct(){	
+
+    public function __construct(){
         parent::__construct();
 		$this->_categorias = $this->loadModel('categorias');
 		$this->_view->assign('menu', $this->generarMenu());
     }
-    
+
     public function index(){
 	}
-	
+
 	public function getModel($nombre){
 	}
 
@@ -21,7 +21,7 @@ class sitioWebController extends Controller {
 		foreach ($this->_categorias->get('mujer') as $item){
 			$mujer[$item['id']] = array(
 									'id' => $item['identificador'],
-                					'titulo' => strtoupper($item['nombre']),
+                					'titulo' => mb_strtoupper($item['nombre']),
                						'enlace' => BASE_URL.'prenda/categoria/'.$item['identificador'].'/'.$item['id'],
                 					'imagen' => '',
 									'dropdown' => ''
@@ -39,7 +39,7 @@ class sitioWebController extends Controller {
 		foreach ($this->_categorias->get('hombre') as $item){
 			$hombre[$item['id']] = array(
 									'id' => $item['identificador'],
-                					'titulo' => strtoupper($item['nombre']),
+                					'titulo' => mb_strtoupper($item['nombre']),
                						'enlace' => BASE_URL.'prenda/categoria/'.$item['identificador'].'/'.$item['id'],
                 					'imagen' => '',
 									'dropdown' => ''
@@ -61,7 +61,7 @@ class sitioWebController extends Controller {
                 'imagen' => '',
 				'dropdown' => ''
                 ),
-				
+
             array(
                 'id' => 'hombre',
                 'titulo' => 'HOMBRE',
@@ -69,7 +69,7 @@ class sitioWebController extends Controller {
                 'imagen' => '',
 				'dropdown' => $hombre
                 ),
-				
+
 			array(
                 'id' => 'mujer',
                 'titulo' => 'MUJER',
@@ -85,7 +85,7 @@ class sitioWebController extends Controller {
                 'imagen' => '',
 				'dropdown' => ''
                 ),
-				
+
 			array(
                 'id' => 'contacto',
                 'titulo' => 'CONTACTO',
@@ -93,7 +93,7 @@ class sitioWebController extends Controller {
                 'imagen' => '',
 				'dropdown' => ''
                 )
-			
+
         );
 		return $menu;
 	}
