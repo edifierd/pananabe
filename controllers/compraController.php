@@ -16,11 +16,11 @@ class compraController extends sitioWebController{
 		$this->_user = $this->loadModel('user');
 		$this->_venta = $this->loadModel('ventas');
     }
-	
+
 	public function index(){}
-	
+
 	public function getModel($nombre){}
-	
+
 	public function mercadoPago($producto,$cantidad,$talle,$user){
 		$this->_view->assign('marcado', '');
 		$this->_view->assign('description', '');
@@ -28,34 +28,34 @@ class compraController extends sitioWebController{
         $this->_view->assign('titulo', 'MercadoPago - Panana Be Argentina');
 		$this->_view->setJs(array('refrescarPagina'));
 		$this->getLibrary('mercadoPago/class.mercadopago');
-		
+
 		if($this->_prenda->decrementarStock($producto['id'],$talle,$cantidad)){
-			
+
 			$fecha = date(DATE_ATOM);
-			
+
 			$mp = new MP ("6022230882957804","7LRdLDvcyApShD2yUHNnPeXCxcSssaiv");
 			$mp->sandbox_mode(FALSE);
-		
+
 		    if($producto['descuento'] != 0){
 				$porc = ($producto['precio'] * $producto['descuento']) / 100;
 				$precio = $producto['precio'] - $porc;
 			}else{
 				$precio = $producto['precio'];
 			}
-			
+
 			$preference_data = array(
     			"items" => array(
         			array(
 						"id" => "item-ID-".$producto['id'],
 						"title" => $producto['nombre'].", talle ".$talle,
 						"currency_id"=> "ARS",
-						"picture_url" => "https://static.e-junkie.com/sslpic/169186.2c4152d386db0187b6bb0084b1597b41.gif", 
+						"picture_url" => "https://static.e-junkie.com/sslpic/169186.2c4152d386db0187b6bb0084b1597b41.gif",
 						"description" => $producto['descripcion'],
 						"category_id" => "fashion", // Available categories at https://api.mercadopago.com/item_categories
 						"quantity" => (int) $cantidad,
 						"unit_price" => (int) $precio
         			)
-				),	
+				),
 				"payer" => array(
 					"name" => $user['name'],
 					"surname" => $user['surname'],
@@ -71,12 +71,13 @@ class compraController extends sitioWebController{
 					)
 				)
 			);
-		
+
 			$this->_venta->insertarVenta($fecha, $cantidad, $talle, $precio, $user['id'], $producto['id']);
 			$venta = $this->_venta->last();
-			
+			$venta['descuento'] = $producto['descuento'];
+
 			$this->notificacionCorreo($venta);
-			
+
 			$this->_view->assign('id_venta', $venta['id_venta']);
 			$this->_view->assign('datos', $producto);
 			$this->_view->assign('talle', $talle);
@@ -91,14 +92,14 @@ class compraController extends sitioWebController{
 			$this->_view->renderizar('error', '');
 		}
 	}
-	
-	
+
+
 	public function user_email($pruductId){
 		$this->_view->assign('marcado', '');
 		$this->_view->assign('description', '');
 		$this->_view->assign('keywords', '');
         $this->_view->assign('titulo', 'Verificación de usuario - PananaBe Argentina');
-		
+
 		if(!$this->getTexto('talle') or ($this->getTexto('talle') == "null")){
             $this->redireccionar("prenda/show/".$pruductId);
             exit;
@@ -106,7 +107,7 @@ class compraController extends sitioWebController{
             $this->redireccionar("prenda/show/".$pruductId);
            	exit;
 		}
-		
+
 		if(!$this->validarEmail($this->getPostParam('correo'))){
 			$prenda = $this->getPrenda($pruductId);
 			if($prenda['descuento'] != 0){
@@ -125,7 +126,7 @@ class compraController extends sitioWebController{
 			$this->mercadoPago(
 				$this->getPrenda($pruductId),$this->getInt('cantidad'),$this->getTexto('talle'),$this->_user->findByEmail($this->getPostParam('correo'))
 			);
-			
+
 		} else {
 			$prenda = $this->getPrenda($pruductId);
 			if($prenda['descuento'] != 0){
@@ -138,14 +139,14 @@ class compraController extends sitioWebController{
 			$this->_view->assign('talle', $this->getTexto('talle'));
 			$this->_view->assign('cantidad', $this->getInt('cantidad'));
 			$this->_view->assign('total',$this->getInt('cantidad') * $precio);
-			$this->_view->assign('email',$this->getPostParam('correo')); 
+			$this->_view->assign('email',$this->getPostParam('correo'));
 			$this->_view->setJs(array('validarDatosUser'));
 			$this->_view->renderizar('user_info', '');
 		}
 	}
-	
+
 	public function registrarUsuario(){
-		
+
 		if( $this->_user->add(
 			$this->getTexto('name'),$this->getTexto('surname'),
 			$this->getPostParam('email'),$this->getTexto('area_phone_code'),
@@ -159,7 +160,7 @@ class compraController extends sitioWebController{
 			$this->_view->assign('description', '');
 			$this->_view->assign('keywords', '');
         	$this->_view->assign('titulo', 'Registrate - PananaBe Argentina');
-			
+
 			$prenda = $this->getPrenda($this->getTexto('idProducto'));
 			$this->_view->assign('datos', $prenda);
 			$this->_view->assign('talle', $this->getTexto('talle'));
@@ -173,53 +174,53 @@ class compraController extends sitioWebController{
 			$this->_view->assign('total',$this->getInt('cantidad') * $precio);
 			$this->_view->assign('email',$this->getPostParam('email'));
 			$this->_view->assign('campos',$_POST);
-			$this->_view->assign('_error', 'Se ha producido un error. Por Favor inente nuevamente. <br> 
+			$this->_view->assign('_error', 'Se ha producido un error. Por Favor inente nuevamente. <br>
 									<i>Si usted ya compro antes ingrese el correo con el que realizo la compra</i>');
 			$this->_view->renderizar('user_info', '');
 		}
 	}
-		
+
 	public function exito($id_venta){
-		
+
 		if(!$this->filtrarInt($id_venta)){
             $this->redireccionar();
         }
-		
+
 		$venta = $this->_venta->find(array('id'=>$this->filtrarInt($id_venta)));
 		if(!$venta){
             $this->redireccionar();
         }
-		
+
 		$this->_view->assign('venta', $venta);
 		$this->_view->assign('prenda', $this->getPrenda($venta['id_prenda']));
 		$this->_view->assign('user', $this->_user->find(array ('id' => $venta['id_user'])));
 		$this->_view->assign('total', $venta['cant'] * $venta['precio']);
-		
+
 		$this->_view->assign('marcado', '');
 		$this->_view->assign('description', '');
 		$this->_view->assign('keywords', '');
         $this->_view->assign('titulo', 'Compra Exitosa - PananaBe Argentina');
 		$this->_view->renderizar('exito', '');
 	}
-	
-	
+
+
 	private function getPrenda($id){
 		if(!$this->filtrarInt($id)){
             $this->redireccionar('prenda');
         }
-        
+
 		$prenda = $this->_prenda->find(array('id'=>$this->filtrarInt($id)));
         if(!$prenda){
             $this->redireccionar('prenda');
         }
-		
+
 		return $prenda;
 	}
-	
+
 	private function redireccionarCompra($campos = ''){
 		$this->index($campos);
 	}
-	
+
 	private function notificacionCorreo($venta){
 		if($venta['descuento'] != 0){
 				$porc = ($venta['precio'] * $venta['descuento']) / 100;
@@ -233,7 +234,7 @@ class compraController extends sitioWebController{
         $mail->Subject = 'Aviso de venta';
         $mail->Body = '<p style="text-align:center;">
 						<h2>Felicitaciones se ha realizado una nueva venta.</h2> <br>
-						
+
 						Nombre: '.$venta['nombre'].'<br>
 						Talle: '.$venta['talle'].'<br>
 						Unidades: '.$venta['cant'].'<br>
@@ -244,9 +245,9 @@ class compraController extends sitioWebController{
 						D.N.I: '.$venta['document_number'].'<br>
 						Correo: '.$venta['email'].'<br>
 						Tel: '.$venta['area_phone_code'].'-'.$venta['phone_number'].'<br>
-						
+
 						Puedes ver el detalle de la misma en <a href="'.BASE_URL.'administrador/ventas">'.BASE_URL.'administrador/ventas</a><br><br>
-												
+
 						<i>Por favor no responda este correo</i>
 					  </p>' ;
 
