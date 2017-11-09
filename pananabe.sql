@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2017 a las 13:41:51
+-- Tiempo de generación: 09-11-2017 a las 19:19:34
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -32,6 +32,23 @@ CREATE TABLE `categorias` (
   `identificador` varchar(25) NOT NULL,
   `nombre` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `configuracion`
+--
+
+CREATE TABLE `configuracion` (
+  `id` int(11) NOT NULL,
+  `direccion` varchar(150) NOT NULL,
+  `telefono` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `dir_facebook` varchar(150) NOT NULL,
+  `dir_instagram` varchar(150) NOT NULL,
+  `portada_hombre` varchar(100) NOT NULL,
+  `portada_mujer` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -224,6 +241,17 @@ INSERT INTO `roles` (`id_role`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `slider`
+--
+
+CREATE TABLE `slider` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `users`
 --
 
@@ -246,7 +274,8 @@ INSERT INTO `users` (`id`, `name`, `surname`, `email`, `date_created`, `area_pho
 (1, 'Federico Ezequiel', 'Tubaro', 'fedetubaro@hotmail.com', '2016-11-28', 221, 154882111, 37423419),
 (2, 'Mercedes', 'Bertolotti', 'meybertolotti@gmail.com', '2016-11-28', 221, 155980127, 32988652),
 (3, 'Mayra', 'Perez', 'mayraperez.1987@hotmail.com', '2016-11-28', 2223, 469058, 33282224),
-(4, 'Santiago', 'Antonini', 'santiagoantonini@gmail.com', '2016-12-05', 221, 154940904, 33980338);
+(4, 'Santiago', 'Antonini', 'santiagoantonini@gmail.com', '2016-12-05', 221, 154940904, 33980338),
+(5, 'Federico', 'Tuabro', 'fedetuabro@hotmail.com', '2017-11-07', 221, 4882111, 8654855);
 
 -- --------------------------------------------------------
 
@@ -290,6 +319,14 @@ CREATE TABLE `ventas` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
+-- Volcado de datos para la tabla `ventas`
+--
+
+INSERT INTO `ventas` (`id_venta`, `id_user`, `fecha`, `cant`, `talle`, `precio`, `id_prenda`) VALUES
+(1, 5, '2017-11-07', 1, 'S', 2, 1),
+(2, 5, '2017-11-07', 1, 'S', 2, 1);
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -300,6 +337,12 @@ ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `identificador` (`identificador`),
   ADD KEY `identificador_2` (`identificador`);
+
+--
+-- Indices de la tabla `configuracion`
+--
+ALTER TABLE `configuracion`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `contacto`
@@ -356,6 +399,12 @@ ALTER TABLE `roles`
   ADD PRIMARY KEY (`id_role`);
 
 --
+-- Indices de la tabla `slider`
+--
+ALTER TABLE `slider`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -384,6 +433,11 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT de la tabla `configuracion`
+--
+ALTER TABLE `configuracion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `contacto`
@@ -409,22 +463,27 @@ ALTER TABLE `personas`
 -- AUTO_INCREMENT de la tabla `prendas`
 --
 ALTER TABLE `prendas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `prenda_a_categoria`
 --
 ALTER TABLE `prenda_a_categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT de la tabla `slider`
+--
+ALTER TABLE `slider`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
@@ -434,7 +493,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
