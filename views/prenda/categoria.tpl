@@ -1,5 +1,9 @@
 
-<h3>Estas viendo nuestra categoria: <b>" {$tituloAuxiliar|ucfirst} "</b>. </h3><br /><br />
+
+<ol class="breadcrumb" >
+  <li><a href="{$_layoutParams.root}">Panana Be</a></li>
+  <li class="active">{$tituloAuxiliar|ucfirst}</li>
+</ol>
 
 <div id="lista_registros">
 {if isset($prendas) && count($prendas)}
@@ -7,20 +11,20 @@
 <div class="row" style="margin-bottom:25px;">
      {foreach item=datos from=$prendas}
         <div class="col-xs-12 col-sm-6 col-md-3" style=" padding:15px; ">
-        	<a href="{$_layoutParams.root}prenda/show/{$datos.id}" 
+        	<a href="{$_layoutParams.root}prenda/show/{$datos.id}"
                onmouseover="transparenciaImagen({$datos.id},0.5)" onmouseout="transparenciaImagen({$datos.id},1)"
                title="{$datos.nombre}"
             >
             <div class="row">
             	<div class="col-md-12">
                 	{if $datos.foto_frente != ''}
-                	<img src="{$_layoutParams.root}public/img/prendas/thumb/thumb_{$datos.foto_frente}" class="img-responsive" id="{$datos.id}" 
+                	<img src="{$_layoutParams.root}public/img/prendas/thumb/thumb_{$datos.foto_frente}" class="img-responsive" id="{$datos.id}"
                     	 style="margin-right:auto; margin-left:auto; width:auto; height:320px;"
                          title="{$datos.nombre} para {$datos.genero}"
                          alt="{$datos.nombre} para {$datos.genero}"
                      />
                      {else}
-                     <img src="{$_layoutParams.root}public/img/sin_imagen.png" class="img-responsive" id="{$datos.id}" 
+                     <img src="{$_layoutParams.root}public/img/sin_imagen.png" class="img-responsive" id="{$datos.id}"
                     	 style="margin-right:auto; margin-left:auto; width:auto; height:320px;"
                          title="{$datos.nombre} para {$datos.genero}"
                          alt="{$datos.nombre} para {$datos.genero}"

@@ -1,4 +1,10 @@
 
+<ol class="breadcrumb" >
+  <li><a href="{$_layoutParams.root}">Panana Be</a></li>
+	<li>{$datos.categoria}</li>
+  <li class="active">{$titulo}</li>
+</ol>
+
 <div class="row" style="margin-bottom:20px;">
 	<div class="col-xs-12 col-sm-6 col-md-6" >
     	<div class="row">
@@ -45,8 +51,8 @@
             <span class="tache">${$datos.precio} </span> <span style="color: #090;font-size:20px;"> ¡ {$datos.descuento} % de descuento !</span>
         {/if}
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:left; font-size:18px;">     
-        <img src="{$_layoutParams.img}formasDePago.png" class="img-responsive" style="max-width:60%; margin-top:15px; margin-bottom:20px;" 
+    <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:left; font-size:18px;">
+        <img src="{$_layoutParams.img}formasDePago.png" class="img-responsive" style="max-width:60%; margin-top:15px; margin-bottom:20px;"
         	 alt="Formas de pago" title="Formas de pago"/>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:left; font-size:18px;">
@@ -56,15 +62,15 @@
         <div class="cuboTalle" {if {$datos.L} == 0 } style="background-color:#F00;" {/if} >L</div>
         <div class="cuboTalle" {if {$datos.XL} == 0 } style="background-color:#F00;" {/if} >XL</div>
         <div class="cuboTalle" {if {$datos.XXL} == 0 } style="background-color:#F00;" {/if} >XXL</div>
-        
-        <a href="{$_layoutParams.root}prenda/tabla_de_talles" class="btn btn-info btn-xs btn-talles" title="Tabla de talles">Ver tabla de talles</a> 
+
+        <a href="{$_layoutParams.root}prenda/tabla_de_talles" class="btn btn-info btn-xs btn-talles" title="Tabla de talles">Ver tabla de talles</a>
     </div>
-    
+
     {if {$datos.S} > 0 or {$datos.M} > 0 or {$datos.L} > 0 or {$datos.XL} > 0 or {$datos.XXL} > 0 }
     <div class="col-xs-12 col-sm-6 col-md-3" style="text-align:left; font-size:18px; margin-top:25px;">
-    	<form method="post" action="{$_layoutParams.root}compra/user_email/{$datos.id}" enctype="multipart/form-data" style="">  
+    	<form method="post" action="{$_layoutParams.root}compra/user_email/{$datos.id}" enctype="multipart/form-data" style="">
             <div class="form-group">
-            Elegir Talle 
+            Elegir Talle
         	<select name="talle" id="talle" style="margin-left:5px;">
             	<option value="" selected="selected">Seleccione</option>
   				{if {$datos.S} > 0 }<option value="S" title="Chico">S</option>{/if}

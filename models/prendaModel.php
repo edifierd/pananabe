@@ -2,17 +2,17 @@
 
 class prendaModel extends Model{
 	private $rubro;
-	
+
     public function __construct() {
         parent::__construct('');
     }
-	
-	
+
+
 	public function all($categoria=false){
 		if(!$categoria){
-			//$prenda = $this->_db->query("SELECT * FROM prenda ORDER BY prenda.id DESC");	
+			//$prenda = $this->_db->query("SELECT * FROM prenda ORDER BY prenda.id DESC");
 			$prenda = $this->_db->query("
-				SELECT p.id, p.nombre, p.descripcion, p.precio, p.descuento, IFNULL(p.foto_frente,'sin_imagen.png') as foto_frente, 
+				SELECT p.id, p.nombre, p.descripcion, p.precio, p.descuento, IFNULL(p.foto_frente,'sin_imagen.png') as foto_frente,
 					   c.nombre AS categoria, c.genero
 				FROM prendas p INNER JOIN prenda_a_categoria pc ON pc.id_prenda = p.id
 						      INNER JOIN categorias c ON pc.id_categoria = c.id
@@ -35,7 +35,7 @@ class prendaModel extends Model{
 		}
 		return $prenda->fetchall();
 	}
-	
+
 	public function allByGenero($genero){
 		$prenda = $this->_db->query("
 				SELECT p.id, p.nombre, p.descripcion, p.precio, p.descuento, p.foto_frente, c.nombre AS categoria, c.genero
@@ -59,12 +59,12 @@ class prendaModel extends Model{
 		 	");
         return $prenda->fetch();
 	}
-	
+
 	public function decrementarStock($id, $talle, $cantidad){
         $id = (int) $id;
-		
+
 		$prenda = $this->find(array('id'=>$id));
-		
+
 		if($prenda[$talle] >= $cantidad){
 			$nuevoStock = (int) $prenda[$talle] - (int) $cantidad;
 			$this->_db->prepare("UPDATE prendas SET ".$talle." = :cantidad WHERE id = :id")
@@ -73,17 +73,17 @@ class prendaModel extends Model{
                            ':id' => $id,
                            ':cantidad' => $nuevoStock
                         ));
-						
+
 			return true;
-		} 
+		}
 		return false;
     }
-	
+
 	public function nuevo(array $var){}
 	public function editar(array $var){}
 	public function eliminar(array $var){}
-    
-    
+
+
 }
 
 ?>

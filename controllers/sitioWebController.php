@@ -6,8 +6,8 @@ class sitioWebController extends Controller {
 
     public function __construct(){
         parent::__construct();
-		$this->_categorias = $this->loadModel('categorias');
-		$this->_view->assign('menu', $this->generarMenu());
+				$this->_categorias = $this->loadModel('categorias');
+				$this->_view->assign('menu', $this->generarMenu());
     }
 
     public function index(){
@@ -22,7 +22,7 @@ class sitioWebController extends Controller {
 			$mujer[$item['id']] = array(
 									'id' => $item['identificador'],
                 					'titulo' => mb_strtoupper($item['nombre']),
-               						'enlace' => BASE_URL.'prenda/categoria/'.$item['identificador'].'/'.$item['id'],
+               						'enlace' => BASE_URL.'prenda/categoria/'.urlencode($item['identificador']).'/'.$item['id'],
                 					'imagen' => '',
 									'dropdown' => ''
 							);
@@ -40,7 +40,7 @@ class sitioWebController extends Controller {
 			$hombre[$item['id']] = array(
 									'id' => $item['identificador'],
                 					'titulo' => mb_strtoupper($item['nombre']),
-               						'enlace' => BASE_URL.'prenda/categoria/'.$item['identificador'].'/'.$item['id'],
+               						'enlace' => BASE_URL.'prenda/categoria/'.urlencode($item['identificador']).'/'.$item['id'],
                 					'imagen' => '',
 									'dropdown' => ''
 								);
