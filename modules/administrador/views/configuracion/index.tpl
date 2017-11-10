@@ -2,13 +2,13 @@
 
 
 <div class="row">
-	<div class="col-sm-6 col-md-6" >
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				Opciones
-			</div>
-			<div class="panel-body">
-				<form action="" method="post">
+	<form enctype="multipart/form-data" action="" method="post">
+		<div class="col-sm-4 col-md-4" >
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					Opciones
+				</div>
+				<div class="panel-body">
 					<input type="hidden" value="1" name="enviar" />
 					<div class="form-group">
 						<label for="exampleInputEmail1">Dirección Comercial</label>
@@ -36,10 +36,34 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-6 col-md-6">
+	<div class="col-sm-4 col-md-4">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				Foto de portada hombre
+			</div>
+			<div class="panel-body">
+				<form enctype="multipart/form-data" method="post" action="">
+					<div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
+						<!--<input id="file-3" name="imagen[]" type="file" accept="image/*" multiple>-->
+						<input id="file-3" name="portada_hombre[]" type="file" accept="image/*" class="portada" multiple>
+					</div>
+				</form>
+			</div>
+		</div>
 
 
-		portada_hombre
-		portada_mujer
 	</div>
+	<div class="col-sm-4 col-md-4">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				Foto de portada mujer
+			</div>
+			<div class="panel-body">
+				<input id="portada_mujer" name="portada_mujer" type="file" accept="image/*" class="file portada">
+			</div>
+		</div>
+
+	</div>
+
+
 </div>
