@@ -2,40 +2,41 @@
 
 
 <div class="row">
-	<div class="col-sm-6">
-		<h3><u>Opciones:</u></h3>
-		<table style="margin-left:8%;">
-			<tr>
-				<td><h4 style="margin-right:8px;">Dirección:</h4></td>
-				<td>
-					<input type="text" class="form-control" name="direccion" id="direccion" value="{$config.direccion}" style="border-radius: 0px; ">
-				</td>
-			</tr>
+	<div class="col-sm-6 col-md-6" >
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				Opciones
+			</div>
+			<div class="panel-body">
+				<form action="" method="post">
+					<input type="hidden" value="1" name="enviar" />
+					<div class="form-group">
+						<label for="exampleInputEmail1">Dirección Comercial</label>
+						<input type="text" class="form-control" name="direccion" id="direccion" placeholder="Dirección" value="{$config.direccion}" required>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Teléfono</label>
+						<input type="text" class="form-control" name="telefono" id="telefono" value="{$config.telefono}" placeholder="Teléfono" required>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Email</label>
+						<input type="email" class="form-control" name="email" id="email" value="{$config.email}" placeholder="Email" required>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">URL Facebook:</label>
+						<input type="text" class="form-control" name="dir_facebook" id="dir_facebook" value="{$config.dir_facebook}" placeholder="Facebook" required>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">URL Instagram:</label>
+						<input type="text" class="form-control" name="dir_instagram" id="dir_instagram"  value="{$config.dir_instagram}" placeholder="Instagram" required>
+					</div>
 
-			<tr>
-				<td><h4 style="margin-right:8px;">Teléfono:</h4></td>
-				<td>
-					<input type="text" class="form-control" name="telefono" id="telefono" value="" style="border-radius: 0px; ">
-				</td>
-			</tr>
-
-			<tr>
-				<td><h4 style="margin-right:8px;">URL Facebook:</h4></td>
-				<td>
-					<input type="text" class="form-control" name="dir_facebook" id="dir_facebook" value="" style="border-radius: 0px; ">
-				</td>
-			</tr>
-
-			<tr>
-				<td><h4 style="margin-right:8px;">URL Instagram:</h4></td>
-				<td>
-					<input type="text" class="form-control" name="dir_instagram" id="dir_instagram"  value="" style="border-radius: 0px;">
-				</td>
-			</tr>
-
-		</table>
+					<button type="submit" class="btn btn-default">Guardar</button>
+				</form>
+			</div>
+		</div>
 	</div>
-	<div class="col-sm-6">
+	<div class="col-sm-6 col-md-6">
 
 
 		portada_hombre
