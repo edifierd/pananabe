@@ -31,6 +31,17 @@ class configuracionModel extends Model {
 	public function nuevo(array $var){}
 	public function eliminar(array $var){}
 
+	public function uploadImagenPortada($id_imagen,$nombre,$id){
+		 $this->_db->prepare("
+		 UPDATE configuracion
+		 SET ".$id_imagen." = :nombre
+		 WHERE id = :id
+	 ")->execute([
+		 "nombre" => $nombre,
+		 "id" => $id
+	 ]);
+	}
+
 
 }
 

@@ -44,14 +44,11 @@
 			<div class="panel-body">
 				<form enctype="multipart/form-data" method="post" action="">
 					<div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
-						<!--<input id="file-3" name="imagen[]" type="file" accept="image/*" multiple>-->
-						<input id="file-3" name="portada_hombre[]" type="file" accept="image/*" class="portada" multiple>
+						<input id="portada_hombre" name="imagen[]" type="file" accept="image/*" multiple>
 					</div>
 				</form>
 			</div>
 		</div>
-
-
 	</div>
 	<div class="col-sm-4 col-md-4">
 		<div class="panel panel-primary">
@@ -59,7 +56,7 @@
 				Foto de portada mujer
 			</div>
 			<div class="panel-body">
-				<input id="portada_mujer" name="portada_mujer" type="file" accept="image/*" class="file portada">
+				<input id="portada_mujer" name="portada_mujer[]" type="file" accept="image/*">
 			</div>
 		</div>
 
