@@ -141,7 +141,8 @@
     <!-- /#wrapper -->
 
 
-	<script type="text/javascript" src="{$_layoutParams.root}public/js/jquery-1.11.1.min.js"></script>
+	<!-- <script type="text/javascript" src="{$_layoutParams.root}public/js/jquery-1.11.1.min.js"></script> -->
+  <script type="text/javascript" src="{$_layoutParams.root}public/js/jquery-3-2.1.min.js"></script>
 	<script type="text/javascript" src="{$_layoutParams.ruta_js}bootstrap.min.js"></script>
     <script type="text/javascript" src="{$_layoutParams.ruta_js}bootstrap-select.min.js"></script>
     <script type="text/javascript" src="{$_layoutParams.ruta_js}menu.js"></script>

@@ -26,7 +26,7 @@ class configuracionController extends administradorController{
         'id' => 1
       ));
       if($config){
-        $this->_view->assign('_mensaje', 'Se guardo correctamente la información'); 
+        $this->_view->assign('_mensaje', 'Se guardo correctamente la información');
       } else {
         $this->_view->assign('_error', 'Debe seleccionar una categoria');
       }
