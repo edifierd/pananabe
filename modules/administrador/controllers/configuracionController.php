@@ -43,6 +43,12 @@ class configuracionController extends administradorController{
 		if(!(isset($_FILES['imagen'])) || (empty($_FILES['imagen'])) ){
 			echo json_encode(array('msj'=>'No se indico una imagen.'));exit;
 		}
+    $id = $this->getTexto('id');
+    $config = $this->_config->find(array('id' => 1));
+    $foto = $config[$id];
+    if(!empty($foto)){
+      unlink(ROOT.'public/img/portada/'.$foto);
+    }
 		$initialPreview = array();
 		$initialPreviewConfig = array();
 		$files = array();
@@ -59,11 +65,10 @@ class configuracionController extends administradorController{
 			$img = new upload($file);
 			$img->file_new_name_body = $nombre;
 			$img->process($ruta);
-			$rta = $this->_config->uploadImagenPortada($this->getTexto('id'),$img->file_dst_name,1);
+			$rta = $this->_config->uploadImagenPortada($id,$img->file_dst_name,1);
 			$initialPreview[] = "<img src='".BASE_URL."public/img/portada/".$img->file_dst_name."' class='file-preview-image' style='height:160px;'>";
 			$initialPreviewConfig[] = [
-				'caption' => $img->file_dst_name,
-				'url' => BASE_URL."administrador\configuracion\deleteImagen"
+				'caption' => $img->file_dst_name
 			];
 			unset($img);
 		}
@@ -75,28 +80,26 @@ class configuracionController extends administradorController{
 		  ])
     );
     exit;
-		// echo json_encode([
-		// 	'initialPreview' => [
-		// 		"<img src='".$ruta.$img->file_dst_name."' class='file-preview-image'>",
-		// 	],
-		// 	'initialPreviewConfig' => [
-		// 		['caption' => $img->file_dst_name,
-		// 		'width' => '120px',
-		// 		'url' => BASE_URL."administrador/prendas/deleteImagen",
-		// 		//'key' => 10,
-		// 		'extra' => ['id' => $foto_id]
-		// 		]
-		// 	],
-		// 	'append' => true ]);exit;
+	}
+
+  public function get_portada(){
+    $config = $this->_config->find(array('id' => 1));
+    $foto = $config[$this->getTexto('id')];
+    $enlace = "<img src='".BASE_URL."public/img/portada/".$foto."' class='file-preview-image' style='height:160px;'>";
+		echo json_encode(array("url"=>$enlace));exit;
 	}
 
   public function deleteImagen(){
-		// $foto = $this->_prendas->getImagenById($this->getInt('id'));
-		// unlink(ROOT.'public/img/prendas/'.$foto['nombre']);
-		// unlink(ROOT.'public/img/prendas/thumb/thumb_'.$foto['nombre']);
-		// $this->_prendas->deleteImagen($this->getInt('id'));
+		$foto = $this->_config->getPortada($this->getTexto('id'),1);
+    if(!empty($foto)){
+      unlink(ROOT.'public/img/portada/'.$foto);
+      $rta = $this->_config->uploadImagenPortada($this->getTexto('id'),null,1);
+    }
 		echo json_encode(array());exit;
 	}
+
+
+
 
 
 }

@@ -42,6 +42,17 @@ class configuracionModel extends Model {
 	 ]);
 	}
 
+	public function getPortada($id_imagen,$id){
+		 $config = $this->_db->prepare("
+		 SELECT *
+		 FROM configuracion
+		 WHERE id = :id
+	 ")->execute([
+		 "id" => $id
+	 ]);
+	 return $config;
+	}
+
 
 }
 

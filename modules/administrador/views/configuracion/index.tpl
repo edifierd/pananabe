@@ -56,7 +56,7 @@
 				Foto de portada mujer
 			</div>
 			<div class="panel-body">
-				<input id="portada_mujer" name="portada_mujer[]" type="file" accept="image/*">
+				<input id="portada_mujer" name="imagen[]" type="file" accept="image/*">
 			</div>
 		</div>
 
