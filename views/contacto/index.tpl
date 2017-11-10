@@ -12,15 +12,15 @@
         	<div class="row" style="font-weight: bold; font-size:19px;">
 
             	<div class="col-md-6" title="Datos Contacto">
-                	<i class="fa fa-map-marker fa-1x" style="margin:3px;" title="Brandsen, Buenos Aires, Argentina"></i> Brandsen, Buenos Aires, Argentina <br />
-           			<i class="fa fa-mobile fa-2x" style="margin:3px;" ></i> +54 221 15 5980127<br />
-            		<i class="fa fa-envelope fa-1x" style="margin:3px;" title="correo: info@pananabe.com.ar"></i> info@pananabe.com.ar<br />
+                	<i class="fa fa-map-marker fa-1x" style="margin:3px;" title="Brandsen, Buenos Aires, Argentina"></i> {$config.direccion} <br />
+           			<i class="fa fa-mobile fa-2x" style="margin:3px;" ></i> {$config.telefono}<br />
+            		<i class="fa fa-envelope fa-1x" style="margin:3px;" title="correo: info@pananabe.com.ar"></i> {$config.email}<br />
                 </div>
                 <div class="col-md-6">
-                	<a href="https://www.instagram.com/pananabeok/" target="_blank" title="Seguinos en Instagram" >
+                	<a href="{$config.dir_instagram}" target="_blank" title="Seguinos en Instagram" >
                     	<i class="fa fa fa-instagram fa-1x" style="margin:3px;" ></i> Seguinos en Instagram
                     </a>  <br />
-                    <a href="https://www.facebook.com/pananabeok" target="_blank" title="Seguinos en Facebook">
+                    <a href="{$config.dir_facebook}" target="_blank" title="Seguinos en Facebook">
                     	<i class="fa fa-facebook fa-1x" style="margin:3px;" ></i> Seguinos en Facebook
                     </a>
                 </div>

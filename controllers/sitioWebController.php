@@ -3,11 +3,14 @@
 class sitioWebController extends Controller {
 
 	private $_categorias;
+	private $_config;
 
     public function __construct(){
         parent::__construct();
 				$this->_categorias = $this->loadModel('categorias');
+				$this->_config = $this->loadModel('configuracion');
 				$this->_view->assign('menu', $this->generarMenu());
+				$this->_view->assign('config', $this->_config->find(['id' => 1]));
     }
 
     public function index(){

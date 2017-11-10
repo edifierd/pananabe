@@ -162,8 +162,8 @@
             </div>
             <div class="col-sm-4 col-md-4" style=" margin-top:10px; font-weight:bold;">
             	<p style="margin-right:auto; margin-left:auto;">
-            	Contacto al (221) 15 5980127 de 8:00 a 20:00 Hs <br>
-                Brandsen, Buenos Aires, Argentina
+            	Contacto al {$config.telefono} de 8:00 a 20:00 Hs <br>
+                {$config.direccion}
                 </p>
             </div>
             <div class="col-sm-4 col-md-4" >
@@ -171,20 +171,20 @@
                 	<tr>
                     	<td>
                         <a href="{$_layoutParams.root}contacto" class="redes" title="Contacto">
-                        	<i class="fa fa-envelope fa-2x" style="margin:1px; font-size: 12px; font-weight:bold;" > Consultas </i>
+                        	<i class="fa fa-envelope fa-2x" style="margin:1px; font-size: 12px; font-weight:bold;" > Contacto </i>
                         </a>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                        <a href="https://www.facebook.com/pananabeok" class="redes" target="_blank" title="Facebook Panana Be">
+                        <a href="{$config.dir_facebook}" class="redes" target="_blank" title="Facebook Panana Be">
                         	<i class="fa fa-facebook fa-2x" style="margin:1px; font-size: 12px; font-weight:bold;" > Facebook </i>
                         </a>
                         </td>
                    	</tr>
                     <tr>
                			<td>
-                        <a href="https://www.instagram.com/pananabeok/" class="redes" target="_blank" title="Instagram Panana Be">
+                        <a href="{$config.dir_instagram}" class="redes" target="_blank" title="Instagram Panana Be">
                         	<i class="fa fa-instagram fa-2x" style="margin:1px; font-size: 12px; font-weight:bold;" > Instagram </i>
                         </a>
                         </td>
