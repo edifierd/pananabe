@@ -2,10 +2,12 @@
 
 class configuracionController extends administradorController{
   private $_config;
+  private $_slider;
 
   public function __construct(){
     parent::__construct();
     $this->_config = $this->loadModel('configuracion');
+    $this->_slider = $this->loadModel('slider');
   }
 
   public function index(){
@@ -87,6 +89,69 @@ class configuracionController extends administradorController{
     $foto = $config[$this->getTexto('id')];
     $enlace = "<img src='".BASE_URL."public/img/portada/".$foto."' class='file-preview-image' style='height:160px;'>";
 		echo json_encode(array("url"=>$enlace));exit;
+	}
+
+
+  public function uploadSlider(){
+		if(!(isset($_FILES['imagen'])) || (empty($_FILES['imagen'])) ){
+			echo json_encode(array('msj'=>'No se indico una imagen.'));exit;
+		}
+		$initialPreview = array();
+		$initialPreviewConfig = array();
+		$files = array();
+		foreach ($_FILES['imagen'] as $k => $l) {
+			foreach ($l as $i => $v) {
+				if (!array_key_exists($i, $files))
+				$files[$i] = array();
+				$files[$i][$k] = $v;
+			}
+		}
+		$ruta = ROOT . "public/img/slider/";
+		foreach ($files as $file) {
+			$nombre = 'upl_'.uniqid();
+			$img = new upload($file);
+			$img->file_new_name_body = $nombre;
+			$img->process($ruta);
+			$foto_id = $this->_slider->uploadImagenSlider($img->file_dst_name);
+
+      $sliders = json_decode($this->get_slider());
+      $sliders['initialPreview'][] = "<img src='".BASE_URL."public/img/slider/".$img->file_dst_name."' class='file-preview-image' style='width:100%;'> ";
+      $sliders['initialPreviewConfig'][] = array(
+        'type' => 'image',
+        'caption' => $img->file_dst_name,
+        'width' => '160px',
+        'url' => BASE_URL."administrador\configuracion\deleteSliderImagen",
+        'extra' => ['id' => $foto_id]
+      );
+      $sliders['append'] = true;
+			unset($img);
+		}
+		echo json_encode($sliders);exit;
+	}
+
+  public function get_slider(){
+    $sliders = $this->_slider->all();
+    $enlaces = array();
+    foreach ($sliders as $value) {
+      $enlaces['initialPreview'][] = "<img src='".BASE_URL."public/img/slider/".$value['nombre']."' class='file-preview-image' style='width:100%;'> ";
+      $enlaces['initialPreviewConfig'][] = array(
+        'type' => 'image',
+        'caption' => $value['nombre'],
+        'width' => '160px',
+        'url' => BASE_URL."administrador\configuracion\deleteSliderImagen",
+        'extra' => ['id' => $value['id']]
+      );
+    }
+    echo json_encode($enlaces);exit;
+	}
+
+  public function deleteSliderImagen(){
+		$foto = $this->_slider->getSlider( (int) $this->getTexto('id'));
+    if(!empty($foto)){
+      unlink(ROOT.'public/img/slider/'.$foto['nombre']);
+      $rta = $this->_slider->eliminar(['id' => $this->getTexto('id')]);
+    }
+		echo json_encode(array());exit;
 	}
 
   public function deleteImagen(){

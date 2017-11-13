@@ -1,7 +1,6 @@
 <?php
 
 class configuracionModel extends Model {
-	private $rubro;
 
     public function __construct() {
         parent::__construct('');

@@ -44,7 +44,7 @@
 			<div class="panel-body">
 				<form enctype="multipart/form-data" method="post" action="">
 					<div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
-						<input id="portada_hombre" name="imagen[]" type="file" accept="image/*" multiple>
+						<input id="portada_hombre" name="imagen[]" type="file" accept="image/*">
 					</div>
 				</form>
 			</div>
@@ -59,7 +59,17 @@
 				<input id="portada_mujer" name="imagen[]" type="file" accept="image/*">
 			</div>
 		</div>
+	</div>
 
+	<div class="col-sm-12 col-md-12">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				Fotos Slider
+			</div>
+			<div class="panel-body">
+				<input id="slider" name="imagen[]" type="file" accept="image/*" multiple>
+			</div>
+		</div>
 	</div>
 
 
