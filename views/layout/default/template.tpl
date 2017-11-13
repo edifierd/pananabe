@@ -43,19 +43,27 @@
 			}
 
 			.footer{
-				bottom: 0;
-				left: 0;
-				right: 0;
-				top: 0;
-				width: 100%;
+        margin-top: 5em;
+        bottom: 0;
+        width: 100%;
 				position: absolute;
 				margin-top: auto;
 				background-color: #DADADA;
 				border-top-color: #000;
 				border-top-width: 1px;
-				height: 60px;
+				/*height: 1em;*/
 				color: #000;
 			}
+
+      #asd{
+        margin-bottom: 75px;
+      }
+
+      @media (orientation: portrait){
+        #asd{
+          margin-bottom: 175px;
+        }
+      }
 
         </style>
 
@@ -123,7 +131,7 @@
 
 
     <!-- CONTENIDO -->
-    <div class="container" style=" margin-bottom: 75px;">
+    <div id="asd" class="container">
     	<div class="span8">
                 <noscript>
                 	<div class="alert alert-danger" role="alert" style="text-align:center; margin-top: 15px;">
@@ -167,29 +175,22 @@
                 </p>
             </div>
             <div class="col-sm-4 col-md-4" >
-            	<table title="Contacto Redes Sociales">
-                	<tr>
-                    	<td>
-                        <a href="{$_layoutParams.root}contacto" class="redes" title="Contacto">
-                        	<i class="fa fa-envelope fa-2x" style="margin:1px; font-size: 12px; font-weight:bold;" > Contacto </i>
-                        </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        <a href="{$config.dir_facebook}" class="redes" target="_blank" title="Facebook Panana Be">
-                        	<i class="fa fa-facebook fa-2x" style="margin:1px; font-size: 12px; font-weight:bold;" > Facebook </i>
-                        </a>
-                        </td>
-                   	</tr>
-                    <tr>
-               			<td>
-                        <a href="{$config.dir_instagram}" class="redes" target="_blank" title="Instagram Panana Be">
-                        	<i class="fa fa-instagram fa-2x" style="margin:1px; font-size: 12px; font-weight:bold;" > Instagram </i>
-                        </a>
-                        </td>
-                    </tr>
-                </table>
+              <div class="row">
+                <div class="col-xs-4 col-md-12">
+                  <a href="{$_layoutParams.root}contacto" class="redes" title="Contacto">
+                    <i class="fa fa-envelope fa-2x" style="margin:1px; font-size: 12px; font-weight:bold;" > Contacto </i>
+                  </a>
+                </div>
+                <div class="col-xs-4 col-md-12">
+                  <a href="{$config.dir_facebook}" class="redes" target="_blank" title="Facebook Panana Be">
+                    <i class="fa fa-facebook fa-2x" style="margin:1px; font-size: 12px; font-weight:bold;" > Facebook </i>
+                  </a>
+                </div>
+                <div class="col-xs-4 col-md-12">
+                  <a href="{$config.dir_instagram}" class="redes" target="_blank" title="Instagram Panana Be">
+                    <i class="fa fa-instagram fa-2x" style="margin:1px; font-size: 12px; font-weight:bold;" > Instagram </i>
+                </div>
+              </div>
             </div>
     	</div>
         </div>
