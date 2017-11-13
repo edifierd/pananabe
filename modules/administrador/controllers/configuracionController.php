@@ -96,8 +96,6 @@ class configuracionController extends administradorController{
 		if(!(isset($_FILES['imagen'])) || (empty($_FILES['imagen'])) ){
 			echo json_encode(array('msj'=>'No se indico una imagen.'));exit;
 		}
-		$initialPreview = array();
-		$initialPreviewConfig = array();
 		$files = array();
 		foreach ($_FILES['imagen'] as $k => $l) {
 			foreach ($l as $i => $v) {
@@ -113,20 +111,9 @@ class configuracionController extends administradorController{
 			$img->file_new_name_body = $nombre;
 			$img->process($ruta);
 			$foto_id = $this->_slider->uploadImagenSlider($img->file_dst_name);
-
-      $sliders = json_decode($this->get_slider());
-      $sliders['initialPreview'][] = "<img src='".BASE_URL."public/img/slider/".$img->file_dst_name."' class='file-preview-image' style='width:100%;'> ";
-      $sliders['initialPreviewConfig'][] = array(
-        'type' => 'image',
-        'caption' => $img->file_dst_name,
-        'width' => '160px',
-        'url' => BASE_URL."administrador\configuracion\deleteSliderImagen",
-        'extra' => ['id' => $foto_id]
-      );
-      $sliders['append'] = true;
 			unset($img);
 		}
-		echo json_encode($sliders);exit;
+		echo $this->get_slider();exit;
 	}
 
   public function get_slider(){
@@ -146,7 +133,7 @@ class configuracionController extends administradorController{
 	}
 
   public function deleteSliderImagen(){
-		$foto = $this->_slider->getSlider( (int) $this->getTexto('id'));
+		$foto = $this->_slider->getSlider($this->getInt('id'));
     if(!empty($foto)){
       unlink(ROOT.'public/img/slider/'.$foto['nombre']);
       $rta = $this->_slider->eliminar(['id' => $this->getTexto('id')]);

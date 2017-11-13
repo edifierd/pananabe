@@ -77,7 +77,7 @@ $(document).ready(function() {
         showUpload: false, // hide upload button
         showRemove: false, // hide remove button
         showClose: false,
-        uploadExtraData: {id: 'slider'},
+        minFileCount: 1,
         resizeImage: true,
         maxImageHeight: 400,
         resizePreference: 'height',
@@ -87,7 +87,7 @@ $(document).ready(function() {
       }).on("filebatchselected", function(event, files) {
         // trigger upload method immediately after files are selected
         $("#slider").fileinput("upload");
-        //var elem = $("#slider").fileinput('getFrames');
+        var elem = $("#slider").fileinput('getFrames');
       });
     },
     error:function(xhr,err,e){
