@@ -104,7 +104,7 @@
 
             <div class="" style="margin-left: 25px;"> <!-- Elimine la clase container !!!!!!!!!!!!!!!!!!!!!!!!! -->
                 <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
+                    <div class="col-lg-11 col-lg-offset-1">
                     	<div class="col-md-11" >
     						<div class="span8">
                 				<noscript>
