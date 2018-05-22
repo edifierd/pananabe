@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2018-05-22 00:23:18
+<?php /* Smarty version Smarty-3.1.8, created on 2018-05-22 00:42:23
          compiled from "C:\xampp\htdocs\pananabe\modules\administrador\views\configuracion\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:36515b0346d6ef3c09-87401094%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5ff8423f107c94a65e0d3ae24dd84a6142ac98e7' => 
     array (
       0 => 'C:\\xampp\\htdocs\\pananabe\\modules\\administrador\\views\\configuracion\\index.tpl',
-      1 => 1526941393,
+      1 => 1526941558,
       2 => 'file',
     ),
   ),
@@ -15,13 +15,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.8',
+  'unifunc' => 'content_5b0346d6f1eeb7_37141135',
   'variables' => 
   array (
     'config' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.8',
-  'unifunc' => 'content_5b0346d6f1eeb7_37141135',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5b0346d6f1eeb7_37141135')) {function content_5b0346d6f1eeb7_37141135($_smarty_tpl) {?><h3>Configuración del sistema</h3>
 

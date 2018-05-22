@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2018-05-22 00:25:29
+<?php /* Smarty version Smarty-3.1.8, created on 2018-05-22 00:42:19
          compiled from "C:\xampp\htdocs\pananabe\modules\administrador\views\prendas\nuevo.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:233985b03453b63e933-41683793%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1719e8172d2aff6014a34ed7f91158666028ece4' => 
     array (
       0 => 'C:\\xampp\\htdocs\\pananabe\\modules\\administrador\\views\\prendas\\nuevo.tpl',
-      1 => 1526941526,
+      1 => 1526941640,
       2 => 'file',
     ),
   ),

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.8, created on 2018-05-22 00:25:29
+<?php /* Smarty version Smarty-3.1.8, created on 2018-05-22 00:42:19
          compiled from "C:\xampp\htdocs\pananabe\views\layout\administrador\template.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:49925b03449de76559-73721758%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5ab2b7a83656ca414e4917301daaf4f1d43918b2' => 
     array (
       0 => 'C:\\xampp\\htdocs\\pananabe\\views\\layout\\administrador\\template.tpl',
-      1 => 1526941526,
+      1 => 1526941640,
       2 => 'file',
     ),
   ),
@@ -112,6 +112,12 @@ administrador/ventas">Ventas</a>
 administrador/contacto">Mensajes</a>
                 	</li>
                 <?php }?>
+                <?php if ($_smarty_tpl->tpl_vars['_acl']->value->permiso('configuracion_index')){?>
+					<li>
+                    	<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+administrador/configuracion">Configuración</a>
+                	</li>
+                <?php }?>
                 <?php if ($_smarty_tpl->tpl_vars['_acl']->value->permiso('control_usuarios')){?>
                 	<li class="dropdown">
                   		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios y Permisos<span class="caret"></span></a>
@@ -202,8 +208,10 @@ administrador/usuarios/cerrar">Cerrar Sesión</a>
     <!-- /#wrapper -->
 
 
-	<script type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-public/js/jquery-1.11.1.min.js"></script>
+	<!-- <script type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+public/js/jquery-1.11.1.min.js"></script> -->
+  <script type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+public/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['ruta_js'];?>
 bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['ruta_js'];?>
